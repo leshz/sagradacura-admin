@@ -1,6 +1,6 @@
 export default [
   {
-    method: "GET",
+    method: "POST",
     path: "/checkout",
     handler: "checkout.index",
     config: {

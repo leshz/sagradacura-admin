@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "status_ticket_types",
+  "info": {
+    "singularName": "status-ticket-type",
+    "pluralName": "status-ticket-types",
+    "displayName": "Status Ticket Type "
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Status": {
+      "type": "uid",
+      "required": true,
+      "private": true
+    }
+  }
+}

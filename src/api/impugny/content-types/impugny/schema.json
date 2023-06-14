@@ -4,7 +4,8 @@
   "info": {
     "singularName": "impugny",
     "pluralName": "impugnies",
-    "displayName": "impugny"
+    "displayName": "impugny",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -26,7 +27,7 @@
       "unique": false,
       "private": true
     },
-    "content": {
+    "Content": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -35,7 +36,7 @@
       "type": "json",
       "required": true
     },
-    "seo": {
+    "Seo": {
       "pluginOptions": {
         "i18n": {
           "localized": true

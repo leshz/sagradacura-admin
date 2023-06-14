@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vehicule_types",
+  "info": {
+    "singularName": "vehicule-type",
+    "pluralName": "vehicule-types",
+    "displayName": "Vehícule Type"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Type": {
+      "type": "uid",
+      "required": true
+    }
+  }
+}

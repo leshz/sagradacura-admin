@@ -1,22 +1,19 @@
 import { Strapi } from "@strapi/strapi";
 import meli from "mercadopago";
-import type {
-  CreatePreferencePayload,
-  PreferencePayer,
-  PreferenceBackUrl,
-} from "mercadopago/models/preferences/create-payload.model";
+import type { CreatePreferencePayload } from "mercadopago/models/preferences/create-payload.model";
+
 meli.configure({
-  access_token:
-    "TEST-1522607168195150-041310-03bd572890543bb7d6173aceb33ecd22-170194224",
+  access_token: `${process.env.IMPUGNY_TOKEN_MELI}`,
 });
 
 export default ({ strapi }: { strapi: Strapi }) => ({
-  createPreference: async () => {
+  createPreference: async ({ items }) => {
     const preference: CreatePreferencePayload = {
+      binary_mode: true,
       items: [
         {
-          title: "Comparendo",
-          unit_price: 135000,
+          title: "",
+          unit_price: 1000,
           quantity: 1,
         },
       ],
@@ -28,11 +25,18 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       auto_return: "approved",
     };
     try {
-      const response = await meli.preferences.create(preference);
-      console.log(response.body.id);
+      const data = await meli.preferences.create(preference);
+      const {
+        body: { id, init_point },
+      } = data;
+
+      return {
+        id: id,
+        init_url: init_point,
+        response: data,
+      };
     } catch (error) {
-      return;
+      return {};
     }
-    return "LLEGAMOS HASTA AQUI";
   },
 });

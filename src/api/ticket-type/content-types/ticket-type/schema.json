@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ticket_types",
+  "info": {
+    "singularName": "ticket-type",
+    "pluralName": "ticket-types",
+    "displayName": "Ticket Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Type": {
+      "type": "uid",
+      "required": true,
+      "private": true
+    }
+  }
+}
