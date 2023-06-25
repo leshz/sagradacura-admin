@@ -2,9 +2,9 @@ export default [
   {
     method: "POST",
     path: "/checkout",
-    handler: "checkout.checkoutProcess",
+    handler: "preferences.checkoutProcess",
     config: {
-      middlewares: ["plugin::mercadopago.loadConfigurationByPlatform"],
+      middlewares: ["plugin::mercado-pago.loadConfigurationByPlatform"],
       policies: [],
       auth: false,
     },

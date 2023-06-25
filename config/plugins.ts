@@ -1,6 +1,6 @@
 export default {
-  mercadopago: {
+  "mercado-pago": {
     enabled: true,
-    resolve: "./src/plugins/mercadopago",
+    resolve: "./src/plugins/mercado-pago",
   },
 };
