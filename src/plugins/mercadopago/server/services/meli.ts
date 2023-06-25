@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Strapi } from "@strapi/strapi";
 import meli from "mercadopago";
 import type { CreatePreferencePayload } from "mercadopago/models/preferences/create-payload.model";
@@ -25,18 +26,21 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       auto_return: "approved",
     };
     try {
-      const data = await meli.preferences.create(preference);
-      const {
-        body: { id, init_point },
-      } = data;
+      // const data = await meli.preferences.create(preference);
+      console.log("Servicio");
 
-      return {
-        id: id,
-        init_url: init_point,
-        response: data,
-      };
+      throw strapi.errors["SERVER_ERROR"]("Ocurrió un error en el servicio");
+      // const {
+      //   body: { id, init_point },
+      // } = data;
+
+      // return {
+      //   id: id,
+      //   init_url: init_point,
+      //   response: data,
+      // };
     } catch (error) {
-      return {};
+      throw strapi.errors["SERVER_ERROR"]("Ocurrió un error en el servicio");
     }
   },
 });

@@ -4,14 +4,15 @@
   "info": {
     "singularName": "status-ticket-type",
     "pluralName": "status-ticket-types",
-    "displayName": "Status Ticket Type "
+    "displayName": "Status Ticket Type ",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "Status": {
+    "status": {
       "type": "uid",
       "required": true,
       "private": true

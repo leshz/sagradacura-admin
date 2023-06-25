@@ -12,14 +12,22 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Platform": {
-      "type": "uid"
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
     },
-    "user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "platform"
+    "statementDescriptor": {
+      "type": "string",
+      "required": true
+    },
+    "notificationUrl": {
+      "type": "string",
+      "required": true
+    },
+    "backUrls": {
+      "type": "json",
+      "required": true
     }
   }
 }

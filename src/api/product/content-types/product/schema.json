@@ -10,61 +10,35 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
-    "Title": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+    "title": {
+      "pluginOptions": {},
       "type": "string",
       "required": true,
       "unique": true
     },
-    "Description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text"
+    "description": {
+      "pluginOptions": {},
+      "type": "text",
+      "required": true
     },
-    "Price": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+    "price": {
+      "pluginOptions": {},
       "type": "integer",
       "required": true
     },
-    "Picture": {
+    "picture": {
       "type": "media",
       "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "pluginOptions": {}
     },
-    "Currency_id": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+    "currencyId": {
+      "pluginOptions": {},
       "type": "string",
       "required": true,
       "default": "COP"

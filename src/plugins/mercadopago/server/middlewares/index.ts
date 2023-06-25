@@ -1,11 +1,23 @@
-const setConfigByPlatform = (options, { strapi }) => {
-  // return async (ctx, next) => {
-  // const start = Date.now();
-  // await next();
-  // const delta = Math.ceil(Date.now() - start);
-  // strapi.log.http(`${ctx.method} ${ctx.url} (${delta} ms) ${ctx.status}`);
-  // };
-};
-setConfigByPlatform;
+const loadConfigurationByPlatform = (options, { strapi }) => {
+  return async (ctx, next) => {
+    const {
+      header: { platform = "" },
+    } = ctx;
+    if (!platform) return ctx.badRequest("bad request");
+    try {
+      const result = await strapi.db.query("api::platform.platform").findOne({
+        select: ["*"],
+        where: { id: platform },
+      });
+      if (!result) return ctx.badRequest("bad request");
+      ctx.state.platform = result;
+      console.log("middleware");
 
-export default {};
+      await next();
+    } catch (error) {
+      return ctx.throw("Internal Server Error");
+    }
+  };
+};
+
+export default { loadConfigurationByPlatform };

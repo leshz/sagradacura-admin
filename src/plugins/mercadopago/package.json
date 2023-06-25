@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "mercado-pago",
-    "description": "Description of mercadopago plugin",
+    "name": "Mercado Pago",
+    "description": "Integracion con mercado pago via strapi",
     "kind": "plugin"
   },
   "dependencies": {

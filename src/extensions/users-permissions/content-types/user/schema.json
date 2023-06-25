@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -66,8 +65,7 @@
     "platform": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::platform.platform",
-      "inversedBy": "user"
+      "target": "api::platform.platform"
     }
   }
 }

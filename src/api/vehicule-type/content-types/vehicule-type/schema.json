@@ -4,14 +4,15 @@
   "info": {
     "singularName": "vehicule-type",
     "pluralName": "vehicule-types",
-    "displayName": "Vehícule Type"
+    "displayName": "Vehícule Type",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "Type": {
+    "type": {
       "type": "uid",
       "required": true
     }
