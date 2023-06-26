@@ -2886,10 +2886,10 @@
   dependencies:
     "@ucast/core" "^1.4.1"
 
-"@uiw/codemirror-extensions-basic-setup@4.21.4":
-  version "4.21.4"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-extensions-basic-setup/-/codemirror-extensions-basic-setup-4.21.4.tgz#212f98d985404124b0003e433637c5064b161e0a"
-  integrity sha512-2W7jZlkY5DZJ31sWGyFHEtm96EHSql41iT1Ao7Kxai17vGGjzz9UgsE9BX+3k251ArDeF8R3lvGrzMA/SXl8kg==
+"@uiw/codemirror-extensions-basic-setup@4.21.5":
+  version "4.21.5"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-extensions-basic-setup/-/codemirror-extensions-basic-setup-4.21.5.tgz#ac6e8132dd6226e76edc16814b3bce2b5560ab38"
+  integrity sha512-pKU8fiOtAvPvZJjscEzT5ZgXxVwfT1PkfxoG0GI3qJV0cq1PitlEubxk1S8mQ3Y4BKQAeIRpM5ZpWKBdyPN9Ng==
   dependencies:
     "@codemirror/autocomplete" "^6.0.0"
     "@codemirror/commands" "^6.0.0"
@@ -2900,15 +2900,15 @@
     "@codemirror/view" "^6.0.0"
 
 "@uiw/react-codemirror@^4.20.4":
-  version "4.21.4"
-  resolved "https://registry.yarnpkg.com/@uiw/react-codemirror/-/react-codemirror-4.21.4.tgz#e08a0d5deb9322c19622e3bf06061cc6b310dbdf"
-  integrity sha512-N9N6bX5cUj/FmNepV6d8HE+oH7DA2GlyqNZb8gss7l77dvpme1saphjoOLg1gRmOi2MlQydNsz5PundoN9VBtQ==
+  version "4.21.5"
+  resolved "https://registry.yarnpkg.com/@uiw/react-codemirror/-/react-codemirror-4.21.5.tgz#b94a85b42de814bfe37724102aae2e787863aa48"
+  integrity sha512-PkHcNGehPr31Zn3b4LPT642AdZz5M6/leSquM+tiRhXMLSx9QZR17qngXzLnuDjIbuQYi5Xk2LK1coc2oFRpkA==
   dependencies:
     "@babel/runtime" "^7.18.6"
     "@codemirror/commands" "^6.1.0"
     "@codemirror/state" "^6.1.1"
     "@codemirror/theme-one-dark" "^6.0.0"
-    "@uiw/codemirror-extensions-basic-setup" "4.21.4"
+    "@uiw/codemirror-extensions-basic-setup" "4.21.5"
     codemirror "^6.0.0"
 
 "@webassemblyjs/ast@1.11.6", "@webassemblyjs/ast@^1.11.5":
@@ -3685,9 +3685,9 @@ camelize@^1.0.0:
   integrity sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==
 
 caniuse-lite@^1.0.30001503:
-  version "1.0.30001507"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001507.tgz#fae53f6286e7564783eadea9b447819410a59534"
-  integrity sha512-SFpUDoSLCaE5XYL2jfqe9ova/pbQHEmbheDf5r4diNwbAgR3qxM9NQtfsiSscjqoya5K7kFcHPUQ+VsUkIJR4A==
+  version "1.0.30001508"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001508.tgz#4461bbc895c692a96da399639cc1e146e7302a33"
+  integrity sha512-sdQZOJdmt3GJs1UMNpCCCyeuS2IEGLXnHyAo9yIO5JJDjbjoVRij4M1qep6P6gFpptD1PqIYgzM+gwJbOi92mw==
 
 chalk@4.1.2, chalk@^4.1.0, chalk@^4.1.1, chalk@^4.1.2:
   version "4.1.2"
@@ -5647,9 +5647,9 @@ hpack.js@^2.1.6:
     wbuf "^1.1.0"
 
 html-entities@^2.1.0, html-entities@^2.3.2:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.3.6.tgz#966391d58e5737c77bca4025e31721b496ab7454"
-  integrity sha512-9o0+dcpIw2/HxkNuYKxSJUF/MMRZQECK4GnF+oQOmJ83yCVHTWgCH5aOXxK5bozNRmM8wtgryjHD3uloPBDEGw==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.4.0.tgz#edd0cee70402584c8c76cc2c0556db09d1f45061"
+  integrity sha512-igBTJcNNNhvZFRtm8uA6xMY6xYleeDwn3PeBCkDz7tHttv4F2hsDI2aPgNERWzvRcNYHNT3ymRaQzllmXj4YsQ==
 
 html-loader@^4.2.0:
   version "4.2.0"

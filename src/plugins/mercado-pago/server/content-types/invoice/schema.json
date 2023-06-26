@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "Mercadopago Invoices"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paymentId": {
+      "type": "uid",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "createAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "lastUpdate": {
+      "type": "datetime",
+      "required": true
+    },
+    "resume": {
+      "type": "text"
+    },
+    "netPrice": {
+      "required": true,
+      "default": 0,
+      "type": "integer"
+    },
+    "paidWith": {
+      "type": "string"
+    },
+    "collectorId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
