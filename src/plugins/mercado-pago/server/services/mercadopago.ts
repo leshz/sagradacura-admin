@@ -19,17 +19,18 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     };
     try {
       const data = await meli.preferences.create(preference);
-      const {
-        body: { id, init_point },
-      } = data;
+      // const {
+      //   body: { id, init_point },
+      // } = data;
 
-      return {
-        id: id,
-        init_url: init_point,
-        response: data,
-      };
+      return data;
+      // {
+      //   id: id,
+      //   init_url: init_point,
+      //   response: data,
+      // };
     } catch (error) {
-      console.log(error, "Error Service");
+      console.log(error.message, "Error Service");
     }
   },
 });
