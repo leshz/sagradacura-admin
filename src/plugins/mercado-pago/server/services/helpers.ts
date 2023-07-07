@@ -17,7 +17,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       );
       return {
         id: product.id,
-        title: product.title,
+        name: product.name,
         currency_id: product.currencyId,
         description: product.description,
         quantity: productSelected?.quantity,

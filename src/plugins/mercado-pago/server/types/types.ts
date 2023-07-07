@@ -3,8 +3,7 @@ export type invoiceType = {
   status: string;
   resume?: string;
   metadata?: object;
-  netPrice: number;
-  totalPrice: number;
+  products: Array<object>;
   paidWith?: string;
   collectorId: string;
   preferenceId: string;

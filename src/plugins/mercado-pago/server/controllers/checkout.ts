@@ -43,16 +43,14 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           internalInvoiceId: invoiceId,
         });
       const { id, collector_id, init_point } = preference;
-      //TODO: Calcular la factura y los precios de los productos
       const savedata = await strapi
         .plugin("mercado-pago")
         .service("invoices")
         .createInvoice({
           paymentId: invoiceId,
           status: INVOICES_STATUS.IN_PROCESS,
-          netPrice: 0,
-          totalPrice: 0,
-          preference_id: id,
+          products: products,
+          preferenceId: id,
           collectorId: collector_id,
           metadata: preference,
         });
