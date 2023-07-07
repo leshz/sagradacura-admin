@@ -19,18 +19,18 @@
       "type": "string",
       "required": true
     },
-    "createAt": {
-      "type": "datetime",
-      "required": true
-    },
-    "lastUpdate": {
-      "type": "datetime",
-      "required": true
-    },
     "resume": {
       "type": "text"
     },
+    "metadata": {
+      "type": "json"
+    },
     "netPrice": {
+      "required": true,
+      "default": 0,
+      "type": "integer"
+    },
+    "totalPrice": {
       "required": true,
       "default": 0,
       "type": "integer"
@@ -41,6 +41,16 @@
     "collectorId": {
       "type": "string",
       "required": true
+    },
+    "mercadopagoId": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "invoices"
     }
   }
 }

@@ -6,7 +6,7 @@ meli.configure({
 });
 
 export default ({ strapi }: { strapi: Strapi }) => ({
-  createPreference: async ({ items, platform, payer }) => {
+  createPreference: async ({ items, platform, payer, internalInvoiceId }) => {
     const { statementDescriptor, notificationUrl, backUrls } = platform;
     const preference = {
       binary_mode: true,
@@ -16,6 +16,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       notification_url: notificationUrl,
       back_urls: { ...backUrls },
       auto_return: "approved",
+      external_reference: internalInvoiceId,
     };
     try {
       const data = await meli.preferences.create(preference);

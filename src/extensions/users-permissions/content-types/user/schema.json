@@ -66,6 +66,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::platform.platform"
+    },
+    "invoices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::mercado-pago.invoice",
+      "mappedBy": "user"
     }
   }
 }

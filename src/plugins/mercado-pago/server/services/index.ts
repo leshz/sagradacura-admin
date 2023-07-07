@@ -1,7 +1,9 @@
-import mercadopago from "./mercadopago";
+import preferences from "./preferences";
 import helpers from "./helpers";
+import invoices from "./invoices";
 
 export default {
-  mercadopago,
+  preferences,
   helpers,
+  invoices,
 };
