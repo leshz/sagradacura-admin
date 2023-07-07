@@ -42,7 +42,7 @@
       "type": "string",
       "required": true
     },
-    "mercadopagoId": {
+    "preferenceId": {
       "type": "string",
       "required": true
     },

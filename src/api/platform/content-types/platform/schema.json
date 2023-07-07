@@ -23,7 +23,7 @@
     },
     "notificationUrl": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "backUrls": {
       "type": "json",

@@ -9,4 +9,13 @@ export default [
       auth: false,
     },
   },
+  {
+    method: "GET",
+    path: "/confirmation",
+    handler: "preferences.confirmationProcess",
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
 ];

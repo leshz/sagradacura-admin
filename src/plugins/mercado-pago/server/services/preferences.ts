@@ -1,37 +1,35 @@
 import { Strapi } from "@strapi/strapi";
 import meli from "mercadopago";
+import utils from "@strapi/utils";
 
 meli.configure({
   access_token: `${process.env.IMPUGNY_TOKEN_MELI}`,
 });
 
+const { ApplicationError } = utils.errors;
+
 export default ({ strapi }: { strapi: Strapi }) => ({
   createPreference: async ({ items, platform, payer, internalInvoiceId }) => {
     const { statementDescriptor, notificationUrl, backUrls } = platform;
+    //TODO: build payer
     const preference = {
-      binary_mode: true,
       items,
-      payer,
+      // payer,
       statement_descriptor: statementDescriptor,
-      notification_url: notificationUrl,
+      notification_url: notificationUrl || "",
       back_urls: { ...backUrls },
-      auto_return: "approved",
       external_reference: internalInvoiceId,
     };
     try {
-      const data = await meli.preferences.create(preference);
-      // const {
-      //   body: { id, init_point },
-      // } = data;
+      const {
+        body: { id, init_point, collector_id },
+      } = await meli.preferences.create(preference);
 
-      return data;
-      // {
-      //   id: id,
-      //   init_url: init_point,
-      //   response: data,
-      // };
+      return { id, init_point, collector_id };
     } catch (error) {
-      console.log(error.message, "Error Service");
+      throw new ApplicationError(error.message, {
+        service: "createPreference",
+      });
     }
   },
 });

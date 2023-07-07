@@ -1,21 +1,32 @@
+import utils from "@strapi/utils";
+
 const loadConfigurationByPlatform = (options, { strapi }) => {
   return async (ctx, next) => {
     const {
+      sanitize: { contentAPI },
+    } = utils;
+
+    const {
       header: { platform = "" },
     } = ctx;
-    if (!platform) return ctx.badRequest("bad request");
+
+    const sanitizedPlatform = await contentAPI.query(platform);
+    if (!sanitizedPlatform) return ctx.badRequest("bad request");
+
     try {
       const result = await strapi.db.query("api::platform.platform").findOne({
         select: ["*"],
-        where: { id: platform },
+        where: { id: sanitizedPlatform },
       });
       if (!result) return ctx.badRequest("bad request");
-      ctx.state.platform = result;
-      console.log("middleware");
-
+      ctx.state.platform = await contentAPI.output(result);
       await next();
     } catch (error) {
-      return ctx.throw("Internal Server Error");
+      console.log("");
+      console.log(error.message);
+      return ctx.internalServerError(error.message, {
+        middle: "loadConfigurationByPlatform",
+      });
     }
   };
 };

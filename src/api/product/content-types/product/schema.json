@@ -42,6 +42,11 @@
       "type": "string",
       "required": true,
       "default": "COP"
+    },
+    "platform": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::platform.platform"
     }
   }
 }
