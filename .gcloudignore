@@ -1,0 +1,4 @@
+.git
+.cache
+/database
+node_modules
