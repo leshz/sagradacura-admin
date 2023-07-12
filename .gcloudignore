@@ -2,3 +2,4 @@
 .cache
 /database
 node_modules
+/src/plugins/*

@@ -112,6 +112,7 @@ exports
 *.cache
 dist
 build
+!/src/plugins/mercado-pago/dist
 .strapi-updater.json
 docker-compose.yml
 database/*
