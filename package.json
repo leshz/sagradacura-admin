@@ -7,7 +7,8 @@
     "develop": "strapi develop --watch-admin",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "plugin:build": "cd ./src/plugins/mercado-pago && npm i && npm run build"
   },
   "devDependencies": {},
   "dependencies": {
