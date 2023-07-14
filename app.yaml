@@ -12,7 +12,7 @@ handlers:
     redirect_http_response_code: 301
     script: auto
 build_env_variables:
-  GOOGLE_NODE_RUN_SCRIPTS: ""
+  GOOGLE_NODE_RUN_SCRIPTS: "build, gcp-build, start"
 env_variables:
   HOST: $HOST
   APP_KEYS: $APP_KEYS
