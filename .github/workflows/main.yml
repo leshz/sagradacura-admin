@@ -42,9 +42,9 @@ jobs:
         id: deploy
         uses: google-github-actions/deploy-appengine@v0.2.0
         with:
-          deliverables: app.yaml dispatch.yaml
+          deliverables: app.yaml
           version: develop-${{ github.sha }}
           project_id: ${{ secrets.GCP_PROJECT }}
           credentials: ${{ secrets.GCP_CREDENTIALS }}
-      - name: Testing
+      - name: Running web page
         run: curl "${{ steps.deploy.outputs.url }}"

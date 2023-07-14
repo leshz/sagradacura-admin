@@ -1,3 +1,0 @@
-dispatch:
-  - url: "shzcode.tech/*"
-    service: cms-strapi
