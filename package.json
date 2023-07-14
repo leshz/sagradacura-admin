@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "gcp-build": "cd ./src/plugins/mercado-pago/ && yarn && yarn build"
+    "buildplugin": "cd ./src/plugins/mercado-pago/ && yarn && yarn build"
   },
   "devDependencies": {},
   "dependencies": {
