@@ -27,9 +27,18 @@ jobs:
       - name: GAE environment variable compiler
         uses: golang-enthusiast/app-yaml-env-compiler@v1.1
         env:
-          MY_ENV_VAR1: ${{ secrets.MY_ENV_VAR1 }}
-          MY_ENV_VAR2: ${{ secrets.MY_ENV_VAR2 }}
-
+          APP_KEYS: ${{ secrets.APP_KEYS }}
+          API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
+          ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
+          TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
+          DATABASE_CLIENT: ${{ secrets.DATABASE_CLIENT }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          IMPUGNY_TOKEN_MELI: ${{ secrets.IMPUGNY_TOKEN_MELI }}
       - name: Deploy to App Engine
         id: deploy
         uses: google-github-actions/deploy-appengine@v0.2.0

@@ -1,5 +1,4 @@
 .git
 .cache
-/database
-node_modules
-/src/plugins/*
+/node_modules
+/src/plugins/mercado-pago/node_modules
