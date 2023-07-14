@@ -23,7 +23,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: GAE environment variable compiler
         uses: golang-enthusiast/app-yaml-env-compiler@v1.1
         env:
@@ -39,14 +38,13 @@ jobs:
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           IMPUGNY_TOKEN_MELI: ${{ secrets.IMPUGNY_TOKEN_MELI }}
-      - name: Deploy to App Engine
+      - name: Deploy to app engine
         id: deploy
         uses: google-github-actions/deploy-appengine@v0.2.0
         with:
           deliverables: app.yaml
-          version: v1
+          version: TEST-${{ github.sha }}
           project_id: ${{ secrets.GCP_PROJECT }}
           credentials: ${{ secrets.GCP_CREDENTIALS }}
-
-      - name: Test
+      - name: Testing
         run: curl "${{ steps.deploy.outputs.url }}"
