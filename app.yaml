@@ -12,7 +12,7 @@ handlers:
     redirect_http_response_code: 301
     script: auto
 build_env_variables:
-  # GOOGLE_NODE_RUN_SCRIPTS: plugin,build
+  GOOGLE_NODE_RUN_SCRIPTS: ""
 env_variables:
   HOST: $HOST
   APP_KEYS: $APP_KEYS

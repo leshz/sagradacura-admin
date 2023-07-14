@@ -6,8 +6,9 @@
   "scripts": {
     "develop": "strapi develop --watch-admin",
     "start": "strapi start",
-    "build": "cd ./src/plugins/mercado-pago/ && yarn && yarn build && cd ../../../ &&  strapi build",
-    "strapi": "strapi"
+    "build": "strapi build",
+    "strapi": "strapi",
+    "gcp-build": "cd ./src/plugins/mercado-pago/ && yarn && yarn build && cd ../../../ && strapi build"
   },
   "devDependencies": {},
   "dependencies": {
