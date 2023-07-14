@@ -1,2 +1,3 @@
-- url: "shzcode.tech/*"
-  service: cms-strapi
+dispatch:
+  - url: "shzcode.tech/*"
+    service: cms-strapi
