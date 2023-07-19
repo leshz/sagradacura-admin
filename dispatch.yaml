@@ -1,5 +1,5 @@
 dispatch:
-  - url: "api.shzcode.tech./*"
+  - url: "api.shzcode.tech/*"
     service: cms-strapi-production
-  - url: "dev.shzcode.tech./*"
+  - url: "dev.shzcode.tech/*"
     service: cms-strapi-develop
