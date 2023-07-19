@@ -1,6 +1,6 @@
 env: standard
 runtime: nodejs18
-service: cms-strapi
+service: cms-strapi-{{$ENV_GOOGLE}}
 runtime_config:
   operating_system: ubuntu22
 basic_scaling:
