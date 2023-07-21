@@ -1,5 +1,4 @@
 export default ({ env }) => {
-  console.log(env.json("SERVICE_ACCOUNT_FILE", {}));
   return {
     "mercado-pago": {
       enabled: true,
