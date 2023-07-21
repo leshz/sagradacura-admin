@@ -9,7 +9,7 @@ export default ({ env }) => {
         provider:
           "@strapi-community/strapi-provider-upload-google-cloud-storage",
         providerOptions: {
-          bucketName: env("BUCKET_NAME", "strapi"),
+          bucketName: env("BUCKET_NAME", "strapi-test-bucket-567"),
           publicFiles: env.bool("BUCKET_PUBLIC_FILES", true),
           uniform: env.bool("BUCKET_UNIFORM", true),
           basePath: "",
