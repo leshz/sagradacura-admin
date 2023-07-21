@@ -30,6 +30,9 @@ jobs:
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           IMPUGNY_TOKEN_MELI: ${{ secrets.IMPUGNY_TOKEN_MELI }}
+          BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+          BUCKET_PUBLIC_FILES: ${{ secrets.BUCKET_PUBLIC_FILES }}
+          BUCKET_UNIFORM: ${{ secrets.BUCKET_UNIFORM }}
       - name: Deploy to app engine
         id: deploy
         uses: google-github-actions/deploy-appengine@v0.2.0
