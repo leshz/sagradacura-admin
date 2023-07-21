@@ -8,8 +8,8 @@ export default ({ env }) => ({
       provider: "@strapi-community/strapi-provider-upload-google-cloud-storage",
       providerOptions: {
         bucketName: env("BUCKET_NAME"),
-        publicFiles: true,
-        uniform: false,
+        publicFiles: env("BUCKET_PUBLIC_FILES") === "true",
+        uniform: env("BUCKET_UNIFORM") === "true",
         basePath: "",
       },
     },
