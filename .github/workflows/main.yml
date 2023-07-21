@@ -34,6 +34,7 @@ jobs:
           BUCKET_PUBLIC_FILES: ${{ secrets.BUCKET_PUBLIC_FILES }}
           BUCKET_UNIFORM: ${{ secrets.BUCKET_UNIFORM }}
           BUCKET_PATH_BASE: ${{ secrets.BUCKET_PATH_BASE }}
+          SERVICE_ACCOUNT_FILE: ${{ secrets.SERVICE_ACCOUNT_FILE }}
       - name: Deploy to app engine
         id: deploy
         uses: google-github-actions/deploy-appengine@v0.2.0
