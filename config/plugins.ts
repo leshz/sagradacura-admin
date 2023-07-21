@@ -12,7 +12,7 @@ export default ({ env }) => {
           bucketName: env("BUCKET_NAME"),
           publicFiles: env.bool("BUCKET_PUBLIC_FILES", true),
           uniform: env.bool("BUCKET_UNIFORM", true),
-          basePath: "",
+          baseUrl: env("BUCKET_PATH_BASE"),
         },
       },
     },
