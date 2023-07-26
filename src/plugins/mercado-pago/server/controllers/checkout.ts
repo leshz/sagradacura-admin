@@ -70,35 +70,40 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     }
   },
   async confirmationProcess(ctx, next) {
+    console.log("confirmationProcess");
+
     try {
       const {
         sanitize: { contentAPI },
       } = utils;
-      const sanitizeQuery: confirmationQuery = await contentAPI.query(
-        ctx.query
-      );
+      // const body: confirmationQuery = await contentAPI.query(ctx.body);
+      const body: confirmationQuery = ctx.body;
 
-      const savedata = await strapi.db
-        .query("plugin::mercado-pago.invoice")
-        .findOne({
-          select: ["*"],
-          where: { paymentId: sanitizeQuery.external_reference },
-        });
+      console.log(ctx.request.body);
+
+      // const savedata = await strapi.db
+      //   .query("plugin::mercado-pago.invoice")
+      //   .findOne({
+      //     select: ["*"],
+      //     where: { paymentId: sanitizeQuery.external_reference },
+      //   });
       //TODO Covertir funcion a servicio
-      if (savedata.status === INVOICES_STATUS.IN_PROCESS) {
-        const updateData = await strapi.db
-          .query("plugin::mercado-pago.invoice")
-          .update({
-            where: { paymentId: sanitizeQuery.external_reference },
-            data: {
-              status: sanitizeQuery.status,
-              paidWith: sanitizeQuery.payment_type,
-            },
-          });
-        return (ctx.body = await contentAPI.output(updateData));
-      }
-      return await contentAPI.output(savedata);
+      // if (savedata.status === INVOICES_STATUS.IN_PROCESS) {
+      //   const updateData = await strapi.db
+      //     .query("plugin::mercado-pago.invoice")
+      //     .update({
+      //       where: { paymentId: sanitizeQuery.external_reference },
+      //       data: {
+      //         status: sanitizeQuery.status,
+      //         paidWith: sanitizeQuery.payment_type,
+      //       },
+      //     });
+      //   return (ctx.body = await contentAPI.output(updateData));
+      // }
+      return await contentAPI.output("ok");
     } catch (error) {
+      console.log(error);
+
       return ctx.internalServerError(error.message, {
         controller: "checkoutProcess",
       });

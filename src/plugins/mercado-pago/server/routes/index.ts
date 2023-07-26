@@ -10,7 +10,7 @@ export default [
     },
   },
   {
-    method: "GET",
+    method: "POST",
     path: "/confirmation",
     handler: "preferences.confirmationProcess",
     config: {
