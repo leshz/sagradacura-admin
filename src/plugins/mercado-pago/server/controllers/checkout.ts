@@ -79,7 +79,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       // const body: confirmationQuery = await contentAPI.query(ctx.body);
       const body: confirmationQuery = ctx.body;
 
-      console.log(ctx.request.body);
+      console.log(JSON.stringify(ctx.request.body));
 
       // const savedata = await strapi.db
       //   .query("plugin::mercado-pago.invoice")
