@@ -16,16 +16,15 @@
     }
   },
   "attributes": {
-    "page": {
+    "uuid": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "string",
-      "required": true,
-      "unique": false,
-      "private": true
+      "type": "uid",
+      "required": false,
+      "unique": true
     },
     "content": {
       "pluginOptions": {

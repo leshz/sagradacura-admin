@@ -115,3 +115,4 @@ build
 .strapi-updater.json
 docker-compose.yml
 database/*
+data/*

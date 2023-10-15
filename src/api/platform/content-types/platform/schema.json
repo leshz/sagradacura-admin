@@ -28,6 +28,9 @@
     "backUrls": {
       "type": "json",
       "required": true
+    },
+    "uuid": {
+      "type": "uid"
     }
   }
 }
