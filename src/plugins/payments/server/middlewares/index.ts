@@ -1,3 +1,4 @@
+// @ts-nocheck
 import utils from "@strapi/utils";
 
 const loadConfigurationByPlatform = (options, { strapi }) => {

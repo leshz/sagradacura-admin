@@ -371,7 +371,7 @@ export interface ApiImpugnyImpugny extends Schema.SingleType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -386,7 +386,7 @@ export interface ApiImpugnyImpugny extends Schema.SingleType {
           localized: true;
         };
       }>;
-    content: Attribute.JSON &
+    main: Attribute.JSON &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -400,9 +400,14 @@ export interface ApiImpugnyImpugny extends Schema.SingleType {
           localized: true;
         };
       }>;
+    contact: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::impugny.impugny',
       'oneToOne',
@@ -615,12 +620,12 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
 }
 
-export interface PluginMercadoPagoInvoice extends Schema.CollectionType {
+export interface PluginPaymentsInvoice extends Schema.CollectionType {
   collectionName: 'invoices';
   info: {
     singularName: 'invoice';
     pluralName: 'invoices';
-    displayName: 'Mercadopago Invoices';
+    displayName: 'Invoices';
   };
   options: {
     draftAndPublish: false;
@@ -636,20 +641,20 @@ export interface PluginMercadoPagoInvoice extends Schema.CollectionType {
     collectorId: Attribute.String & Attribute.Required;
     preferenceId: Attribute.String & Attribute.Required;
     user: Attribute.Relation<
-      'plugin::mercado-pago.invoice',
+      'plugin::payments.invoice',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::mercado-pago.invoice',
+      'plugin::payments.invoice',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::mercado-pago.invoice',
+      'plugin::payments.invoice',
       'oneToOne',
       'admin::user'
     > &
@@ -876,7 +881,7 @@ declare module '@strapi/types' {
       'api::product.product': ApiProductProduct;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
-      'plugin::mercado-pago.invoice': PluginMercadoPagoInvoice;
+      'plugin::payments.invoice': PluginPaymentsInvoice;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;

@@ -1,8 +1,9 @@
+// @ts-nocheck
 import { Strapi } from "@strapi/strapi";
 import { v4 as uuidv4 } from "uuid";
 import utils from "@strapi/utils";
-import { INVOICES_STATUS } from "../constants/constants";
-import type { confirmationQuery } from "../types/types";
+import { INVOICES_STATUS } from "../../constants/constants";
+import type { confirmationQuery } from "../../types/types";
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async checkoutProcess(ctx, next) {
@@ -62,7 +63,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       }
 
       const data = { invoiceId: invoiceId, init_point };
-      ctx.body = await contentAPI.output(data);
+      ctx.body = await contentAPI.output(data, null, null);
     } catch (error) {
       return ctx.internalServerError(error.message, {
         controller: "checkoutProcess",

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "invoice",
     "pluralName": "invoices",
-    "displayName": "Mercadopago Invoices"
+    "displayName": "Invoices"
   },
   "options": {
     "draftAndPublish": false

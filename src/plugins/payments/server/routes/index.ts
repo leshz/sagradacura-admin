@@ -4,7 +4,7 @@ export default [
     path: "/checkout",
     handler: "preferences.checkoutProcess",
     config: {
-      middlewares: ["plugin::mercado-pago.loadConfigurationByPlatform"],
+      middlewares: ["plugin::payments.loadConfigurationByPlatform"],
       policies: [],
       auth: false,
     },

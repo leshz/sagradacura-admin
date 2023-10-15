@@ -1,8 +1,8 @@
 export default ({ env }) => {
   return {
-    "mercado-pago": {
+    payments: {
       enabled: true,
-      resolve: "./src/plugins/mercado-pago",
+      resolve: "./src/plugins/payments",
     },
   };
 };

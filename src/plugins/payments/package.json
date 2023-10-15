@@ -1,19 +1,18 @@
 {
-  "name": "mercado-pago",
+  "name": "payments",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "mercado-pago",
-    "description": "Description of mercado-pago plugin",
+    "name": "payments",
+    "description": "Description of payments plugin",
     "kind": "plugin"
   },
   "dependencies": {
     "@strapi/design-system": "^1.6.3",
     "@strapi/helper-plugin": "^4.6.0",
     "@strapi/icons": "^1.6.3",
-    "mercadopago": "^1.5.16",
     "prop-types": "^15.7.2",
-    "uuid": "^9.0.0"
+    "mercadopago": "^1.5.16"
   },
   "devDependencies": {
     "@strapi/typescript-utils": "^4.6.0",
@@ -42,7 +41,7 @@
     }
   ],
   "engines": {
-    "node": ">=14.19.1 <=18.x.x",
+    "node": ">=16.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
   "scripts": {
