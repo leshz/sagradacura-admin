@@ -1,5 +1,5 @@
-import preferences from "./my-controller";
+import controller from "./controller";
 
 export default {
-  preferences,
+  controller,
 };

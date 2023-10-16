@@ -1,5 +1,5 @@
-import service from "./preferences";
+import meli from "./mercadolibre";
 
 export default {
-  service,
+  meli,
 };

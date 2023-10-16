@@ -1,7 +1,6 @@
-// @ts-nocheck
 import utils from "@strapi/utils";
 
-const loadConfigurationByPlatform = (options, { strapi }) => {
+const getConfigByPlatform = (options, { strapi }) => {
   return async (ctx, next) => {
     const {
       sanitize: { contentAPI },
@@ -10,8 +9,8 @@ const loadConfigurationByPlatform = (options, { strapi }) => {
     const {
       header: { platform = "" },
     } = ctx;
-
-    const sanitizedPlatform = await contentAPI.query(platform);
+    // const sanitizedPlatform = await contentAPI.query(platform);
+    const sanitizedPlatform = platform;
     if (!sanitizedPlatform) return ctx.badRequest("bad request");
 
     try {
@@ -20,16 +19,17 @@ const loadConfigurationByPlatform = (options, { strapi }) => {
         where: { id: sanitizedPlatform },
       });
       if (!result) return ctx.badRequest("bad request");
-      ctx.state.platform = await contentAPI.output(result);
+      // ctx.state.platform = await contentAPI.output(result);
+      ctx.state.platform = result;
       await next();
     } catch (error) {
       console.log("");
       console.log(error.message);
       return ctx.internalServerError(error.message, {
-        middle: "loadConfigurationByPlatform",
+        middle: "getConfigByPlatform",
       });
     }
   };
 };
 
-export default { loadConfigurationByPlatform };
+export default { getConfigByPlatform };

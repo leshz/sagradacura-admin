@@ -8,11 +8,11 @@
     "kind": "plugin"
   },
   "dependencies": {
-    "@strapi/design-system": "^1.6.3",
-    "@strapi/helper-plugin": "^4.6.0",
-    "@strapi/icons": "^1.6.3",
-    "prop-types": "^15.7.2",
-    "mercadopago": "^1.5.16"
+    "@strapi/design-system": "^1.12.2",
+    "@strapi/helper-plugin": "^4.14.4",
+    "@strapi/icons": "^1.12.2",
+    "prop-types": "^15.8.1",
+    "mercadopago": "^2.0.1"
   },
   "devDependencies": {
     "@strapi/typescript-utils": "^4.6.0",
