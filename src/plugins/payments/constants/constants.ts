@@ -4,3 +4,14 @@ export const INVOICES_STATUS = {
   IN_PROCESS: "in_process",
   FAILED: "failed",
 };
+
+export const URLS = {
+  checkout: "/checkout",
+};
+
+export const METHODS = {
+  GET: "GET",
+  POST: "POST",
+  PUT: "PUT",
+  DELETE: "DELETE",
+};

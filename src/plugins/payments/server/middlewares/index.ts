@@ -1,30 +1,25 @@
-import utils from "@strapi/utils";
-
 const getConfigByPlatform = (options, { strapi }) => {
   return async (ctx, next) => {
+    const { request } = ctx;
     const {
-      sanitize: { contentAPI },
-    } = utils;
+      header: { platformid = "" },
+    } = request;
 
-    const {
-      header: { platform = "" },
-    } = ctx;
-    // const sanitizedPlatform = await contentAPI.query(platform);
-    const sanitizedPlatform = platform;
+    const sanitizedPlatform = platformid;
     if (!sanitizedPlatform) return ctx.badRequest("bad request");
 
     try {
       const result = await strapi.db.query("api::platform.platform").findOne({
         select: ["*"],
-        where: { id: sanitizedPlatform },
+        where: { uuid: sanitizedPlatform },
       });
-      if (!result) return ctx.badRequest("bad request");
-      // ctx.state.platform = await contentAPI.output(result);
+
+      if (!result) {
+        return ctx.badRequest("bad request");
+      }
       ctx.state.platform = result;
-      await next();
+      return await next();
     } catch (error) {
-      console.log("");
-      console.log(error.message);
       return ctx.internalServerError(error.message, {
         middle: "getConfigByPlatform",
       });
@@ -32,4 +27,18 @@ const getConfigByPlatform = (options, { strapi }) => {
   };
 };
 
-export default { getConfigByPlatform };
+const paymentFF = (options, { strapi }) => {
+  return async (ctx, next) => {
+    const {
+      state: { platform = {} },
+    } = ctx;
+
+    const { payment = false } = platform;
+    if (payment) {
+      return await next();
+    }
+    return ctx.serviceUnavailable("Service Unavailable");
+  };
+};
+
+export default { getConfigByPlatform, paymentFF };

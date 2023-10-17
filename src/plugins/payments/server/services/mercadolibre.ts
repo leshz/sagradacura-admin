@@ -5,16 +5,14 @@ import { errors } from "@strapi/utils";
 const { ApplicationError } = errors;
 
 export default ({ strapi }: { strapi: Strapi }) => ({
-  createPayment: async ({
-    items,
-    platform,
-    payer,
-    internalInvoiceId,
-    melitoken,
-  }) => {
-    const { statementDescriptor, notificationUrl, backUrls } = platform;
+  createPayment: async ({ items, platform, payer, internalInvoiceId }) => {
+    const { statementDescriptor, notificationUrl, backUrls, melitoken } =
+      platform;
+
+    console.log("platform", platform);
+
     if (melitoken === "") {
-      return new ApplicationError("No platform id", {
+      throw new ApplicationError("No platform id", {
         service: "createPayment",
       });
     }

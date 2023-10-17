@@ -379,13 +379,6 @@ export interface ApiImpugnyImpugny extends Schema.SingleType {
     };
   };
   attributes: {
-    uuid: Attribute.UID &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     main: Attribute.JSON &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -395,12 +388,6 @@ export interface ApiImpugnyImpugny extends Schema.SingleType {
       }>;
     seo: Attribute.JSON &
       Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    contact: Attribute.Blocks &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -442,10 +429,15 @@ export interface ApiPlatformPlatform extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
-    statementDescriptor: Attribute.String & Attribute.Required;
-    notificationUrl: Attribute.String;
-    backUrls: Attribute.JSON & Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    notification_url: Attribute.String;
     uuid: Attribute.UID;
+    back_url: Attribute.String;
+    melitoken: Attribute.String & Attribute.Required & Attribute.Unique;
+    payment: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

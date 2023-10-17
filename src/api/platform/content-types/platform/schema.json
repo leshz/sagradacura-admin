@@ -17,20 +17,30 @@
       "required": true,
       "unique": true
     },
-    "statementDescriptor": {
+    "description": {
       "type": "string",
       "required": true
     },
-    "notificationUrl": {
+    "notification_url": {
       "type": "string",
       "required": false
     },
-    "backUrls": {
-      "type": "json",
-      "required": true
-    },
     "uuid": {
       "type": "uid"
+    },
+    "back_url": {
+      "type": "string"
+    },
+    "melitoken": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "payment": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "private": true
     }
   }
 }
