@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_platform_mercadopagos",
+  "info": {
+    "displayName": "mercadopago",
+    "icon": "shoppingCart",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "token": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "private": true
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "required": true,
+      "private": true
+    },
+    "notification_url": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "private": true
+    },
+    "default_currency": {
+      "type": "string",
+      "required": true,
+      "default": "COP",
+      "private": true,
+      "maxLength": 3
+    },
+    "back_urls": {
+      "type": "string",
+      "unique": false
+    }
+  }
+}

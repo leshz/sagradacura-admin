@@ -18,30 +18,39 @@
       "required": true,
       "unique": true
     },
-    "description": {
-      "pluginOptions": {},
-      "type": "text",
-      "required": true
-    },
     "price": {
       "pluginOptions": {},
       "type": "integer",
       "required": true
     },
-    "picture": {
+    "pictures": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
         "images"
-      ],
-      "pluginOptions": {}
+      ]
     },
-    "currencyId": {
-      "pluginOptions": {},
+    "brief_description": {
       "type": "string",
-      "required": true,
-      "default": "COP"
+      "required": true
+    },
+    "full_description": {
+      "type": "richtext"
+    },
+    "platform": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::platform.platform"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 1
     }
   }
 }

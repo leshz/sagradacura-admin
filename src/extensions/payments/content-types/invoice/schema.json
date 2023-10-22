@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "Invoices",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "metadata": {
+      "type": "json"
+    },
+    "collectorId": {
+      "type": "string",
+      "required": true
+    },
+    "preferenceId": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "in_process",
+        "pending",
+        "rejected",
+        "cancelled",
+        "approved",
+        "initial"
+      ],
+      "default": "initial"
+    },
+    "total_invoice": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::platform.platform"
+    },
+    "buyer": {
+      "type": "json"
+    },
+    "buyer_email": {
+      "type": "email",
+      "unique": false,
+      "required": true
+    },
+    "products": {
+      "type": "json"
+    }
+  }
+}

@@ -12,6 +12,7 @@ const getConfigByPlatform = (options, { strapi }) => {
       const result = await strapi.db.query("api::platform.platform").findOne({
         select: ["*"],
         where: { uuid: sanitizedPlatform },
+        populate: ["mercadopago"],
       });
 
       if (!result) {
@@ -37,7 +38,7 @@ const paymentFF = (options, { strapi }) => {
     if (payment) {
       return await next();
     }
-    return ctx.serviceUnavailable("Service Unavailable");
+    return ctx.serviceUnavailable("Service Unavailable", { payment: false });
   };
 };
 

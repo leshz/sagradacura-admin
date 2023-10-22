@@ -6,24 +6,20 @@ import type { confirmationQuery } from "../../types/types";
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async checkout(ctx, next) {
-    // const {
-    //   sanitize: { contentAPI },
-    // } = utils;
     const { platform } = ctx.state;
-    // // const sanitizeBody = await contentAPI.query();
-    const { items = [], payer = {}, shipping = {} } = ctx.request.body || {};
-    // if (items.length === 0) return ctx.badRequest("Bad Request");
+    const { items = [], buyer = {} } = ctx.request.body || {};
+    if (items.length === 0) return ctx.badRequest("Bad Request");
 
-    // const products = await strapi
-    //   .plugin("mercado-pago")
-    //   .service("helpers")
-    //   .buildIMelitems(items);
+    const products = await strapi
+      .plugin("payments")
+      .service("utils")
+      .buildItems(items, platform);
 
-    // TODO: build buyer info
-    // const payerInfo = await strapi
-    //   .plugin("mercado-pago")
-    //   .service("helpers")
-    //   .buildMeliPayer(payer);
+    // TODO: Definir la informacion del bayer
+    const personalInfo = await strapi
+      .plugin("payments")
+      .service("utils")
+      .buildBuyer(buyer);
 
     // TODO: build shipping
     // const shippingInfo = await strapi
@@ -32,42 +28,46 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     //   .buildMeliShipping(shipping);
 
     try {
-      const invoiceId = uuidv4();
+      let invoice = await strapi
+        .plugin("payments")
+        .service("invoice")
+        .createInitialInvoice({ platform, buyer: personalInfo, products });
+
+      if (!invoice) {
+        return ctx.internalServerError("Creating invoice Error", {
+          controller: "createInvoice",
+        });
+      }
+
       const preference = await strapi
         .plugin("payments")
-        .service("meli")
-        .createPayment({
-          items: [],
+        .service("mercadopago")
+        .createPreference({
+          invoiceId: invoice.id,
+          products,
+          payer: personalInfo,
           platform,
-          payerInfo: {},
-          internalInvoiceId: invoiceId,
+          internalInvoiceId: invoice.id,
         });
-      // const { id, collector_id, init_point } = preference;
-      // const savedata = await strapi
-      //   .plugin("mercado-pago")
-      //   .service("invoices")
-      //   .createInvoice({
-      //     paymentId: invoiceId,
-      //     status: INVOICES_STATUS.IN_PROCESS,
-      //     products: products,
-      //     preferenceId: id,
-      //     collectorId: collector_id,
-      //     metadata: preference,
-      //   });
 
-      // if (!savedata) {
-      //   return ctx.internalServerError("Creating invoice Error", {
-      //     controller: "createInvoice",
-      //   });
-      // }
+      const { id, collector_id, init_point, metadata } = preference;
+      console.log({ id, collector_id, init_point, metadata }, "results");
 
-      // const data = { invoiceId: invoiceId, init_point };
-      // ctx.body = data;
-      // await contentAPI.output(data);
-      return ctx.send("ok");
+      invoice = await strapi
+        .plugin("payments")
+        .service("invoice")
+        .updateInvoice({
+          invoiceId: invoice.id,
+          data: {
+            metadata,
+            status: INVOICES_STATUS.IN_PROCESS,
+            collectorId: collector_id,
+            preferenceId: id,
+          },
+        });
+
+      return ctx.send({ init_point, preferenceId: id, invoiceId: invoice.id });
     } catch (error) {
-      console.log(error);
-
       return ctx.internalServerError(error, {
         controller: "checkout",
       });

@@ -1,13 +1,21 @@
 import { Strapi } from "@strapi/strapi";
 
 export default ({ strapi }: { strapi: Strapi }) => ({
-  buildIMelitems: async (items = []) => {
-    //TODO: sum quantities when the same product is added
+  buildItems: async (items = [], platformId) => {
+    const attibutes = ["id", "name", "price", "brief_description", "quantity"];
     if (!strapi.db) throw new Error("Database connection not available");
     const ids = items.map(({ productId = "" }) => ({ id: productId }));
+    const {
+      mercadopago: { default_currency },
+    } = platformId;
+
     const results = await strapi.db.query("api::product.product").findMany({
-      select: ["*"],
-      where: { $or: ids },
+      select: attibutes,
+      where: {
+        $or: ids,
+        $and: [{ platform: platformId.id }],
+      },
+      populate: ["pictures"],
     });
 
     if (results.length === 0) throw new Error("Products not found");
@@ -16,40 +24,34 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       const productSelected: any = items.find(
         ({ productId }) => productId === product.id
       );
+
+      //build items with mercadopago format
       return {
         id: product.id,
         name: product.name,
-        currency_id: product.currencyId,
-        description: product.description,
+        description: product.brief_description,
         quantity: productSelected?.quantity,
         unit_price: product.price,
+        currency_id: default_currency,
       };
     });
   },
-  buildMeliPayer: async (buyer = {}) => {
+  buildBuyer: async (buyer = {}) => {
     return {
-      payer: {
-        name: "test",
-        surname: "user-surname",
-        email: "user@email.com",
-        date_created: "2015-06-02T12:58:41.425-04:00",
-        phone: {
-          area_code: "11",
-          number: "4444-4444",
-        },
-        identification: {
-          type: "RUT",
-          number: "12345678",
-        },
-        address: {
-          street_name: "Street",
-          street_number: 123,
-          zip_code: "5700",
-        },
+      name: "test",
+      surname: "user-surname",
+      email: "test@test.com",
+      phone: {
+        area_code: "11",
+        number: "4444-4444",
+      },
+      identification: {
+        type: "RUT",
+        number: "12345678",
       },
     };
   },
-  buildMeliShipping: async (shipping = {}) => {
+  buildShipping: async (shipping = {}) => {
     return {
       shipments: {
         receiver_address: {

@@ -430,14 +430,12 @@ export interface ApiPlatformPlatform extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     description: Attribute.String & Attribute.Required;
-    notification_url: Attribute.String;
     uuid: Attribute.UID;
-    back_url: Attribute.String;
-    melitoken: Attribute.String & Attribute.Required & Attribute.Unique;
     payment: Attribute.Boolean &
       Attribute.Required &
       Attribute.Private &
       Attribute.DefaultTo<false>;
+    mercadopago: Attribute.Component<'payment-platforms.mercadopago'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -468,12 +466,17 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
-    description: Attribute.Text & Attribute.Required;
     price: Attribute.Integer & Attribute.Required;
-    picture: Attribute.Media & Attribute.Required;
-    currencyId: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'COP'>;
+    pictures: Attribute.Media & Attribute.Required;
+    brief_description: Attribute.String & Attribute.Required;
+    full_description: Attribute.RichText;
+    platform: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::platform.platform'
+    >;
+    slug: Attribute.UID<'api::product.product', 'name'> & Attribute.Required;
+    quantity: Attribute.Integer & Attribute.DefaultTo<1>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -618,25 +621,33 @@ export interface PluginPaymentsInvoice extends Schema.CollectionType {
     singularName: 'invoice';
     pluralName: 'invoices';
     displayName: 'Invoices';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-    paymentId: Attribute.UID & Attribute.Required;
-    status: Attribute.String & Attribute.Required;
-    resume: Attribute.Text;
     metadata: Attribute.JSON;
-    netPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
-    totalPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
-    paidWith: Attribute.String;
     collectorId: Attribute.String & Attribute.Required;
     preferenceId: Attribute.String & Attribute.Required;
     user: Attribute.Relation<
       'plugin::payments.invoice',
-      'manyToOne',
+      'oneToOne',
       'plugin::users-permissions.user'
     >;
+    status: Attribute.Enumeration<
+      ['in_process', 'pending', 'rejected', 'cancelled', 'approved', 'initial']
+    > &
+      Attribute.DefaultTo<'initial'>;
+    total_invoice: Attribute.String;
+    platform: Attribute.Relation<
+      'plugin::payments.invoice',
+      'oneToOne',
+      'api::platform.platform'
+    >;
+    buyer: Attribute.JSON;
+    buyer_email: Attribute.Email & Attribute.Required;
+    products: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -835,11 +846,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'oneToOne',
       'api::platform.platform'
-    >;
-    invoices: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'plugin::mercado-pago.invoice'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

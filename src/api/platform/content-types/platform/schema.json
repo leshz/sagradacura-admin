@@ -21,26 +21,19 @@
       "type": "string",
       "required": true
     },
-    "notification_url": {
-      "type": "string",
-      "required": false
-    },
     "uuid": {
       "type": "uid"
-    },
-    "back_url": {
-      "type": "string"
-    },
-    "melitoken": {
-      "type": "string",
-      "unique": true,
-      "required": true
     },
     "payment": {
       "type": "boolean",
       "default": false,
       "required": true,
       "private": true
+    },
+    "mercadopago": {
+      "type": "component",
+      "repeatable": false,
+      "component": "payment-platforms.mercadopago"
     }
   }
 }

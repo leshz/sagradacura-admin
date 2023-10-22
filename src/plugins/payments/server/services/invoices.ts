@@ -1,52 +1,64 @@
 import { Strapi } from "@strapi/strapi";
-import type { invoiceType } from "../../types/types";
+import { INVOICES_STATUS } from "../../constants/constants";
+import { errors } from "@strapi/utils";
 
-const createInvoiceDescription = (products) => {
-  const description: string[] = products.map((product) => {
-    return `${product.name} x ${product.quantity}
-    unit_price: ${product.unit_price}  ||  total: ${
-      product.unit_price * product.quantity
-    }`;
-  });
+const { ApplicationError } = errors;
 
+type products = {
+  unit_price: number;
+  quantity: number;
+};
+
+const getTotalInvoice = (products: products[]) => {
   const totalPrice = products.reduce((acc, product) => {
     return acc + product.unit_price * product.quantity;
   }, 0);
-  return { description: description.join(", "), totalPrice };
+  return totalPrice;
 };
 
 export default ({ strapi }: { strapi: Strapi }) => ({
-  createInvoice: async (invoice: invoiceType) => {
-    try {
-      const {
+  createInitialInvoice: async ({ platform, buyer, products = [] }) => {
+    let extra = {};
+    if (products.length) {
+      extra = {
         products,
-        paymentId,
-        preferenceId,
-        collectorId,
-        metadata,
-        status,
-      } = invoice;
-      const { description, totalPrice } = createInvoiceDescription(products);
-
-      const savedata = await strapi
-        .query("plugin::mercado-pago.invoice")
-        .create({
-          data: {
-            paymentId,
-            status,
-            preferenceId,
-            resume: description,
-            totalPrice,
-            netPrice: totalPrice,
-            collectorId,
-            metadata,
-          },
-        });
+        total_invoice: getTotalInvoice(products),
+      };
+    }
+    try {
+      const savedata = await strapi.query("plugin::payments.invoice").create({
+        data: {
+          status: INVOICES_STATUS.INIT,
+          platform: platform.id,
+          buyer: buyer,
+          buyer_email: buyer.email,
+          ...extra,
+        },
+      });
 
       return savedata;
     } catch (error) {
-      console.log(error.message);
-      console.log("service");
+      throw new ApplicationError(error.message, {
+        service: "createInitialInvoice",
+      });
+    }
+  },
+  updateInvoice: async ({ invoiceId, data }) => {
+    console.log(data);
+
+    try {
+      const savedata = await strapi.query("plugin::payments.invoice").update({
+        where: { id: invoiceId },
+        data: {
+          ...data,
+        },
+      });
+
+      return savedata;
+    } catch (error) {
+      throw new ApplicationError(error.message, {
+        service: "updateInvoice",
+      });
     }
   },
 });
