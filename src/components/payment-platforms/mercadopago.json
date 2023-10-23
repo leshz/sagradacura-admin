@@ -21,7 +21,7 @@
     },
     "notification_url": {
       "type": "string",
-      "required": true,
+      "required": false,
       "unique": false,
       "private": true
     },

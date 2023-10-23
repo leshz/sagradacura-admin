@@ -1,4 +1,6 @@
 import { Strapi } from "@strapi/strapi";
+import { errors } from "@strapi/utils";
+const { ApplicationError } = errors;
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   buildItems: async (items = [], platformId) => {
@@ -63,5 +65,27 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         },
       },
     };
+  },
+  getPlatform: async (platformId) => {
+    try {
+      if (!strapi.db) throw new Error("Database connection not available");
+      const result = await strapi.db.query("api::platform.platform").findOne({
+        select: ["*"],
+        where: { uuid: platformId },
+        populate: ["mercadopago"],
+      });
+
+      if (!result) {
+        throw new ApplicationError("not platform", {
+          service: "getPlatform",
+        });
+      }
+
+      return result;
+    } catch (error) {
+      throw new ApplicationError(error.message, {
+        service: "getPlatform",
+      });
+    }
   },
 });

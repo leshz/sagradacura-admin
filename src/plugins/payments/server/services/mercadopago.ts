@@ -1,5 +1,5 @@
 import { Strapi } from "@strapi/strapi";
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import { MercadoPagoConfig, Preference, MerchantOrder } from "mercadopago";
 import { errors } from "@strapi/utils";
 
 const { ApplicationError } = errors;
@@ -48,6 +48,23 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     } catch (error) {
       throw new ApplicationError(error.message, {
         service: "createPayment",
+      });
+    }
+  },
+  getMerchantOrder: async ({ id, platform }) => {
+    const { mercadopago } = platform;
+    const { token } = mercadopago;
+    const client = new MercadoPagoConfig({
+      accessToken: token,
+    });
+
+    try {
+      const merchantOrder = new MerchantOrder(client);
+      const response = await merchantOrder.get({ merchantOrderId: id });
+      return response;
+    } catch (error) {
+      throw new ApplicationError(error.message, {
+        service: "getMerchantOrder",
       });
     }
   },

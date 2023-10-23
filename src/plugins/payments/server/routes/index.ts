@@ -3,7 +3,7 @@ import { URLS, METHODS } from "../../constants/constants";
 export default [
   {
     method: METHODS.POST,
-    path: URLS.checkout,
+    path: URLS.CHECKOUT,
     handler: "controller.checkout",
     config: {
       middlewares: [
@@ -14,13 +14,13 @@ export default [
       auth: false,
     },
   },
-  // {
-  //   method: "POST",
-  //   path: "/confirmation",
-  //   handler: "preferences.confirmationProcess",
-  //   config: {
-  //     policies: [],
-  //     auth: false,
-  //   },
-  // },
+  {
+    method: "POST",
+    path: URLS.IMPUGNY_IPN,
+    handler: "controller.ipn",
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
 ];

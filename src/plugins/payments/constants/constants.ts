@@ -9,7 +9,8 @@ export const INVOICES_STATUS = {
 } as const;
 
 export const URLS = {
-  checkout: "/checkout",
+  CHECKOUT: "/checkout",
+  IMPUGNY_IPN: "/impugny/notifications",
 };
 
 export const METHODS = {
@@ -17,4 +18,14 @@ export const METHODS = {
   POST: "POST",
   PUT: "PUT",
   DELETE: "DELETE",
+};
+
+export const MERCADOPAGO_TOPIC = {
+  PAYMENT: "payment",
+  MERCHANT_ORDER: "merchant_order",
+};
+export const MERCADOPAGO_MERCHAN_STATUS = {
+  OPENED: "opened",
+  CLOSED: "closed",
+  EXPIRED: "expired",
 };

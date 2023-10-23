@@ -44,8 +44,6 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     }
   },
   updateInvoice: async ({ invoiceId, data }) => {
-    console.log(data);
-
     try {
       const savedata = await strapi.query("plugin::payments.invoice").update({
         where: { id: invoiceId },

@@ -13,7 +13,7 @@ export interface PaymentPlatformsMercadopago extends Schema.Component {
       Attribute.Required &
       Attribute.Private &
       Attribute.DefaultTo<true>;
-    notification_url: Attribute.String & Attribute.Required & Attribute.Private;
+    notification_url: Attribute.String & Attribute.Private;
     default_currency: Attribute.String &
       Attribute.Required &
       Attribute.Private &
