@@ -1,5 +1,7 @@
-import controller from "./controller";
+import checkout from "./checkout";
+import ipn from "./ipn";
 
 export default {
-  controller,
+  checkout,
+  ipn,
 };

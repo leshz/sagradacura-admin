@@ -22,6 +22,7 @@ export interface PaymentPlatformsMercadopago extends Schema.Component {
       }> &
       Attribute.DefaultTo<'COP'>;
     back_urls: Attribute.String;
+    effecty: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
   };
 }
 

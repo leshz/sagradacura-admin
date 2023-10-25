@@ -4,7 +4,7 @@ export default [
   {
     method: METHODS.POST,
     path: URLS.CHECKOUT,
-    handler: "controller.checkout",
+    handler: "checkout.checkout",
     config: {
       middlewares: [
         "plugin::payments.getConfigByPlatform",
@@ -16,8 +16,8 @@ export default [
   },
   {
     method: "POST",
-    path: URLS.IMPUGNY_IPN,
-    handler: "controller.ipn",
+    path: URLS.IPN,
+    handler: "ipn.ipn",
     config: {
       policies: [],
       auth: false,

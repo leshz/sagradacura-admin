@@ -58,6 +58,9 @@
     },
     "products": {
       "type": "json"
+    },
+    "payment_status": {
+      "type": "string"
     }
   }
 }

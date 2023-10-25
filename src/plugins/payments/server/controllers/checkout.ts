@@ -1,12 +1,5 @@
 import { Strapi } from "@strapi/strapi";
-import { v4 as uuidv4 } from "uuid";
-import utils from "@strapi/utils";
-import {
-  INVOICES_STATUS,
-  MERCADOPAGO_TOPIC,
-  MERCADOPAGO_MERCHAN_STATUS,
-} from "../../constants/constants";
-import type { confirmationQuery } from "../../types/types";
+import { INVOICES_STATUS } from "../../constants/constants";
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async checkout(ctx, next) {
@@ -76,45 +69,4 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       });
     }
   },
-  async ipn(ctx, next) {
-    try {
-      console.log("________________________");
-
-      const { platfromId = "", id = "" } = ctx.query;
-      const { topic } = ctx.request.body || {};
-      if (platfromId === "") return ctx.badRequest("bad request");
-
-      const platformInfo = await strapi
-        .plugin("payments")
-        .service("utils")
-        .getPlatform(platfromId);
-
-      if (MERCADOPAGO_TOPIC.MERCHANT_ORDER === topic) {
-        const order = await strapi
-          .plugin("payments")
-          .service("mercadopago")
-          .getMerchantOrder({ id, platform: platformInfo });
-
-        const { external_reference, status } = order;
-
-        if (MERCADOPAGO_MERCHAN_STATUS.CLOSED === status) {
-          await strapi
-            .plugin("payments")
-            .service("invoice")
-            .updateInvoice({
-              invoiceId: external_reference,
-              data: {
-                status: INVOICES_STATUS.APPROVED,
-              },
-            });
-        }
-      }
-      return ctx.send("ok");
-    } catch (error) {
-      return ctx.internalServerError(error.message, {
-        controller: "IPN",
-      });
-    }
-  },
-  async checkoutNotification(ctx, next) {},
 });

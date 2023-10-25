@@ -12,7 +12,15 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     internalInvoiceId,
   }) => {
     const { mercadopago } = platform;
-    const { token, back_urls, notification_url } = mercadopago;
+    const { token, back_urls, notification_url, effecty } = mercadopago;
+
+    const excludedPayment = { effecty: effecty };
+    const excludedKeys = Object.keys(excludedPayment);
+    const excludedMethods = Object.values(excludedPayment)
+      .map((value, index) => {
+        return !value ? { id: excludedKeys[index] } : { id: "" };
+      })
+      .filter(({ id }) => id !== "");
 
     if (token === "") {
       throw new ApplicationError("not enought information to platform", {
@@ -24,7 +32,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       accessToken: token,
       options: { timeout: 5000, idempotencyKey: "abc" },
     });
+
     const preference = new Preference(client);
+    const payment_methods = {
+      excluded_payment_methods: excludedMethods,
+      installments: 12,
+      default_installments: 1,
+    };
 
     const metadata = {};
     const body = {
@@ -39,6 +53,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       metadata,
       notification_url,
       payer,
+      payment_methods,
       statement_descriptor: platform.description,
     };
 

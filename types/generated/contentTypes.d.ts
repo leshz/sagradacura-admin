@@ -648,6 +648,7 @@ export interface PluginPaymentsInvoice extends Schema.CollectionType {
     buyer: Attribute.JSON;
     buyer_email: Attribute.Email & Attribute.Required;
     products: Attribute.JSON;
+    payment_status: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

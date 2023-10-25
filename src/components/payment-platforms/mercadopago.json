@@ -35,6 +35,11 @@
     "back_urls": {
       "type": "string",
       "unique": false
+    },
+    "effecty": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }

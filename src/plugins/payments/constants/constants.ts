@@ -10,7 +10,7 @@ export const INVOICES_STATUS = {
 
 export const URLS = {
   CHECKOUT: "/checkout",
-  IMPUGNY_IPN: "/impugny/notifications",
+  IPN: "/notifications",
 };
 
 export const METHODS = {
