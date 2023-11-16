@@ -15,7 +15,7 @@ export default [
     },
   },
   {
-    method: "POST",
+    method: METHODS.POST,
     path: URLS.IPN,
     handler: "ipn.ipn",
     config: {

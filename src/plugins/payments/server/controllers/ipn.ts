@@ -8,14 +8,14 @@ import {
 export default ({ strapi }: { strapi: Strapi }) => ({
   async ipn(ctx, next) {
     try {
-      const { platfromId = "", id = "" } = ctx.query;
+      const { platform = "", id = "" } = ctx.query;
       const { topic } = ctx.request.body || {};
-      if (platfromId === "") return ctx.badRequest("bad request");
+      if (platform === "") return ctx.badRequest("bad request");
 
       const platformInfo = await strapi
         .plugin("payments")
         .service("utils")
-        .getPlatform(platfromId);
+        .getPlatform(platform);
 
       if (MERCADOPAGO_TOPIC.MERCHANT_ORDER === topic) {
         const order = await strapi

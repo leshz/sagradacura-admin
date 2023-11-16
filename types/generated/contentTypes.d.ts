@@ -495,6 +495,37 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiSagradaCuraSagradaCura extends Schema.SingleType {
+  collectionName: 'sagrada_curas';
+  info: {
+    singularName: 'sagrada-cura';
+    pluralName: 'sagrada-curas';
+    displayName: 'Sagrada-cura';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    main: Attribute.JSON;
+    seo: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sagrada-cura.sagrada-cura',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sagrada-cura.sagrada-cura',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -878,6 +909,7 @@ declare module '@strapi/types' {
       'api::impugny.impugny': ApiImpugnyImpugny;
       'api::platform.platform': ApiPlatformPlatform;
       'api::product.product': ApiProductProduct;
+      'api::sagrada-cura.sagrada-cura': ApiSagradaCuraSagradaCura;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::payments.invoice': PluginPaymentsInvoice;

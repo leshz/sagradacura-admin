@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "sagrada_curas",
+  "info": {
+    "singularName": "sagrada-cura",
+    "pluralName": "sagrada-curas",
+    "displayName": "Sagrada-cura"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "main": {
+      "type": "json"
+    },
+    "seo": {
+      "type": "json"
+    }
+  }
+}

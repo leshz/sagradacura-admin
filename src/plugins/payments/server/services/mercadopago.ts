@@ -1,6 +1,7 @@
 import { Strapi } from "@strapi/strapi";
 import { MercadoPagoConfig, Preference, MerchantOrder } from "mercadopago";
 import { errors } from "@strapi/utils";
+import { URLS } from "../../constants/constants";
 
 const { ApplicationError } = errors;
 
@@ -11,7 +12,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     payer,
     internalInvoiceId,
   }) => {
-    const { mercadopago } = platform;
+    const { mercadopago, uuid } = platform;
     const { token, back_urls, notification_url, effecty } = mercadopago;
 
     const excludedPayment = { effecty: effecty };
@@ -51,12 +52,11 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       external_reference: internalInvoiceId,
       items: products,
       metadata,
-      notification_url,
+      notification_url: `${notification_url}${URLS.NOTIFICATIONS_MELI_URL}?platform=${uuid}`,
       payer,
       payment_methods,
       statement_descriptor: platform.description,
     };
-
     try {
       const response = await preference.create({ body });
       return response;
