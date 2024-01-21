@@ -13,10 +13,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     const results = await strapi.db.query("api::product.product").findMany({
       select: attibutes,
-      where: {
-        $or: ids,
-        $and: [{ platform: platformId.id }],
-      },
+      where: { $or: ids },
       populate: ["pictures"],
     });
 
@@ -69,11 +66,12 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   getPlatform: async (platformId) => {
     try {
       if (!strapi.db) throw new Error("Database connection not available");
-      const result = await strapi.db.query("api::platform.platform").findOne({
-        select: ["*"],
-        where: { uuid: platformId },
-        populate: ["mercadopago"],
-      });
+      const result = await strapi.db
+        .query("api::configuration.configuration")
+        .findOne({
+          select: ["*"],
+          populate: ["mercadopago"],
+        });
 
       if (!result) {
         throw new ApplicationError("not platform", {

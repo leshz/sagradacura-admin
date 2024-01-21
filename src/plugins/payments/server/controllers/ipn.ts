@@ -8,20 +8,20 @@ import {
 export default ({ strapi }: { strapi: Strapi }) => ({
   async ipn(ctx, next) {
     try {
-      const { platform = "", id = "" } = ctx.query;
+      const { id = "" } = ctx.query;
       const { topic } = ctx.request.body || {};
-      if (platform === "") return ctx.badRequest("bad request");
+      if (id === "") return ctx.badRequest("bad request");
 
-      const platformInfo = await strapi
+      const config = await strapi
         .plugin("payments")
         .service("utils")
-        .getPlatform(platform);
+        .getPlatform();
 
       if (MERCADOPAGO_TOPIC.MERCHANT_ORDER === topic) {
         const order = await strapi
           .plugin("payments")
           .service("mercadopago")
-          .getMerchantOrder({ id, platform: platformInfo });
+          .getMerchantOrder({ id, config });
 
         const { external_reference, status, payments = [] } = order;
 

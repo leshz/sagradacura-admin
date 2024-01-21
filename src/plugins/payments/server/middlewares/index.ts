@@ -9,18 +9,22 @@ const getConfigByPlatform = (options, { strapi }) => {
     if (!sanitizedPlatform) return ctx.badRequest("bad request");
 
     try {
-      const result = await strapi.db.query("api::platform.platform").findOne({
-        select: ["*"],
-        where: { uuid: sanitizedPlatform },
-        populate: ["mercadopago"],
-      });
+      const result = await strapi.db
+        .query("api::configuration.configuration")
+        .findOne({
+          select: ["*"],
+          where: { uid: sanitizedPlatform },
+          populate: ["mercadopago"],
+        });
 
       if (!result) {
         return ctx.badRequest("bad request");
       }
-      ctx.state.platform = result;
+      ctx.state.config = result;
       return await next();
     } catch (error) {
+      console.log(error);
+
       return ctx.internalServerError(error.message, {
         middle: "getConfigByPlatform",
       });
@@ -31,11 +35,10 @@ const getConfigByPlatform = (options, { strapi }) => {
 const paymentFF = (options, { strapi }) => {
   return async (ctx, next) => {
     const {
-      state: { platform = {} },
+      state: { config = {} },
     } = ctx;
-
-    const { payment = false } = platform;
-    if (payment) {
+    const { payments = false } = config;
+    if (payments) {
       return await next();
     }
     return ctx.serviceUnavailable("Service Unavailable", { payment: false });

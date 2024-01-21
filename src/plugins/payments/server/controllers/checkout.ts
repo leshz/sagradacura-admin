@@ -3,17 +3,17 @@ import { INVOICES_STATUS } from "../../constants/constants";
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async checkout(ctx, next) {
-    const { platform } = ctx.state;
+    const { config } = ctx.state;
     const {
-      mercadopago: { active: mercadoPagoActive },
-    } = platform;
+      mercadopago: { active: activeMP },
+    } = config;
     const { items = [], buyer = {} } = ctx.request.body || {};
     if (items.length === 0) return ctx.badRequest("Bad Request");
 
     const products = await strapi
       .plugin("payments")
       .service("utils")
-      .buildItems(items, platform);
+      .buildItems(items, config);
 
     // TODO: Definir la informacion del bayer
     const personalInfo = await strapi
@@ -29,11 +29,15 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     try {
       //TODO: Condense this code into a single line
-      if (mercadoPagoActive) {
+      if (activeMP) {
         let invoice = await strapi
           .plugin("payments")
           .service("invoice")
-          .createInitialInvoice({ platform, buyer: personalInfo, products });
+          .createInitialInvoice({
+            platform: config,
+            buyer: personalInfo,
+            products,
+          });
 
         if (!invoice) {
           return ctx.internalServerError("Creating invoice Error", {
@@ -48,7 +52,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
             invoiceId: invoice.id,
             products,
             payer: personalInfo,
-            platform,
+            platform: config,
             internalInvoiceId: invoice.id,
           });
 

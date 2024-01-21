@@ -66,8 +66,8 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       });
     }
   },
-  getMerchantOrder: async ({ id, platform }) => {
-    const { mercadopago } = platform;
+  getMerchantOrder: async ({ id, config }) => {
+    const { mercadopago } = config;
     const { token } = mercadopago;
     const client = new MercadoPagoConfig({
       accessToken: token,

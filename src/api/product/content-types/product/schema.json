@@ -38,11 +38,6 @@
     "full_description": {
       "type": "richtext"
     },
-    "platform": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::platform.platform"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name",

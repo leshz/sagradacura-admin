@@ -61,11 +61,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "platform": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::platform.platform"
     }
   }
 }

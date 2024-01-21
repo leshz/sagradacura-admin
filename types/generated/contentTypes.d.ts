@@ -362,90 +362,34 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiImpugnyImpugny extends Schema.SingleType {
-  collectionName: 'impugnies';
+export interface ApiConfigurationConfiguration extends Schema.SingleType {
+  collectionName: 'configurations';
   info: {
-    singularName: 'impugny';
-    pluralName: 'impugnies';
-    displayName: 'Impugny';
-    description: '';
+    singularName: 'configuration';
+    pluralName: 'configurations';
+    displayName: 'configuration';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    main: Attribute.JSON &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.JSON &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::impugny.impugny',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::impugny.impugny',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::impugny.impugny',
-      'oneToMany',
-      'api::impugny.impugny'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiPlatformPlatform extends Schema.CollectionType {
-  collectionName: 'platforms';
-  info: {
-    singularName: 'platform';
-    pluralName: 'platforms';
-    displayName: 'Platform';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
-    description: Attribute.String & Attribute.Required;
-    uuid: Attribute.UID;
-    payment: Attribute.Boolean &
+    uid: Attribute.UID;
+    payments: Attribute.Boolean &
       Attribute.Required &
       Attribute.Private &
       Attribute.DefaultTo<false>;
     mercadopago: Attribute.Component<'payment-platforms.mercadopago'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::platform.platform',
+      'api::configuration.configuration',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::platform.platform',
+      'api::configuration.configuration',
       'oneToOne',
       'admin::user'
     > &
@@ -470,11 +414,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
     pictures: Attribute.Media & Attribute.Required;
     brief_description: Attribute.String & Attribute.Required;
     full_description: Attribute.RichText;
-    platform: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::platform.platform'
-    >;
     slug: Attribute.UID<'api::product.product', 'name'> & Attribute.Required;
     quantity: Attribute.Integer & Attribute.DefaultTo<1>;
     createdAt: Attribute.DateTime;
@@ -488,37 +427,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSagradaCuraSagradaCura extends Schema.SingleType {
-  collectionName: 'sagrada_curas';
-  info: {
-    singularName: 'sagrada-cura';
-    pluralName: 'sagrada-curas';
-    displayName: 'Sagrada-cura';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    main: Attribute.JSON;
-    seo: Attribute.JSON;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::sagrada-cura.sagrada-cura',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::sagrada-cura.sagrada-cura',
       'oneToOne',
       'admin::user'
     > &
@@ -671,11 +579,6 @@ export interface PluginPaymentsInvoice extends Schema.CollectionType {
     > &
       Attribute.DefaultTo<'initial'>;
     total_invoice: Attribute.String;
-    platform: Attribute.Relation<
-      'plugin::payments.invoice',
-      'oneToOne',
-      'api::platform.platform'
-    >;
     buyer: Attribute.JSON;
     buyer_email: Attribute.Email & Attribute.Required;
     products: Attribute.JSON;
@@ -874,11 +777,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    platform: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'api::platform.platform'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -906,10 +804,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::impugny.impugny': ApiImpugnyImpugny;
-      'api::platform.platform': ApiPlatformPlatform;
+      'api::configuration.configuration': ApiConfigurationConfiguration;
       'api::product.product': ApiProductProduct;
-      'api::sagrada-cura.sagrada-cura': ApiSagradaCuraSagradaCura;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::payments.invoice': PluginPaymentsInvoice;
