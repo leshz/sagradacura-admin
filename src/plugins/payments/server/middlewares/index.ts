@@ -21,7 +21,7 @@ const getConfigByPlatform = (options, { strapi }) => {
         return ctx.badRequest("bad request");
       }
       ctx.state.config = result;
-      return await next();
+      return next();
     } catch (error) {
       console.log(error);
 
