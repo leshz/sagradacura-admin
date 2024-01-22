@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_ui_utility_links",
+  "info": {
+    "displayName": "Link",
+    "icon": "attachment"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

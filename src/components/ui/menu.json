@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_ui_menus",
+  "info": {
+    "displayName": "menu",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Home": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui-utility.link"
+    },
+    "nuestraMarca": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui-utility.link"
+    },
+    "Productos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui-utility.link"
+    },
+    "cart": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

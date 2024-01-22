@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_ui_main_banners",
+  "info": {
+    "displayName": "MainBanner",
+    "icon": "shirt"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

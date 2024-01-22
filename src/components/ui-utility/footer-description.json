@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_ui_utility_footer_descriptions",
+  "info": {
+    "displayName": "FooterDescription",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {
+    "footerTitle": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

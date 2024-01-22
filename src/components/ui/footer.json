@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_ui_footers",
+  "info": {
+    "displayName": "footer",
+    "icon": "hashtag",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "NewsletterTitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui-utility.footer-description"
+    }
+  }
+}
