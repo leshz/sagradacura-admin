@@ -38,14 +38,6 @@ export interface UiUtilityFooterDescription extends Schema.Component {
   };
 }
 
-export interface UiUtilityFooterLink extends Schema.Component {
-  collectionName: 'components_ui_utility_footer_links';
-  info: {
-    displayName: 'FooterLink';
-  };
-  attributes: {};
-}
-
 export interface UiUtilityLink extends Schema.Component {
   collectionName: 'components_ui_utility_links';
   info: {
@@ -69,6 +61,7 @@ export interface UiFooter extends Schema.Component {
   attributes: {
     NewsletterTitle: Attribute.String;
     description: Attribute.Component<'ui-utility.footer-description'>;
+    Column: Attribute.Component<'utility.column-links', true>;
   };
 }
 
@@ -115,17 +108,30 @@ export interface UiTopMain extends Schema.Component {
   };
 }
 
+export interface UtilityColumnLinks extends Schema.Component {
+  collectionName: 'components_utility_column_links';
+  info: {
+    displayName: 'columnLinks';
+    icon: 'stack';
+    description: '';
+  };
+  attributes: {
+    Title: Attribute.String;
+    column: Attribute.Blocks;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
       'ui-utility.footer-description': UiUtilityFooterDescription;
-      'ui-utility.footer-link': UiUtilityFooterLink;
       'ui-utility.link': UiUtilityLink;
       'ui.footer': UiFooter;
       'ui.main-banner': UiMainBanner;
       'ui.menu': UiMenu;
       'ui.top-main': UiTopMain;
+      'utility.column-links': UtilityColumnLinks;
     }
   }
 }

@@ -14,6 +14,11 @@
       "type": "component",
       "repeatable": false,
       "component": "ui-utility.footer-description"
+    },
+    "Column": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.column-links"
     }
   }
 }

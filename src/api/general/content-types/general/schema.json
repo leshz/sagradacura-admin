@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "Top": {
+    "top": {
       "type": "component",
       "repeatable": false,
       "pluginOptions": {

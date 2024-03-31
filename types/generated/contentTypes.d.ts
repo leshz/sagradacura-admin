@@ -414,7 +414,7 @@ export interface ApiGeneralGeneral extends Schema.SingleType {
     };
   };
   attributes: {
-    Top: Attribute.Component<'ui.top-main'> &
+    top: Attribute.Component<'ui.top-main'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {

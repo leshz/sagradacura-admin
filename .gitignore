@@ -116,3 +116,4 @@ build
 docker-compose.yml
 database/*
 data/*
+.vscode/settings.json
