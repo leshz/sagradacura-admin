@@ -2,11 +2,12 @@
   "collectionName": "components_ui_utility_footer_descriptions",
   "info": {
     "displayName": "FooterDescription",
-    "icon": "stack"
+    "icon": "stack",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "footerTitle": {
+    "footer_title": {
       "type": "string",
       "required": true
     },

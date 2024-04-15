@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_ui_bottoms",
+  "info": {
+    "displayName": "bottom",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "copyright": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    }
+  }
+}

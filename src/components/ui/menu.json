@@ -7,7 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "icon": {
+    "logo": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -15,17 +15,17 @@
         "images"
       ]
     },
-    "Home": {
+    "home": {
       "type": "component",
       "repeatable": false,
       "component": "ui-utility.link"
     },
-    "nuestraMarca": {
+    "nuestra_marca": {
       "type": "component",
       "repeatable": false,
       "component": "ui-utility.link"
     },
-    "Productos": {
+    "productos": {
       "type": "component",
       "repeatable": true,
       "component": "ui-utility.link"
@@ -34,6 +34,12 @@
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "mobile": {
+      "displayName": "mobile-information",
+      "type": "component",
+      "repeatable": false,
+      "component": "ui.mobile-information"
     }
   }
 }

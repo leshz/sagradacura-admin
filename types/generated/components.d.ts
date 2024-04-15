@@ -31,9 +31,10 @@ export interface UiUtilityFooterDescription extends Schema.Component {
   info: {
     displayName: 'FooterDescription';
     icon: 'stack';
+    description: '';
   };
   attributes: {
-    footerTitle: Attribute.String & Attribute.Required;
+    footer_title: Attribute.String & Attribute.Required;
     description: Attribute.String & Attribute.Required;
   };
 }
@@ -51,6 +52,29 @@ export interface UiUtilityLink extends Schema.Component {
   };
 }
 
+export interface UiUtilityNewsLetter extends Schema.Component {
+  collectionName: 'components_ui_utility_news_letters';
+  info: {
+    displayName: 'news_letter';
+  };
+  attributes: {
+    title: Attribute.String;
+    label: Attribute.String;
+  };
+}
+
+export interface UiBottom extends Schema.Component {
+  collectionName: 'components_ui_bottoms';
+  info: {
+    displayName: 'bottom';
+    icon: 'bold';
+  };
+  attributes: {
+    copyright: Attribute.String & Attribute.Required;
+    phone: Attribute.String;
+  };
+}
+
 export interface UiFooter extends Schema.Component {
   collectionName: 'components_ui_footers';
   info: {
@@ -59,9 +83,9 @@ export interface UiFooter extends Schema.Component {
     description: '';
   };
   attributes: {
-    NewsletterTitle: Attribute.String;
-    description: Attribute.Component<'ui-utility.footer-description'>;
-    Column: Attribute.Component<'utility.column-links', true>;
+    columns: Attribute.Component<'utility.column-links', true>;
+    botton: Attribute.Component<'ui.bottom'>;
+    news_letter: Attribute.Component<'ui-utility.news-letter'>;
   };
 }
 
@@ -86,11 +110,25 @@ export interface UiMenu extends Schema.Component {
     description: '';
   };
   attributes: {
-    icon: Attribute.Media & Attribute.Required;
-    Home: Attribute.Component<'ui-utility.link'>;
-    nuestraMarca: Attribute.Component<'ui-utility.link'>;
-    Productos: Attribute.Component<'ui-utility.link', true>;
+    logo: Attribute.Media & Attribute.Required;
+    home: Attribute.Component<'ui-utility.link'>;
+    nuestra_marca: Attribute.Component<'ui-utility.link'>;
+    productos: Attribute.Component<'ui-utility.link', true>;
     cart: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    mobile: Attribute.Component<'ui.mobile-information'>;
+  };
+}
+
+export interface UiMobileInformation extends Schema.Component {
+  collectionName: 'components_ui_mobile_informations';
+  info: {
+    displayName: 'mobile-information';
+    icon: 'cog';
+    description: '';
+  };
+  attributes: {
+    phone: Attribute.String;
+    email: Attribute.String;
   };
 }
 
@@ -104,7 +142,7 @@ export interface UiTopMain extends Schema.Component {
   attributes: {
     phone: Attribute.String & Attribute.Required;
     title: Attribute.RichText;
-    socialLink: Attribute.Component<'ui-utility.link', true>;
+    social_links: Attribute.Component<'ui-utility.link', true>;
   };
 }
 
@@ -116,7 +154,7 @@ export interface UtilityColumnLinks extends Schema.Component {
     description: '';
   };
   attributes: {
-    Title: Attribute.String;
+    title: Attribute.String;
     column: Attribute.Blocks;
   };
 }
@@ -127,9 +165,12 @@ declare module '@strapi/types' {
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
       'ui-utility.footer-description': UiUtilityFooterDescription;
       'ui-utility.link': UiUtilityLink;
+      'ui-utility.news-letter': UiUtilityNewsLetter;
+      'ui.bottom': UiBottom;
       'ui.footer': UiFooter;
       'ui.main-banner': UiMainBanner;
       'ui.menu': UiMenu;
+      'ui.mobile-information': UiMobileInformation;
       'ui.top-main': UiTopMain;
       'utility.column-links': UtilityColumnLinks;
     }

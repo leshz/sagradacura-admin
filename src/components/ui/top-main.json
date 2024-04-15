@@ -14,7 +14,7 @@
     "title": {
       "type": "richtext"
     },
-    "socialLink": {
+    "social_links": {
       "type": "component",
       "repeatable": true,
       "component": "ui-utility.link"
