@@ -9,7 +9,9 @@
     "build": "strapi build",
     "strapi": "strapi",
     "prepare": "cd ./src/plugins/payments/ && yarn build",
-    "postinstall": "cd ./src/plugins/payments/ && yarn"
+    "postinstall": "cd ./src/plugins/payments/ && yarn",
+    "export": " strapi export --file",
+    "import": " strapi import --file"
   },
   "devDependencies": {},
   "dependencies": {
