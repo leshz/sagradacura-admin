@@ -75,6 +75,32 @@ export interface UiBottom extends Schema.Component {
   };
 }
 
+export interface UiDinamicBanner extends Schema.Component {
+  collectionName: 'components_ui_dinamic_banners';
+  info: {
+    displayName: 'dinamic_banner';
+    icon: 'check';
+  };
+  attributes: {
+    text: Attribute.Blocks;
+    image: Attribute.Media & Attribute.Required;
+  };
+}
+
+export interface UiFixedBanner extends Schema.Component {
+  collectionName: 'components_ui_fixed_banners';
+  info: {
+    displayName: 'fixed_banner';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.Blocks;
+    image: Attribute.Media & Attribute.Required;
+    link: Attribute.Component<'ui-utility.link'>;
+    dinamic_banner: Attribute.Component<'ui.dinamic-banner', true>;
+  };
+}
+
 export interface UiFooter extends Schema.Component {
   collectionName: 'components_ui_footers';
   info: {
@@ -167,6 +193,8 @@ declare module '@strapi/types' {
       'ui-utility.link': UiUtilityLink;
       'ui-utility.news-letter': UiUtilityNewsLetter;
       'ui.bottom': UiBottom;
+      'ui.dinamic-banner': UiDinamicBanner;
+      'ui.fixed-banner': UiFixedBanner;
       'ui.footer': UiFooter;
       'ui.main-banner': UiMainBanner;
       'ui.menu': UiMenu;

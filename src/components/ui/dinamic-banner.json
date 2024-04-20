@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_ui_dinamic_banners",
+  "info": {
+    "displayName": "dinamic_banner",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "blocks"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
