@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_ui_categories",
+  "info": {
+    "displayName": "categories",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "first_line": {
+      "type": "string"
+    },
+    "second_line": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

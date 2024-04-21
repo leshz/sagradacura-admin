@@ -75,6 +75,20 @@ export interface UiBottom extends Schema.Component {
   };
 }
 
+export interface UiCategories extends Schema.Component {
+  collectionName: 'components_ui_categories';
+  info: {
+    displayName: 'categories';
+    icon: 'bold';
+  };
+  attributes: {
+    first_line: Attribute.String;
+    second_line: Attribute.String;
+    image: Attribute.Media;
+    link: Attribute.String;
+  };
+}
+
 export interface UiDinamicBanner extends Schema.Component {
   collectionName: 'components_ui_dinamic_banners';
   info: {
@@ -158,6 +172,18 @@ export interface UiMobileInformation extends Schema.Component {
   };
 }
 
+export interface UiProductCategories extends Schema.Component {
+  collectionName: 'components_ui_product_categories';
+  info: {
+    displayName: 'product_categories';
+    icon: 'alien';
+  };
+  attributes: {
+    title: Attribute.String;
+    categories: Attribute.Component<'ui.categories', true>;
+  };
+}
+
 export interface UiTopMain extends Schema.Component {
   collectionName: 'components_ui_top_mains';
   info: {
@@ -193,12 +219,14 @@ declare module '@strapi/types' {
       'ui-utility.link': UiUtilityLink;
       'ui-utility.news-letter': UiUtilityNewsLetter;
       'ui.bottom': UiBottom;
+      'ui.categories': UiCategories;
       'ui.dinamic-banner': UiDinamicBanner;
       'ui.fixed-banner': UiFixedBanner;
       'ui.footer': UiFooter;
       'ui.main-banner': UiMainBanner;
       'ui.menu': UiMenu;
       'ui.mobile-information': UiMobileInformation;
+      'ui.product-categories': UiProductCategories;
       'ui.top-main': UiTopMain;
       'utility.column-links': UtilityColumnLinks;
     }

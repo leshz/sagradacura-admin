@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_ui_product_categories",
+  "info": {
+    "displayName": "product_categories",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "categories": {
+      "displayName": "categories",
+      "type": "component",
+      "repeatable": true,
+      "component": "ui.categories"
+    }
+  }
+}

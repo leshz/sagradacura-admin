@@ -25,6 +25,17 @@
         }
       },
       "component": "ui.fixed-banner"
+    },
+    "product_categories": {
+      "displayName": "product_categories",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "ui.product-categories"
     }
   }
 }

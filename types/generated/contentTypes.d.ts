@@ -480,6 +480,12 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
+    product_categories: Attribute.Component<'ui.product-categories'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

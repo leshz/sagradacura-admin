@@ -14,9 +14,6 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           link: {
             fields: ["link", "text"],
           },
-          // title: {
-          //   fields: ["*"],
-          // },
           image: {
             fields: fieldsImage,
           },
@@ -30,6 +27,20 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           },
         },
       },
+      product_categories: {
+        field: ["title", "categories"],
+        populate: {
+          categories: {
+            fields: ["first_line", "second_line", "image", "link"],
+            populate: {
+              image: {
+                fields: fieldsImage,
+              },
+            },
+          },
+        },
+      },
+      ...ctx.query.populate,
     };
     await next();
   };
