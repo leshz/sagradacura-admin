@@ -36,6 +36,17 @@
         }
       },
       "component": "ui.product-categories"
+    },
+    "highlight_products": {
+      "displayName": "hightlights_products",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "ui.hightlights-products"
     }
   }
 }

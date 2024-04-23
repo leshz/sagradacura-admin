@@ -40,6 +40,19 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           },
         },
       },
+      highlight_products: {
+        fields: ["title", "highlight_slider"],
+        populate: {
+          highlight_slider: {
+            fields: ["title", "description", "image", "link", "button"],
+            populate: {
+              image: {
+                fields: fieldsImage,
+              },
+            },
+          },
+        },
+      },
       ...ctx.query.populate,
     };
     await next();

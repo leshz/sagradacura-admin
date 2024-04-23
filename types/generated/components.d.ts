@@ -129,6 +129,34 @@ export interface UiFooter extends Schema.Component {
   };
 }
 
+export interface UiHightlightSlider extends Schema.Component {
+  collectionName: 'components_ui_hightlight_sliders';
+  info: {
+    displayName: 'hightlight_slider';
+    icon: 'command';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    image: Attribute.Media;
+    link: Attribute.String;
+    button: Attribute.String;
+  };
+}
+
+export interface UiHightlightsProducts extends Schema.Component {
+  collectionName: 'components_ui_hightlights_products';
+  info: {
+    displayName: 'hightlights_products';
+    icon: 'bell';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    highlight_slider: Attribute.Component<'ui.hightlight-slider', true>;
+  };
+}
+
 export interface UiMainBanner extends Schema.Component {
   collectionName: 'components_ui_main_banners';
   info: {
@@ -223,6 +251,8 @@ declare module '@strapi/types' {
       'ui.dinamic-banner': UiDinamicBanner;
       'ui.fixed-banner': UiFixedBanner;
       'ui.footer': UiFooter;
+      'ui.hightlight-slider': UiHightlightSlider;
+      'ui.hightlights-products': UiHightlightsProducts;
       'ui.main-banner': UiMainBanner;
       'ui.menu': UiMenu;
       'ui.mobile-information': UiMobileInformation;

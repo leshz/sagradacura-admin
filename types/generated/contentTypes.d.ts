@@ -486,6 +486,12 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
+    highlight_products: Attribute.Component<'ui.hightlights-products'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
