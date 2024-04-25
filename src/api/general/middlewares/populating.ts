@@ -17,28 +17,23 @@ export default (config, { strapi }: { strapi: Strapi }) => {
         },
       },
       menu: {
-        fields: [
-          "logo",
-          "home",
-          "nuestra_marca",
-          "productos",
-          "cart",
-          "mobile",
-        ],
+        fields: ["logo", "cart", "mobile"],
         populate: {
           logo: {
             fields: fieldsImage,
           },
-          home: {
-            fields: ["*"],
-          },
-          nuestra_marca: {
-            fields: ["*"],
-          },
-          productos: {
-            fields: ["*"],
-          },
           mobile: {
+            fields: ["*"],
+          },
+        },
+      },
+      menu_items: {
+        fields: ["single_item", "multiple_item"],
+        populate: {
+          single_item: {
+            fields: ["*"],
+          },
+          multiple_item: {
             fields: ["*"],
           },
         },

@@ -433,6 +433,14 @@ export interface ApiGeneralGeneral extends Schema.SingleType {
           localized: true;
         };
       }>;
+    menu_items: Attribute.DynamicZone<
+      ['menu.multiple-item', 'menu.single-item']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

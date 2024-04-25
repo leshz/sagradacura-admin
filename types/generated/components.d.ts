@@ -1,5 +1,27 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface MenuMultipleItem extends Schema.Component {
+  collectionName: 'components_menu_multiple_items';
+  info: {
+    displayName: 'multiple_item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    multiple_item: Attribute.Component<'ui-utility.link', true>;
+  };
+}
+
+export interface MenuSingleItem extends Schema.Component {
+  collectionName: 'components_menu_single_items';
+  info: {
+    displayName: 'single_item';
+    icon: 'filter';
+  };
+  attributes: {
+    single_item: Attribute.Component<'ui-utility.link'>;
+  };
+}
+
 export interface PaymentPlatformsMercadopago extends Schema.Component {
   collectionName: 'components_platform_mercadopagos';
   info: {
@@ -179,9 +201,6 @@ export interface UiMenu extends Schema.Component {
   };
   attributes: {
     logo: Attribute.Media & Attribute.Required;
-    home: Attribute.Component<'ui-utility.link'>;
-    nuestra_marca: Attribute.Component<'ui-utility.link'>;
-    productos: Attribute.Component<'ui-utility.link', true>;
     cart: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     mobile: Attribute.Component<'ui.mobile-information'>;
   };
@@ -242,6 +261,8 @@ export interface UtilityColumnLinks extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'menu.multiple-item': MenuMultipleItem;
+      'menu.single-item': MenuSingleItem;
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
       'ui-utility.footer-description': UiUtilityFooterDescription;
       'ui-utility.link': UiUtilityLink;

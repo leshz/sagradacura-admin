@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_menu_multiple_items",
+  "info": {
+    "displayName": "multiple_item",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "multiple_item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui-utility.link"
+    }
+  }
+}

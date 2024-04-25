@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_menu_single_items",
+  "info": {
+    "displayName": "single_item",
+    "icon": "filter"
+  },
+  "options": {},
+  "attributes": {
+    "single_item": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui-utility.link"
+    }
+  }
+}

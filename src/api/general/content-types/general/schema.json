@@ -46,6 +46,18 @@
         }
       },
       "component": "ui.footer"
+    },
+    "menu_items": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "menu.multiple-item",
+        "menu.single-item"
+      ]
     }
   }
 }
