@@ -9540,6 +9540,11 @@ std-env@^3.0.1:
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.3.3.tgz#a54f06eb245fdcfef53d56f3c0251f1d5c3d01fe"
   integrity sha512-Rz6yejtVyWnVjC1RFvNmYL10kgjC49EOghxWn0RFqlCHGFpQx+Xe7yW3I4ceK1SGrWIGMjD5Kbue8W/udkbMJg==
 
+strapi-plugin-media-prefix@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-media-prefix/-/strapi-plugin-media-prefix-1.0.4.tgz#a107fcd2a5759bf43e68129dbad4cf10eb917571"
+  integrity sha512-VHYEULvcYQjU/sX3Qn6wb0wU4E8Imfuv5tDK4EJqWEvGApHUAFt8SOxPrjxhKQz0NaQzaCfn3Lj+kDmm3vqDBA==
+
 stream-browserify@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-3.0.0.tgz#22b0a2850cdf6503e73085da1fc7b7d0c2122f2f"

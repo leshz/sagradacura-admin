@@ -13,8 +13,10 @@
     "export": " strapi export --file",
     "import": " strapi import --file"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "dependencies": {
+    "strapi-plugin-media-prefix": "^1.0.4",
     "@strapi/plugin-i18n": "4.14.4",
     "@strapi/plugin-users-permissions": "4.14.4",
     "@strapi/provider-upload-aws-s3": "^4.15.4",
@@ -26,7 +28,8 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "656506df-0ab4-41f9-8b2c-f9650b62212a"
+    "uuid": "656506df-0ab4-41f9-8b2c-f9650b62212a",
+    "telemetryDisabled": true
   },
   "engines": {
     "node": ">=18.x.x <=20.x.x",

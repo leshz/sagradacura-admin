@@ -7,7 +7,6 @@ export default ({ env }) => ({
   auth: {
     logo: favicon,
   },
-  // Replace the favicon
   head: {
     favicon: favicon,
   },
@@ -21,4 +20,5 @@ export default ({ env }) => ({
   admin: {
     watchIgnoreFiles: ["**/data", "./data"],
   },
+  url: env('PUBLIC_URL', 'http://localhost:1337')
 });
