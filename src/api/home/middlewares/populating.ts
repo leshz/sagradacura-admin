@@ -54,7 +54,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
         },
       },
       last_blogposts: {
-        fields: ["title", "get_last", "sub_title"],
+        fields: ["title", "get_last", "sub_title", "read_more"],
       },
       ...ctx.query.populate,
     };

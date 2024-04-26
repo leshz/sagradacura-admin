@@ -190,6 +190,7 @@ export interface UiLastBlogposts extends Schema.Component {
     title: Attribute.String;
     get_last: Attribute.Integer & Attribute.DefaultTo<2>;
     sub_title: Attribute.String;
+    read_more: Attribute.String;
   };
 }
 

@@ -17,6 +17,9 @@
     },
     "sub_title": {
       "type": "string"
+    },
+    "read_more": {
+      "type": "string"
     }
   }
 }
