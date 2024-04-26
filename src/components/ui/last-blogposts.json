@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_ui_last_blogposts",
+  "info": {
+    "displayName": "last_blogposts",
+    "icon": "archive",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "get_last": {
+      "type": "integer",
+      "required": false,
+      "default": 2
+    },
+    "sub_title": {
+      "type": "string"
+    }
+  }
+}

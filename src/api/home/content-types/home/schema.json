@@ -47,6 +47,17 @@
         }
       },
       "component": "ui.hightlights-products"
+    },
+    "last_blogposts": {
+      "displayName": "last_blogposts",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "ui.last-blogposts"
     }
   }
 }

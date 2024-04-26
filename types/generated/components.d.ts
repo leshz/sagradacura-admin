@@ -179,6 +179,20 @@ export interface UiHightlightsProducts extends Schema.Component {
   };
 }
 
+export interface UiLastBlogposts extends Schema.Component {
+  collectionName: 'components_ui_last_blogposts';
+  info: {
+    displayName: 'last_blogposts';
+    icon: 'archive';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    get_last: Attribute.Integer & Attribute.DefaultTo<2>;
+    sub_title: Attribute.String;
+  };
+}
+
 export interface UiMainBanner extends Schema.Component {
   collectionName: 'components_ui_main_banners';
   info: {
@@ -274,6 +288,7 @@ declare module '@strapi/types' {
       'ui.footer': UiFooter;
       'ui.hightlight-slider': UiHightlightSlider;
       'ui.hightlights-products': UiHightlightsProducts;
+      'ui.last-blogposts': UiLastBlogposts;
       'ui.main-banner': UiMainBanner;
       'ui.menu': UiMenu;
       'ui.mobile-information': UiMobileInformation;

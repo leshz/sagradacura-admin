@@ -9540,6 +9540,11 @@ std-env@^3.0.1:
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.3.3.tgz#a54f06eb245fdcfef53d56f3c0251f1d5c3d01fe"
   integrity sha512-Rz6yejtVyWnVjC1RFvNmYL10kgjC49EOghxWn0RFqlCHGFpQx+Xe7yW3I4ceK1SGrWIGMjD5Kbue8W/udkbMJg==
 
+strapi-plugin-duplicate-button@^1.1.14:
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-duplicate-button/-/strapi-plugin-duplicate-button-1.1.14.tgz#87dab8547529445cafd34f55f509f8250bc451d3"
+  integrity sha512-MfoCl4CZl2qdPCaJShfL4du4XuGsSw9NgNrF8JZXzi2HuuT/4qq5MbDd6DmqiJp0wdVeHOAKCNzXfYjmTmcMxg==
+
 strapi-plugin-media-prefix@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/strapi-plugin-media-prefix/-/strapi-plugin-media-prefix-1.0.4.tgz#a107fcd2a5759bf43e68129dbad4cf10eb917571"
