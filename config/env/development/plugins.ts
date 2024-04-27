@@ -7,6 +7,9 @@ export default ({ env }) => {
     "media-prefix": {
       enabled: true,
     },
-    'duplicate-button': true,
+    "duplicate-button": true,
+    "import-export-entries": {
+      enabled: true,
+    },
   };
 };

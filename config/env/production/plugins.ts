@@ -28,6 +28,9 @@ export default ({ env }) => {
         },
       },
     },
-    'duplicate-button': true,
+    "duplicate-button": true,
+    "import-export-entries": {
+      enabled: true,
+    },
   };
 };
