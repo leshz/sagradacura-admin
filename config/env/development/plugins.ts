@@ -8,8 +8,5 @@ export default ({ env }) => {
       enabled: true,
     },
     "duplicate-button": true,
-    "import-export-entries": {
-      enabled: true,
-    },
   };
 };
