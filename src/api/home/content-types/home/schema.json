@@ -58,6 +58,17 @@
         }
       },
       "component": "ui.last-blogposts"
+    },
+    "testimonial": {
+      "displayName": "testimonial",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "ui.testimonial"
     }
   }
 }

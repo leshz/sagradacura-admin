@@ -246,6 +246,17 @@ export interface UiProductCategories extends Schema.Component {
   };
 }
 
+export interface UiTestimonial extends Schema.Component {
+  collectionName: 'components_ui_testimonials';
+  info: {
+    displayName: 'testimonial';
+    icon: 'emotionHappy';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface UiTopMain extends Schema.Component {
   collectionName: 'components_ui_top_mains';
   info: {
@@ -294,6 +305,7 @@ declare module '@strapi/types' {
       'ui.menu': UiMenu;
       'ui.mobile-information': UiMobileInformation;
       'ui.product-categories': UiProductCategories;
+      'ui.testimonial': UiTestimonial;
       'ui.top-main': UiTopMain;
       'utility.column-links': UtilityColumnLinks;
     }
