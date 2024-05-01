@@ -4,7 +4,8 @@
   "info": {
     "singularName": "configuration",
     "pluralName": "configurations",
-    "displayName": "configuration"
+    "displayName": "Configuration",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

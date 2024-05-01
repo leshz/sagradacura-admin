@@ -69,6 +69,17 @@
         }
       },
       "component": "ui.testimonial"
+    },
+    "instagram": {
+      "displayName": "instagram",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "ui.instagram"
     }
   }
 }

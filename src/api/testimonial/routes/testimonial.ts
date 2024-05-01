@@ -2,6 +2,12 @@
  * testimonial router
  */
 
-import { factories } from '@strapi/strapi';
+import { factories } from "@strapi/strapi";
 
-export default factories.createCoreRouter('api::testimonial.testimonial');
+export default factories.createCoreRouter("api::testimonial.testimonial", {
+  config: {
+    find: {
+      middlewares: ["api::testimonial.populating"],
+    },
+  },
+});

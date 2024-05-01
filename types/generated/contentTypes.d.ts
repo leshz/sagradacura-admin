@@ -760,7 +760,8 @@ export interface ApiConfigurationConfiguration extends Schema.SingleType {
   info: {
     singularName: 'configuration';
     pluralName: 'configurations';
-    displayName: 'configuration';
+    displayName: 'Configuration';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -900,6 +901,12 @@ export interface ApiHomeHome extends Schema.SingleType {
         };
       }>;
     testimonial: Attribute.Component<'ui.testimonial'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    instagram: Attribute.Component<'ui.instagram'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

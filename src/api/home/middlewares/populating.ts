@@ -59,6 +59,14 @@ export default (config, { strapi }: { strapi: Strapi }) => {
       testimonial: {
         fields: ["title"],
       },
+      instagram: {
+        fields: ["*"],
+        populate: {
+          feed: {
+            field: fieldsImage,
+          },
+        },
+      },
       ...ctx.query.populate,
     };
     await next();

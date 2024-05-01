@@ -179,6 +179,20 @@ export interface UiHightlightsProducts extends Schema.Component {
   };
 }
 
+export interface UiInstagram extends Schema.Component {
+  collectionName: 'components_ui_instagrams';
+  info: {
+    displayName: 'instagram';
+    icon: 'crown';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String & Attribute.Required;
+    profile_url: Attribute.String & Attribute.Required;
+    feed: Attribute.Media & Attribute.Required;
+  };
+}
+
 export interface UiLastBlogposts extends Schema.Component {
   collectionName: 'components_ui_last_blogposts';
   info: {
@@ -300,6 +314,7 @@ declare module '@strapi/types' {
       'ui.footer': UiFooter;
       'ui.hightlight-slider': UiHightlightSlider;
       'ui.hightlights-products': UiHightlightsProducts;
+      'ui.instagram': UiInstagram;
       'ui.last-blogposts': UiLastBlogposts;
       'ui.main-banner': UiMainBanner;
       'ui.menu': UiMenu;
