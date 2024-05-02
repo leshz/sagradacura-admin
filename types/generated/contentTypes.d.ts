@@ -759,6 +759,12 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
           localized: true;
         };
       }>;
+    blogs_title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

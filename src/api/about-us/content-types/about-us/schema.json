@@ -45,6 +45,14 @@
           "localized": true
         }
       }
+    },
+    "blogs_title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
