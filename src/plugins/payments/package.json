@@ -1,5 +1,5 @@
 {
-  "name": "Payments",
+  "name": "payments",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
