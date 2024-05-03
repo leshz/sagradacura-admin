@@ -3,22 +3,24 @@ import type { Schema, Attribute } from '@strapi/strapi';
 export interface MenuMultipleItem extends Schema.Component {
   collectionName: 'components_menu_multiple_items';
   info: {
-    displayName: 'multiple_item';
+    displayName: 'multiple';
     icon: 'bulletList';
+    description: '';
   };
   attributes: {
-    multiple_item: Attribute.Component<'ui-utility.link', true>;
+    multiple: Attribute.Component<'ui-utility.link', true>;
   };
 }
 
 export interface MenuSingleItem extends Schema.Component {
   collectionName: 'components_menu_single_items';
   info: {
-    displayName: 'single_item';
+    displayName: 'single';
     icon: 'filter';
+    description: '';
   };
   attributes: {
-    single_item: Attribute.Component<'ui-utility.link'>;
+    single: Attribute.Component<'ui-utility.link'>;
   };
 }
 
@@ -315,6 +317,40 @@ export interface UtilityColumnLinks extends Schema.Component {
   };
 }
 
+export interface UtilityMultiLink extends Schema.Component {
+  collectionName: 'components_utility_multi_links';
+  info: {
+    displayName: 'multi-link';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityMultilink extends Schema.Component {
+  collectionName: 'components_utility_multilinks';
+  info: {
+    displayName: 'multilink';
+    icon: 'bulletList';
+  };
+  attributes: {
+    multi_link: Attribute.Component<'utility.multi-link', true>;
+  };
+}
+
+export interface UtilitySingle extends Schema.Component {
+  collectionName: 'components_utility_singles';
+  info: {
+    displayName: 'single';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -341,6 +377,9 @@ declare module '@strapi/types' {
       'ui.testimonial': UiTestimonial;
       'ui.top-main': UiTopMain;
       'utility.column-links': UtilityColumnLinks;
+      'utility.multi-link': UtilityMultiLink;
+      'utility.multilink': UtilityMultilink;
+      'utility.single': UtilitySingle;
     }
   }
 }

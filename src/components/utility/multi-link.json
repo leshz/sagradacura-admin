@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_utility_multi_links",
+  "info": {
+    "displayName": "multi-link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_utility_multilinks",
+  "info": {
+    "displayName": "multilink",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "multi_link": {
+      "displayName": "multi-link",
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.multi-link"
+    }
+  }
+}

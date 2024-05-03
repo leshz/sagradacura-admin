@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_utility_singles",
+  "info": {
+    "displayName": "single",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

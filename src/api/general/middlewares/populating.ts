@@ -27,17 +27,6 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           },
         },
       },
-      menu_items: {
-        fields: ["single_item", "multiple_item"],
-        populate: {
-          single_item: {
-            fields: ["*"],
-          },
-          multiple_item: {
-            fields: ["*"],
-          },
-        },
-      },
       footer: {
         fields: ["columns", "botton", "news_letter"],
         populate: {
