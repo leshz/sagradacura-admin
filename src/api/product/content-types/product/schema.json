@@ -96,6 +96,23 @@
         }
       },
       "type": "blocks"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "promotion": {
+      "displayName": "Promotion",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "promotions.promotion",
+      "required": true
     }
   }
 }

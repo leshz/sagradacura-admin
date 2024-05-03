@@ -24,7 +24,8 @@
     "mercadopago": {
       "type": "component",
       "repeatable": false,
-      "component": "payment-platforms.mercadopago"
+      "component": "payment-platforms.mercadopago",
+      "private": true
     }
   }
 }

@@ -48,6 +48,23 @@ export interface PaymentPlatformsMercadopago extends Schema.Component {
   };
 }
 
+export interface PromotionsPromotion extends Schema.Component {
+  collectionName: 'components_promotions_promotions';
+  info: {
+    displayName: 'Promotion';
+    icon: 'walk';
+    description: '';
+  };
+  attributes: {
+    with_discount: Attribute.Boolean & Attribute.DefaultTo<false>;
+    price_with_discount: Attribute.Integer;
+    recommended: Attribute.Boolean & Attribute.DefaultTo<false>;
+    best_seller: Attribute.Boolean & Attribute.DefaultTo<false>;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    discount_tag: Attribute.String;
+  };
+}
+
 export interface UiUtilityFooterDescription extends Schema.Component {
   collectionName: 'components_ui_utility_footer_descriptions';
   info: {
@@ -304,6 +321,7 @@ declare module '@strapi/types' {
       'menu.multiple-item': MenuMultipleItem;
       'menu.single-item': MenuSingleItem;
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
+      'promotions.promotion': PromotionsPromotion;
       'ui-utility.footer-description': UiUtilityFooterDescription;
       'ui-utility.link': UiUtilityLink;
       'ui-utility.news-letter': UiUtilityNewsLetter;
