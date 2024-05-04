@@ -1,5 +1,17 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface CategoriesCategories extends Schema.Component {
+  collectionName: 'components_categories_categories';
+  info: {
+    displayName: 'categories';
+    icon: 'cloud';
+  };
+  attributes: {
+    title: Attribute.String;
+    all_products: Attribute.String;
+  };
+}
+
 export interface MenuMultipleItem extends Schema.Component {
   collectionName: 'components_menu_multiple_items';
   info: {
@@ -354,6 +366,7 @@ export interface UtilitySingle extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'categories.categories': CategoriesCategories;
       'menu.multiple-item': MenuMultipleItem;
       'menu.single-item': MenuSingleItem;
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;

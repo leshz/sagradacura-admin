@@ -1293,6 +1293,67 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiShopShop extends Schema.SingleType {
+  collectionName: 'shops';
+  info: {
+    singularName: 'shop';
+    pluralName: 'shops';
+    displayName: 'Shop';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    out_of_stock: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    add_to_cart: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    request_stock: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    categories: Attribute.Component<'categories.categories'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::shop.shop', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::shop.shop', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::shop.shop',
+      'oneToMany',
+      'api::shop.shop'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags';
   info: {
@@ -1426,6 +1487,7 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::menu.menu': ApiMenuMenu;
       'api::product.product': ApiProductProduct;
+      'api::shop.shop': ApiShopShop;
       'api::tag.tag': ApiTagTag;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
     }
