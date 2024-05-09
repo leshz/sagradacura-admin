@@ -1216,7 +1216,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
         };
       }>;
     slug: Attribute.UID<'api::product.product', 'name'> & Attribute.Required;
-    quantity: Attribute.Integer &
+    stock: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {

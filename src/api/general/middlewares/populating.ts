@@ -17,12 +17,15 @@ export default (config, { strapi }: { strapi: Strapi }) => {
         },
       },
       menu: {
-        fields: ["logo", "cart", "mobile"],
+        fields: ["logo", "cart_menu", "mobile"],
         populate: {
           logo: {
             fields: fieldsImage,
           },
           mobile: {
+            fields: ["*"],
+          },
+          cart_menu: {
             fields: ["*"],
           },
         },

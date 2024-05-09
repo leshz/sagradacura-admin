@@ -63,7 +63,7 @@
       "targetField": "name",
       "required": true
     },
-    "quantity": {
+    "stock": {
       "type": "integer",
       "default": 0,
       "pluginOptions": {

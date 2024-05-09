@@ -12,6 +12,20 @@ export interface CategoriesCategories extends Schema.Component {
   };
 }
 
+export interface MenuCart extends Schema.Component {
+  collectionName: 'components_menu_carts';
+  info: {
+    displayName: 'cart';
+    icon: 'cast';
+  };
+  attributes: {
+    sub_total: Attribute.String & Attribute.Required;
+    discount: Attribute.String & Attribute.Required;
+    continue_shopping: Attribute.String & Attribute.Required;
+    got_checkout: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface MenuMultipleItem extends Schema.Component {
   collectionName: 'components_menu_multiple_items';
   info: {
@@ -261,8 +275,8 @@ export interface UiMenu extends Schema.Component {
   };
   attributes: {
     logo: Attribute.Media & Attribute.Required;
-    cart: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     mobile: Attribute.Component<'ui.mobile-information'>;
+    cart_menu: Attribute.Component<'menu.cart'>;
   };
 }
 
@@ -367,6 +381,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'categories.categories': CategoriesCategories;
+      'menu.cart': MenuCart;
       'menu.multiple-item': MenuMultipleItem;
       'menu.single-item': MenuSingleItem;
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
