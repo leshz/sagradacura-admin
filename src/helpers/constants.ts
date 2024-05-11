@@ -1,3 +1,10 @@
-const fieldsImage = ["url", "width", "height", "alternativeText", "formats"];
+const fieldsImage = [
+  "url",
+  "width",
+  "height",
+  "alternativeText",
+  "formats",
+  "blurhash",
+];
 
 export { fieldsImage };
