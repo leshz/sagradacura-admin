@@ -423,7 +423,6 @@ export interface PluginUploadFile extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    blurhash: Attribute.Text;
   };
 }
 
@@ -1058,6 +1057,12 @@ export interface ApiCartCart extends Schema.SingleType {
       }>;
     summary: Attribute.Component<'cart.summary'> &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    empty: Attribute.Component<'cart.empty-cart'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

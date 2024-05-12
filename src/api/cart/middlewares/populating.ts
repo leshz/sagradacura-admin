@@ -3,6 +3,7 @@
  */
 
 import { Strapi } from "@strapi/strapi";
+import { fieldsImage } from "../../../helpers/constants";
 
 export default (config, { strapi }: { strapi: Strapi }) => {
   // Add your own logic here.
@@ -13,6 +14,14 @@ export default (config, { strapi }: { strapi: Strapi }) => {
       },
       summary: {
         fields: ["*"],
+      },
+      empty: {
+        fields: ["*"],
+        populate: {
+          image: {
+            fields: fieldsImage,
+          },
+        },
       },
       ...ctx.query.populate,
     };

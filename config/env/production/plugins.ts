@@ -52,12 +52,6 @@ export default ({ env }) => {
     seo: {
       enabled: true,
     },
-    "strapi-blurhash-plugin": {
-      enabled: true,
-      config: {
-        regenerateOnUpdate: true,
-      },
-    },
     "vercel-deploy": {
       enabled: env("VERCEL_PLUGIN_ENABLED", false),
       config: {

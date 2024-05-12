@@ -1,5 +1,19 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface CartEmptyCart extends Schema.Component {
+  collectionName: 'components_cart_empty_carts';
+  info: {
+    displayName: 'empty_cart';
+    icon: 'brush';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.String;
+    image: Attribute.Media & Attribute.Required;
+    button: Attribute.String;
+  };
+}
+
 export interface CartSummary extends Schema.Component {
   collectionName: 'components_cart_summaries';
   info: {
@@ -460,6 +474,7 @@ export interface UtilitySingle extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'cart.empty-cart': CartEmptyCart;
       'cart.summary': CartSummary;
       'cart.table': CartTable;
       'categories.categories': CategoriesCategories;

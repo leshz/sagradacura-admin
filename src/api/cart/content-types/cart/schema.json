@@ -39,6 +39,17 @@
           "localized": true
         }
       }
+    },
+    "empty": {
+      "displayName": "empty_cart",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "cart.empty-cart"
     }
   }
 }
