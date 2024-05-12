@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_cart_tables",
+  "info": {
+    "displayName": "table",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "total": {
+      "type": "string"
+    }
+  }
+}

@@ -1,5 +1,34 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface CartSummary extends Schema.Component {
+  collectionName: 'components_cart_summaries';
+  info: {
+    displayName: 'summary';
+    icon: 'restaurant';
+    description: '';
+  };
+  attributes: {
+    cart_total: Attribute.String;
+    summary: Attribute.String;
+    total: Attribute.String;
+    go_checkout: Attribute.String;
+  };
+}
+
+export interface CartTable extends Schema.Component {
+  collectionName: 'components_cart_tables';
+  info: {
+    displayName: 'table';
+    icon: 'bulletList';
+  };
+  attributes: {
+    product: Attribute.String;
+    quantity: Attribute.String;
+    price: Attribute.String;
+    total: Attribute.String;
+  };
+}
+
 export interface CategoriesCategories extends Schema.Component {
   collectionName: 'components_categories_categories';
   info: {
@@ -431,6 +460,8 @@ export interface UtilitySingle extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'cart.summary': CartSummary;
+      'cart.table': CartTable;
       'categories.categories': CategoriesCategories;
       'menu.cart': MenuCart;
       'menu.multiple-item': MenuMultipleItem;

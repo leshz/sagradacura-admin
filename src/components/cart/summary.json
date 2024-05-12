@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_cart_summaries",
+  "info": {
+    "displayName": "summary",
+    "icon": "restaurant",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "cart_total": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "total": {
+      "type": "string"
+    },
+    "go_checkout": {
+      "type": "string"
+    }
+  }
+}
