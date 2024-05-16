@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "strapi build",
-    "dev": "strapi develop --watch-admin",
+    "dev": "strapi develop --watch-admin --debug",
     "export": " strapi export --file",
     "import": " strapi import --file",
     "postinstall": "cd ./src/plugins/payments/ && yarn",
