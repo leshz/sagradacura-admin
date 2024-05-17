@@ -3,8 +3,7 @@ const fieldsImage = [
   "width",
   "height",
   "alternativeText",
-  "formats",
-  "blurhash",
+  "formats"
 ];
 
 export { fieldsImage };
