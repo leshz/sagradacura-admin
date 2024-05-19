@@ -1368,12 +1368,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    full_description: Attribute.Blocks &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     categories: Attribute.Relation<
       'api::product.product',
       'oneToMany',
@@ -1387,6 +1381,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
         };
       }>;
     middle_description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    information: Attribute.Component<'product.information', true> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

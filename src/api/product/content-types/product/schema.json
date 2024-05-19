@@ -89,14 +89,6 @@
       },
       "customField": "plugin::strapi-advanced-uuid.uuid"
     },
-    "full_description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "blocks"
-    },
     "categories": {
       "type": "relation",
       "relation": "oneToMany",
@@ -121,6 +113,17 @@
         }
       },
       "type": "text"
+    },
+    "information": {
+      "displayName": "information",
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "product.information"
     }
   }
 }

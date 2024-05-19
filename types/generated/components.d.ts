@@ -119,6 +119,18 @@ export interface PaymentPlatformsMercadopago extends Schema.Component {
   };
 }
 
+export interface ProductInformation extends Schema.Component {
+  collectionName: 'components_product_information';
+  info: {
+    displayName: 'information';
+    icon: 'bell';
+  };
+  attributes: {
+    title: Attribute.String;
+    information: Attribute.Blocks;
+  };
+}
+
 export interface PromotionsPromotion extends Schema.Component {
   collectionName: 'components_promotions_promotions';
   info: {
@@ -482,6 +494,7 @@ declare module '@strapi/types' {
       'menu.multiple-item': MenuMultipleItem;
       'menu.single-item': MenuSingleItem;
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
+      'product.information': ProductInformation;
       'promotions.promotion': PromotionsPromotion;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
