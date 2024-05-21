@@ -50,8 +50,8 @@ export default ({ env }) => {
         },
         schema: env("DATABASE_SCHEMA", "public"),
       },
+      debug: true,
       pool: {
-        debug: true,
         min: env.int("DATABASE_POOL_MIN", 0),
         max: env.int("DATABASE_POOL_MAX", 10),
       },
