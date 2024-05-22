@@ -131,6 +131,17 @@ export interface ProductInformation extends Schema.Component {
   };
 }
 
+export interface ProductPromises extends Schema.Component {
+  collectionName: 'components_product_promises';
+  info: {
+    displayName: 'Promises';
+  };
+  attributes: {
+    Message: Attribute.Text;
+    icon: Attribute.Enumeration<['bi-truck', 'bi-box2-heart']>;
+  };
+}
+
 export interface PromotionsPromotion extends Schema.Component {
   collectionName: 'components_promotions_promotions';
   info: {
@@ -495,6 +506,7 @@ declare module '@strapi/types' {
       'menu.single-item': MenuSingleItem;
       'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
       'product.information': ProductInformation;
+      'product.promises': ProductPromises;
       'promotions.promotion': PromotionsPromotion;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;

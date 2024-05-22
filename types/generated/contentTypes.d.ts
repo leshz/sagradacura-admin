@@ -1416,6 +1416,39 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiProductPageProductPage extends Schema.SingleType {
+  collectionName: 'product_pages';
+  info: {
+    singularName: 'product-page';
+    pluralName: 'product-pages';
+    displayName: 'Product_page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    promises: Attribute.Component<'product.promises', true>;
+    garanty_checkout: Attribute.Text;
+    no_stock: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product-page.product-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product-page.product-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiShopShop extends Schema.SingleType {
   collectionName: 'shops';
   info: {
@@ -1612,6 +1645,7 @@ declare module '@strapi/types' {
       'api::general.general': ApiGeneralGeneral;
       'api::home.home': ApiHomeHome;
       'api::product.product': ApiProductProduct;
+      'api::product-page.product-page': ApiProductPageProductPage;
       'api::shop.shop': ApiShopShop;
       'api::tag.tag': ApiTagTag;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;

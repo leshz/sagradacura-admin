@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "product_pages",
+  "info": {
+    "singularName": "product-page",
+    "pluralName": "product-pages",
+    "displayName": "Product_page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "promises": {
+      "displayName": "Promises",
+      "type": "component",
+      "repeatable": true,
+      "component": "product.promises"
+    },
+    "garanty_checkout": {
+      "type": "text"
+    },
+    "no_stock": {
+      "type": "string"
+    }
+  }
+}
