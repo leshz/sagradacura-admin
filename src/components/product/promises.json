@@ -1,11 +1,12 @@
 {
   "collectionName": "components_product_promises",
   "info": {
-    "displayName": "Promises"
+    "displayName": "Promises",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Message": {
+    "message": {
       "type": "text"
     },
     "icon": {

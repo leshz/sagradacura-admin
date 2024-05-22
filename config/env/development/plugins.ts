@@ -32,7 +32,7 @@ export default ({ env }) => {
       enabled: true,
     },
     "vercel-deploy": {
-      enabled: env("VERCEL_PLUGIN_ENABLED", false),
+      enabled: env.bool("VERCEL_PLUGIN_ENABLED", false),
       config: {
         deployHook: env("VERCEL_DEPLOY_PLUGIN_HOOK", ""),
         apiToken: env("VERCEL_DEPLOY_PLUGIN_API_TOKEN", ""),

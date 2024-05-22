@@ -135,9 +135,10 @@ export interface ProductPromises extends Schema.Component {
   collectionName: 'components_product_promises';
   info: {
     displayName: 'Promises';
+    description: '';
   };
   attributes: {
-    Message: Attribute.Text;
+    message: Attribute.Text;
     icon: Attribute.Enumeration<['bi-truck', 'bi-box2-heart']>;
   };
 }
