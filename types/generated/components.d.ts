@@ -138,8 +138,8 @@ export interface ProductPromises extends Schema.Component {
     description: '';
   };
   attributes: {
-    message: Attribute.Text;
     icon: Attribute.Enumeration<['bi-truck', 'bi-box2-heart']>;
+    message: Attribute.Blocks;
   };
 }
 

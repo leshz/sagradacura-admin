@@ -6,15 +6,15 @@
   },
   "options": {},
   "attributes": {
-    "message": {
-      "type": "text"
-    },
     "icon": {
       "type": "enumeration",
       "enum": [
         "bi-truck",
         "bi-box2-heart"
       ]
+    },
+    "message": {
+      "type": "blocks"
     }
   }
 }
