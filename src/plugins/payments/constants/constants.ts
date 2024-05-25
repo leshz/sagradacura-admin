@@ -9,6 +9,7 @@ export const INVOICES_STATUS = {
 } as const;
 
 export const URLS = {
+  CHECK: "/",
   CHECKOUT: "/checkout",
   IPN: "/notifications",
   NOTIFICATIONS_MELI_URL: "/payments/notifications",
