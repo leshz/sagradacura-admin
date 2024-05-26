@@ -16,7 +16,6 @@ const App = () => {
     <div>
       <Switch>
         <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
-        <Route component={AnErrorOccurred} />
       </Switch>
     </div>
   );
