@@ -1,2 +1,3 @@
 import invoice from "./invoice";
-export default { invoice };
+import category from "./category";
+export default { invoice, category };
