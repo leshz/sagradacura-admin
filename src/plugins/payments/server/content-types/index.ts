@@ -1,3 +1,5 @@
 import invoice from "./invoice";
 import category from "./category";
-export default { invoice, category };
+import product from "./product";
+
+export default { invoice, category, product };

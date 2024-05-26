@@ -4,7 +4,7 @@
   "info": {
     "singularName": "invoice",
     "pluralName": "invoices",
-    "displayName": "Invoices"
+    "displayName": "Invoice"
   },
   "options": {
     "draftAndPublish": false
@@ -45,12 +45,6 @@
     "preferenceId": {
       "type": "string",
       "required": true
-    },
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "invoices"
     }
   }
 }
