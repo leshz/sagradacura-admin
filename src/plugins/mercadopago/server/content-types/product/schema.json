@@ -101,6 +101,11 @@
       "component": "promotions.promotion",
       "required": true
     },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::mercadopago.category"
+    },
     "middle_description": {
       "pluginOptions": {
         "i18n": {

@@ -804,6 +804,11 @@ export interface PluginMercadopagoProduct extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    categories: Attribute.Relation<
+      'plugin::mercadopago.product',
+      'oneToMany',
+      'plugin::mercadopago.category'
+    >;
     middle_description: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -845,18 +850,18 @@ export interface PluginMercadopagoMercadopago extends Schema.SingleType {
   info: {
     singularName: 'mercadopago';
     pluralName: 'mercadopagos';
-    displayName: 'mercadopago';
+    displayName: 'Mercado Pago';
   };
   options: {
     draftAndPublish: false;
     comment: '';
   };
   attributes: {
-    token: Attribute.String;
-    active: Attribute.Boolean;
-    notification_url: Attribute.String;
-    back_urls: Attribute.String;
-    default_currency: Attribute.String;
+    token: Attribute.String & Attribute.Required & Attribute.Unique;
+    active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    notification_url: Attribute.String & Attribute.Required;
+    back_urls: Attribute.String & Attribute.Required;
+    default_currency: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
