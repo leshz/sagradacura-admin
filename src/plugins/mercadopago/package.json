@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "ecommerce catalog with mercadopago as a payment platform",
   "strapi": {
-    "name": "Payments",
-    "description": "Description of payments plugin",
+    "name": "Mercado Pago",
+    "description": "ecommerce catalog with mercadopago as a payment platform",
     "kind": "plugin"
   },
   "dependencies": {

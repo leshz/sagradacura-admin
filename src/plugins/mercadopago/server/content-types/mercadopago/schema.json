@@ -4,7 +4,7 @@
   "info": {
     "singularName": "mercadopago",
     "pluralName": "mercadopagos",
-    "displayName": "mercadopago"
+    "displayName": "Mercado Pago"
   },
   "options": {
     "draftAndPublish": false,
@@ -12,19 +12,26 @@
   },
   "attributes": {
     "token": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "active": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "required": true
     },
     "notification_url": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "back_urls": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "default_currency": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

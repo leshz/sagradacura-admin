@@ -590,6 +590,290 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginMercadopagoInvoice extends Schema.CollectionType {
+  collectionName: 'invoices';
+  info: {
+    singularName: 'invoice';
+    pluralName: 'invoices';
+    displayName: 'Invoice';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-tags': {
+      fieldName: 'status';
+      tags: {
+        initial: {
+          color: 'neutral';
+        };
+        approved: {
+          color: 'success';
+        };
+        in_process: {
+          color: 'primary';
+        };
+        pending: {
+          color: 'primary';
+        };
+        cancelled: {
+          color: 'danger';
+        };
+        rejected: {
+          color: 'danger';
+        };
+      };
+      defaultTag: 'initial';
+    };
+  };
+  attributes: {
+    paymentId: Attribute.UID & Attribute.Required;
+    resume: Attribute.Text;
+    metadata: Attribute.JSON;
+    netPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    totalPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    paidWith: Attribute.String;
+    collectorId: Attribute.String & Attribute.Required;
+    preferenceId: Attribute.String & Attribute.Required;
+    status: Attribute.Text &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::content-tags.content-tags'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::mercadopago.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::mercadopago.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginMercadopagoCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'plugin::mercadopago.category', 'name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::mercadopago.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::mercadopago.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'plugin::mercadopago.category',
+      'oneToMany',
+      'plugin::mercadopago.category'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface PluginMercadopagoProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 10000;
+        },
+        number
+      >;
+    pictures: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    short_description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'plugin::mercadopago.product', 'name'> &
+      Attribute.Required;
+    stock: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 100;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    sku: Attribute.UID<
+      undefined,
+      undefined,
+      {
+        'uuid-format': '^[A-Za-z0-9]{8}$';
+        'disable-regenerate': true;
+      }
+    > &
+      Attribute.CustomField<
+        'plugin::strapi-advanced-uuid.uuid',
+        {
+          'uuid-format': '^[A-Za-z0-9]{8}$';
+          'disable-regenerate': true;
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    promotion: Attribute.Component<'promotions.promotion'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    middle_description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    information: Attribute.Component<'product.information', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::mercadopago.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::mercadopago.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'plugin::mercadopago.product',
+      'oneToMany',
+      'plugin::mercadopago.product'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface PluginMercadopagoMercadopago extends Schema.SingleType {
+  collectionName: 'mercadopagos';
+  info: {
+    singularName: 'mercadopago';
+    pluralName: 'mercadopagos';
+    displayName: 'mercadopago';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  attributes: {
+    token: Attribute.String;
+    active: Attribute.Boolean;
+    notification_url: Attribute.String;
+    back_urls: Attribute.String;
+    default_currency: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::mercadopago.mercadopago',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::mercadopago.mercadopago',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginMenusMenu extends Schema.CollectionType {
   collectionName: 'menus';
   info: {
@@ -1384,6 +1668,10 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::mercadopago.invoice': PluginMercadopagoInvoice;
+      'plugin::mercadopago.category': PluginMercadopagoCategory;
+      'plugin::mercadopago.product': PluginMercadopagoProduct;
+      'plugin::mercadopago.mercadopago': PluginMercadopagoMercadopago;
       'plugin::menus.menu': PluginMenusMenu;
       'plugin::menus.menu-item': PluginMenusMenuItem;
       'plugin::i18n.locale': PluginI18NLocale;
