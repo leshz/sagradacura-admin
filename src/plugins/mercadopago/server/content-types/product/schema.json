@@ -89,11 +89,6 @@
       },
       "customField": "plugin::strapi-advanced-uuid.uuid"
     },
-    "categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "plugin::payments.category"
-    },
     "promotion": {
       "displayName": "Promotion",
       "type": "component",

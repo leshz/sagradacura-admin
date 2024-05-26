@@ -26,7 +26,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       };
     }
     try {
-      const savedata = await strapi.query("plugin::payments.invoice").create({
+      const savedata = await strapi.query("plugin::mercadopago.invoice").create({
         data: {
           status: INVOICES_STATUS.INIT,
           platform: platform.id,
@@ -45,7 +45,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   },
   updateInvoice: async ({ invoiceId, data }) => {
     try {
-      const savedata = await strapi.query("plugin::payments.invoice").update({
+      const savedata = await strapi.query("plugin::mercadopago.invoice").update({
         where: { id: invoiceId },
         data: {
           ...data,

@@ -16,8 +16,8 @@ export default [
     handler: "checkout.checkout",
     config: {
       middlewares: [
-        "plugin::payments.getConfigByPlatform",
-        "plugin::payments.paymentFF",
+        "plugin::mercadopago.getConfigByPlatform",
+        "plugin::mercadopago.paymentFF",
       ],
       policies: [],
     },

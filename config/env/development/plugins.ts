@@ -1,8 +1,8 @@
 export default ({ env }) => {
   return {
-    payments: {
+    mercadopago: {
       enabled: true,
-      resolve: "./src/plugins/payments",
+      resolve: "./src/plugins/mercadopago",
     },
     "media-prefix": {
       enabled: true,

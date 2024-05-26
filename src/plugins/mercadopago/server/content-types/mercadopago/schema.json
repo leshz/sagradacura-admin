@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "mercadopagos",
+  "info": {
+    "singularName": "mercadopago",
+    "pluralName": "mercadopagos",
+    "displayName": "mercadopago"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "attributes": {
+    "token": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "notification_url": {
+      "type": "string"
+    },
+    "back_urls": {
+      "type": "string"
+    },
+    "default_currency": {
+      "type": "string"
+    }
+  }
+}

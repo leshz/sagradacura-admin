@@ -1,7 +1,7 @@
 {
-  "name": "payments",
+  "name": "mercadopago",
   "version": "0.0.0",
-  "description": "This plugin has a mercadopago as a payment method for strapi",
+  "description": "ecommerce catalog with mercadopago as a payment platform",
   "strapi": {
     "name": "Payments",
     "description": "Description of payments plugin",
