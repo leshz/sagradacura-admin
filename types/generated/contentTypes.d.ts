@@ -595,30 +595,49 @@ export interface PluginPaymentsInvoice extends Schema.CollectionType {
   info: {
     singularName: 'invoice';
     pluralName: 'invoices';
-    displayName: 'Invoices';
-    description: '';
+    displayName: 'Invoice';
   };
   options: {
     draftAndPublish: false;
   };
+  pluginOptions: {
+    'content-tags': {
+      fieldName: 'status';
+      tags: {
+        initial: {
+          color: 'neutral';
+        };
+        approved: {
+          color: 'success';
+        };
+        in_process: {
+          color: 'primary';
+        };
+        pending: {
+          color: 'primary';
+        };
+        cancelled: {
+          color: 'danger';
+        };
+        rejected: {
+          color: 'danger';
+        };
+      };
+      defaultTag: 'initial';
+    };
+  };
   attributes: {
+    paymentId: Attribute.UID & Attribute.Required;
+    resume: Attribute.Text;
     metadata: Attribute.JSON;
+    netPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    totalPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    paidWith: Attribute.String;
     collectorId: Attribute.String & Attribute.Required;
     preferenceId: Attribute.String & Attribute.Required;
-    user: Attribute.Relation<
-      'plugin::payments.invoice',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    status: Attribute.Enumeration<
-      ['in_process', 'pending', 'rejected', 'cancelled', 'approved', 'initial']
-    > &
-      Attribute.DefaultTo<'initial'>;
-    total_invoice: Attribute.String;
-    buyer: Attribute.JSON;
-    buyer_email: Attribute.Email & Attribute.Required;
-    products: Attribute.JSON;
-    payment_status: Attribute.String;
+    status: Attribute.Text &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::content-tags.content-tags'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

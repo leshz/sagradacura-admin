@@ -9,14 +9,23 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "content-tags": {
+      "fieldName": "status",
+      "tags": {
+        "initial": { "color": "neutral" },
+        "approved": { "color": "success" },
+        "in_process": { "color": "primary" },
+        "pending": { "color": "primary" },
+        "cancelled": { "color": "danger" },
+        "rejected": { "color": "danger" }
+      },
+      "defaultTag": "initial"
+    }
+  },
   "attributes": {
     "paymentId": {
       "type": "uid",
-      "required": true
-    },
-    "status": {
-      "type": "string",
       "required": true
     },
     "resume": {
@@ -45,6 +54,11 @@
     "preferenceId": {
       "type": "string",
       "required": true
+    },
+    "status": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::content-tags.content-tags"
     }
   }
 }
