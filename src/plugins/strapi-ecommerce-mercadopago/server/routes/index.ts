@@ -1,10 +1,5 @@
-export default [
-  {
-    method: 'GET',
-    path: '/',
-    handler: 'myController.index',
-    config: {
-      policies: [],
-    },
-  },
-];
+import category from "./category";
+import product from "./product";
+import configuration from "./configuration";
+
+export default { category, product, configuration };

@@ -1,5 +1,9 @@
-import myService from './my-service';
+import category from "./category";
+import product from "./product";
+import configuration from "./configuration";
 
 export default {
-  myService,
+  category,
+  product,
+  configuration,
 };

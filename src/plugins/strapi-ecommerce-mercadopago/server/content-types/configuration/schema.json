@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "configurations",
+  "info": {
+    "singularName": "configuration",
+    "pluralName": "configurations",
+    "displayName": "configuration"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "attributes": {
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "token": {
+      "type": "string",
+      "required": true,
+      "private": true
+    }
+  }
+}
