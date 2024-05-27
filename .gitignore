@@ -120,3 +120,7 @@ database/*
 data/*
 .vscode/settings.json
 **.tar.gz.enc
+
+
+# /src/plugins/**
+/src/plugins/OLD_PLUGIN

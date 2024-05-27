@@ -39,6 +39,7 @@ export default ({ env }) => {
         },
         plugins: {
           ids: {
+            mercadopago: true,
             menus: true,
           },
         },

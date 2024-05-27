@@ -1,13 +1,5 @@
 export default ({ env }) => {
   return {
-    mercadopago: {
-      enabled: true,
-      resolve: "./src/plugins/mercadopago",
-    },
-    "media-prefix": {
-      enabled: true,
-    },
-    "duplicate-button": true,
     transformer: {
       enabled: true,
       config: {
@@ -17,12 +9,22 @@ export default ({ env }) => {
           removeDataKey: true,
         },
         plugins: {
+          mode: "allow",
           ids: {
             menus: true,
+            "strapi-ecommerce-mercadopago": true,
           },
         },
       },
     },
+    "strapi-ecommerce-mercadopago": {
+      enabled: true,
+      resolve: "./src/plugins/strapi-ecommerce-mercadopago",
+    },
+    "media-prefix": {
+      enabled: true,
+    },
+    "duplicate-button": true,
     menus: {
       config: {
         maxDepth: 3,
