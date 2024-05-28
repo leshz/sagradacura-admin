@@ -1,10 +1,10 @@
 {
   "name": "strapi-ecommerce-mercadopago",
   "version": "0.0.1",
-  "description": "This is the description of the plugin.",
+  "description": "strapi plugin to converte a strapi to ecommerce with mercadopago payments methods",
   "strapi": {
     "name": "strapi-ecommerce-mercadopago",
-    "description": "Description of strapi-ecommerce-mercadopago plugin",
+    "description": "strapi plugin to converte a strapi to ecommerce with mercadopago payments methods",
     "kind": "plugin",
     "displayName": "Mercado Pago"
   },
@@ -37,7 +37,8 @@
   },
   "maintainers": [
     {
-      "name": "A Strapi developer"
+      "name": "shz",
+      "email": "leshz@me.com"
     }
   ],
   "engines": {
