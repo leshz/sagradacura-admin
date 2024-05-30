@@ -820,6 +820,72 @@ export interface PluginStrapiEcommerceMercadopagoConfiguration
   };
 }
 
+export interface PluginStrapiEcommerceMercadopagoInvoice
+  extends Schema.CollectionType {
+  collectionName: 'invoices';
+  info: {
+    singularName: 'invoice';
+    pluralName: 'invoices';
+    displayName: 'Invoice';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-tags': {
+      fieldName: 'status';
+      tags: {
+        initial: {
+          color: 'neutral';
+        };
+        approved: {
+          color: 'success';
+        };
+        in_process: {
+          color: 'primary';
+        };
+        pending: {
+          color: 'primary';
+        };
+        cancelled: {
+          color: 'danger';
+        };
+        rejected: {
+          color: 'danger';
+        };
+      };
+      defaultTag: 'initial';
+    };
+  };
+  attributes: {
+    paymentId: Attribute.UID & Attribute.Required;
+    resume: Attribute.Text;
+    metadata: Attribute.JSON;
+    netPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    totalPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    paidWith: Attribute.String;
+    collectorId: Attribute.String & Attribute.Required;
+    preferenceId: Attribute.String & Attribute.Required;
+    status: Attribute.Text &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::content-tags.content-tags'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginMenusMenu extends Schema.CollectionType {
   collectionName: 'menus';
   info: {
@@ -1617,6 +1683,7 @@ declare module '@strapi/types' {
       'plugin::strapi-ecommerce-mercadopago.category': PluginStrapiEcommerceMercadopagoCategory;
       'plugin::strapi-ecommerce-mercadopago.product': PluginStrapiEcommerceMercadopagoProduct;
       'plugin::strapi-ecommerce-mercadopago.configuration': PluginStrapiEcommerceMercadopagoConfiguration;
+      'plugin::strapi-ecommerce-mercadopago.invoice': PluginStrapiEcommerceMercadopagoInvoice;
       'plugin::menus.menu': PluginMenusMenu;
       'plugin::menus.menu-item': PluginMenusMenuItem;
       'plugin::i18n.locale': PluginI18NLocale;
