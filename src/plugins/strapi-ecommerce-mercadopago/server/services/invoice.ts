@@ -5,14 +5,8 @@
 import { factories } from "@strapi/strapi";
 import { INVOICES_STATUS } from "../../constants";
 import { errors } from "@strapi/utils";
+import { productsPricesSummary } from "../../helpers";
 import type { buildedProduct, shipping, buyer } from "../../types";
-
-const getTotalInvoice = (products: buildedProduct[]) => {
-  const totalPrice = products.reduce((acc, product) => {
-    return acc + product.unit_price * product.quantity;
-  }, 0);
-  return totalPrice;
-};
 
 export default factories.createCoreService(
   "plugin::strapi-ecommerce-mercadopago.invoice",
@@ -26,13 +20,8 @@ export default factories.createCoreService(
       buyer: buyer;
       products: buildedProduct[];
     }) {
-      let extra = {};
-      if (products.length) {
-        extra = {
-          products,
-          total_invoice: getTotalInvoice(products),
-        };
-      }
+      const { afterDiscountPrice } = productsPricesSummary(products);
+
       try {
         const savedata = await strapi
           .query("plugin::strapi-ecommerce-mercadopago.invoice")
@@ -40,6 +29,7 @@ export default factories.createCoreService(
             data: {
               status: INVOICES_STATUS.INIT,
               buyer_email: "demo@demo.com",
+              total: afterDiscountPrice,
             },
           });
 

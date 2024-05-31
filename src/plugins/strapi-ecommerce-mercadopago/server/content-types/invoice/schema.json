@@ -49,11 +49,11 @@
     },
     "collector_id": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "preference_id": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "status": {
       "type": "customField",

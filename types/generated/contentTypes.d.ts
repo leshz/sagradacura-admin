@@ -865,8 +865,8 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
     total_discount: Attribute.Integer & Attribute.DefaultTo<0>;
     total: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
     paid_with: Attribute.String;
-    collector_id: Attribute.String & Attribute.Required;
-    preference_id: Attribute.String & Attribute.Required;
+    collector_id: Attribute.String;
+    preference_id: Attribute.String;
     status: Attribute.Text &
       Attribute.Required &
       Attribute.CustomField<'plugin::content-tags.content-tags'>;
