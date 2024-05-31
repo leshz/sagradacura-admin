@@ -803,6 +803,7 @@ export interface PluginStrapiEcommerceMercadopagoConfiguration
   attributes: {
     active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
     token: Attribute.String & Attribute.Required & Attribute.Private;
+    default_currency: Attribute.String & Attribute.Required & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -858,14 +859,14 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
     };
   };
   attributes: {
-    paymentId: Attribute.UID & Attribute.Required;
     resume: Attribute.Text;
-    metadata: Attribute.JSON;
-    netPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
-    totalPrice: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
-    paidWith: Attribute.String;
-    collectorId: Attribute.String & Attribute.Required;
-    preferenceId: Attribute.String & Attribute.Required;
+    products: Attribute.JSON;
+    buyer_email: Attribute.String & Attribute.Required;
+    total_discount: Attribute.Integer & Attribute.DefaultTo<0>;
+    total: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    paid_with: Attribute.String;
+    collector_id: Attribute.String & Attribute.Required;
+    preference_id: Attribute.String & Attribute.Required;
     status: Attribute.Text &
       Attribute.Required &
       Attribute.CustomField<'plugin::content-tags.content-tags'>;

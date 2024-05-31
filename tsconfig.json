@@ -12,7 +12,8 @@
     ".cache/",
     ".tmp/",
     "src/admin/",
-    "**/*.test.*",
-    "src/plugins/**"
+    "**/*.test.ts",
+    "src/plugins/**",
+    "types/generated/**"
   ]
 }

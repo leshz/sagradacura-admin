@@ -1,1 +1,3 @@
-export default {};
+import { loadConfig } from "./configuration";
+
+export default { loadConfig };

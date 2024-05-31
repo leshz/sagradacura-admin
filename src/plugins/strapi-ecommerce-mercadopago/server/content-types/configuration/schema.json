@@ -20,6 +20,11 @@
       "type": "string",
       "required": true,
       "private": true
+    },
+    "default_currency": {
+      "type": "string",
+      "required": true,
+      "private": true
     }
   }
 }

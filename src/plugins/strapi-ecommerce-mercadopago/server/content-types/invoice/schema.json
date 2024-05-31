@@ -24,34 +24,34 @@
     }
   },
   "attributes": {
-    "paymentId": {
-      "type": "uid",
-      "required": true
-    },
     "resume": {
       "type": "text"
     },
-    "metadata": {
+    "products": {
+      "require": true,
       "type": "json"
     },
-    "netPrice": {
+    "buyer_email": {
       "required": true,
-      "default": 0,
-      "type": "integer"
-    },
-    "totalPrice": {
-      "required": true,
-      "default": 0,
-      "type": "integer"
-    },
-    "paidWith": {
       "type": "string"
     },
-    "collectorId": {
+    "total_discount": {
+      "type": "integer",
+      "default": 0
+    },
+    "total": {
+      "required": true,
+      "default": 0,
+      "type": "integer"
+    },
+    "paid_with": {
+      "type": "string"
+    },
+    "collector_id": {
       "type": "string",
       "required": true
     },
-    "preferenceId": {
+    "preference_id": {
       "type": "string",
       "required": true
     },
