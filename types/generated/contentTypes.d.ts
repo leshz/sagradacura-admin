@@ -804,6 +804,11 @@ export interface PluginStrapiEcommerceMercadopagoConfiguration
     active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
     token: Attribute.String & Attribute.Required & Attribute.Private;
     default_currency: Attribute.String & Attribute.Required & Attribute.Private;
+    back_urls: Attribute.String & Attribute.Required & Attribute.Private;
+    notification_url: Attribute.String & Attribute.Required & Attribute.Private;
+    bussiness_description: Attribute.String &
+      Attribute.Required &
+      Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

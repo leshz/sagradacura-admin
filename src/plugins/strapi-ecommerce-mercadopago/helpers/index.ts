@@ -1,13 +1,13 @@
 export const productPriceSummary = (product) => {
-  const { quantityCart = 1, price, promotion } = product;
+  const { quantity = 1, price, promotion } = product;
   const { price_with_discount = 0, with_discount = false } = promotion || {};
 
   // precio total * cantidad
-  const fullPrice = price * quantityCart;
+  const fullPrice = price * quantity;
 
   // precio con descuento * cantidad
   const fullPriceDiscount = with_discount
-    ? (price_with_discount || 0) * quantityCart
+    ? (price_with_discount || 0) * quantity
     : fullPrice;
 
   // precio total menos precio total con despuesto
@@ -52,12 +52,12 @@ export const productsPricesSummary = (products) => {
   );
 
   // precio total menos el total de descuentos
-  const afterDiscountPrice = totalFullPrice - totalDiscounted;
+  const total = totalFullPrice - totalDiscounted;
 
   return {
     totalFullPrice,
     totalFullPriceDiscount,
     totalDiscounted,
-    afterDiscountPrice,
+    total,
   };
 };

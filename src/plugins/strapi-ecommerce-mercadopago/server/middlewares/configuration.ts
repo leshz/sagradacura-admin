@@ -3,11 +3,18 @@ const loadConfig = (options, { strapi }) => {
     const config = await strapi.db
       .query("plugin::strapi-ecommerce-mercadopago.configuration")
       .findOne({
-        select: ["active", "token"],
+        select: [
+          "active",
+          "token",
+          "notification_url",
+          "default_currency",
+          "back_urls",
+          "bussiness_description"
+        ],
       });
 
-    const { active = false } = config;
-    if (active) {
+    const { active = false, token = "" } = config;
+    if (active && token) {
       ctx.state.config = config;
       return await next();
     }

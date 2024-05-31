@@ -25,21 +25,48 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
       .shipping(shipping);
 
-    let invoice = await strapi
+    const initInvoice = await strapi
       .service("plugin::strapi-ecommerce-mercadopago.invoice")
       .createInitialInvoice({
-        platform: config,
+        shipping,
         buyer: buyerData,
         products,
       });
 
-    if (!invoice) {
+    if (!initInvoice) {
       ctx.internalServerError("Creating invoice Error", {
         controller: "createInvoice",
       });
-      next()
     }
 
-    ctx.send("Tenemos servicio");
+    const preference = await strapi
+      .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
+      .createPreference(
+        {
+          products,
+          payer: buyerData,
+          internalInvoiceId: initInvoice.id,
+        },
+        config
+      );
+
+    const { id, collector_id, init_point } = preference;
+
+    const updatedInvoice = await strapi
+      .service("plugin::strapi-ecommerce-mercadopago.invoice")
+      .updateInvoice({
+        invoiceId: initInvoice.id,
+        data: {
+          status: INVOICES_STATUS.IN_PROCESS,
+          collector_id: collector_id,
+          preference_id: id,
+        },
+      });
+
+    return ctx.send({
+      init_point,
+      preferenceId: id,
+      invoiceId: updatedInvoice.id,
+    });
   },
 });

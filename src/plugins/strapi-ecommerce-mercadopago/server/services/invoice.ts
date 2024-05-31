@@ -20,7 +20,7 @@ export default factories.createCoreService(
       buyer: buyer;
       products: buildedProduct[];
     }) {
-      const { afterDiscountPrice } = productsPricesSummary(products);
+      const { total, totalDiscounted } = productsPricesSummary(products);
 
       try {
         const savedata = await strapi
@@ -29,7 +29,8 @@ export default factories.createCoreService(
             data: {
               status: INVOICES_STATUS.INIT,
               buyer_email: "demo@demo.com",
-              total: afterDiscountPrice,
+              total: total,
+              total_discount: totalDiscounted,
             },
           });
 
@@ -37,6 +38,24 @@ export default factories.createCoreService(
       } catch (error) {
         throw new errors.ApplicationError(error.message, {
           service: "createInitialInvoice",
+        });
+      }
+    },
+    updateInvoice: async ({ invoiceId, data }) => {
+      try {
+        const savedata = await strapi
+          .query("plugin::strapi-ecommerce-mercadopago.invoice")
+          .update({
+            where: { id: invoiceId },
+            data: {
+              ...data,
+            },
+          });
+
+        return savedata;
+      } catch (error) {
+        throw new errors.ApplicationError(error.message, {
+          service: "updateInvoice",
         });
       }
     },

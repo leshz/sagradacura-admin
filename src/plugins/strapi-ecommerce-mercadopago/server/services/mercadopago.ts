@@ -9,6 +9,29 @@ import type {
 import { errors } from "@strapi/utils";
 import { MercadoPagoConfig, Preference, MerchantOrder } from "mercadopago";
 
+const productFormatter = (products, config: config): buildedProduct[] => {
+  const { default_currency } = config;
+
+  return products.map((product) => {
+    const { pictures, promotion, categories, price } = product;
+    const categoryId = categories?.[0]?.id || 0;
+    const { with_discount = false, price_with_discount = 0 } = promotion || {};
+    const finalPriceProduct = with_discount ? price_with_discount : price;
+    const urlImage = pictures?.[0]?.url || "";
+
+    return {
+      id: product.sku,
+      title: product.name,
+      description: product.short_description,
+      picture_url: urlImage,
+      quantity: product.quantity,
+      currency_id: default_currency,
+      unit_price: finalPriceProduct,
+      category_id: categoryId,
+    };
+  });
+};
+
 export default ({ strapi }: { strapi: Strapi }) => ({
   products: async (items: reqProduct[]): Promise<any[]> => {
     const attibutes = [
@@ -59,53 +82,21 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   shipping: async (shipping: shipping): Promise<shipping> => {
     return shipping;
   },
-  productFormatter: (products, config: config): buildedProduct[] => {
-    const { default_currency } = config;
-    return products.map((product) => {
-      return {
-        sku: product.sku,
-        name: product.name,
-        description: product.short_description,
-        quantity: product?.quantity,
-        unit_price: product.price,
-        currency_id: default_currency,
-      };
-    });
-  },
-  createPreference: async ({
-    products,
-    platform,
-    payer,
-    internalInvoiceId,
-  }) => {
-    const { mercadopago, uuid } = platform;
-    const { token, back_urls, notification_url, effecty } = mercadopago;
+  createPreference: async (
+    { products, payer, internalInvoiceId },
+    config: config
+  ) => {
+    const { token, back_urls, notification_url, bussiness_description } =
+      config;
 
-    const excludedPayment = { effecty: effecty };
-    const excludedKeys = Object.keys(excludedPayment);
-    const excludedMethods = Object.values(excludedPayment)
-      .map((value, index) => {
-        return !value ? { id: excludedKeys[index] } : { id: "" };
-      })
-      .filter(({ id }) => id !== "");
-
-    if (token === "") {
-      throw new errors.ApplicationError("not enought information to platform", {
-        service: "createPayment",
-      });
-    }
-
+    const items = productFormatter(products, config);
     const client = new MercadoPagoConfig({
       accessToken: token,
       options: { timeout: 5000, idempotencyKey: "abc" },
     });
 
     const preference = new Preference(client);
-    const payment_methods = {
-      excluded_payment_methods: excludedMethods,
-      installments: 12,
-      default_installments: 1,
-    };
+    const payment_methods = { installments: 24, default_installments: 1 };
 
     const metadata = {};
     const body = {
@@ -116,20 +107,20 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       },
       binary_mode: true,
       external_reference: internalInvoiceId,
-      items: products,
+      items,
       metadata,
-      notification_url: `${notification_url}`,
+      notification_url: notification_url,
       payer,
       payment_methods,
-      statement_descriptor: platform.description,
+      statement_descriptor: bussiness_description,
     };
     try {
       const response = await preference.create({ body });
       return response;
     } catch (error) {
       throw new errors.ApplicationError(error.message, {
-        service: "createPayment",
+        service: "createPreference",
       });
     }
-  }
+  },
 });
