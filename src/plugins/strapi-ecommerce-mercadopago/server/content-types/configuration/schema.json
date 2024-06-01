@@ -31,7 +31,7 @@
       "required": true,
       "private": true
     },
-    "notification_url": {
+    "webhook_pass": {
       "type": "string",
       "required": true,
       "private": true

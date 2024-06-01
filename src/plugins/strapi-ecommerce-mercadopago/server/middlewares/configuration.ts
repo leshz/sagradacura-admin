@@ -6,7 +6,7 @@ const loadConfig = (options, { strapi }) => {
         select: [
           "active",
           "token",
-          "notification_url",
+          "webhook_pass",
           "default_currency",
           "back_urls",
           "bussiness_description"

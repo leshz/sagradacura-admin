@@ -5,8 +5,8 @@ export default {
   routes: [
     {
       method: METHODS.POST,
-      path: URLS.IPN,
-      handler: "confirmation.confirmation",
+      path: URLS.WEBHOOK,
+      handler: "notification.notification",
       config: {
         middlewares: ["plugin::strapi-ecommerce-mercadopago.loadConfig"],
         auth: false,

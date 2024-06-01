@@ -86,7 +86,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     { products, payer, internalInvoiceId },
     config: config
   ) => {
-    const { token, back_urls, notification_url, bussiness_description } =
+    const { token, back_urls, bussiness_description } =
       config;
 
     const items = productFormatter(products, config);
@@ -109,7 +109,6 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       external_reference: internalInvoiceId,
       items,
       metadata,
-      notification_url: notification_url,
       payer,
       payment_methods,
       statement_descriptor: bussiness_description,

@@ -3,7 +3,7 @@ import product from "./product";
 import configuration from "./configuration";
 import invoice from "./invoice";
 import checkout from "./checkout";
-import confirmation from "./confirmation";
+import notification from "./notification";
 
 export default {
   category,
@@ -11,5 +11,5 @@ export default {
   configuration,
   invoice,
   checkout,
-  confirmation,
+  notification,
 };

@@ -3,6 +3,6 @@ export type config = {
   active: boolean;
   default_currency: string;
   back_urls: string;
-  notification_url: string;
+  webhook_pass: string;
   bussiness_description: string;
 };

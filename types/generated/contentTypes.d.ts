@@ -682,7 +682,7 @@ export interface PluginStrapiEcommerceMercadopagoProduct
       }> &
       Attribute.SetMinMax<
         {
-          min: 10000;
+          min: 1000;
         },
         number
       >;
@@ -714,7 +714,6 @@ export interface PluginStrapiEcommerceMercadopagoProduct
       }> &
       Attribute.SetMinMax<
         {
-          min: 0;
           max: 100;
         },
         number
@@ -805,7 +804,7 @@ export interface PluginStrapiEcommerceMercadopagoConfiguration
     token: Attribute.String & Attribute.Required & Attribute.Private;
     default_currency: Attribute.String & Attribute.Required & Attribute.Private;
     back_urls: Attribute.String & Attribute.Required & Attribute.Private;
-    notification_url: Attribute.String & Attribute.Required & Attribute.Private;
+    webhook_pass: Attribute.String & Attribute.Required & Attribute.Private;
     bussiness_description: Attribute.String &
       Attribute.Required &
       Attribute.Private;
