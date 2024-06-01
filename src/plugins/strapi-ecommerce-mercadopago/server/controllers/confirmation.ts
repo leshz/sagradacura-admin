@@ -8,9 +8,7 @@ import type { Strapi } from "@strapi/strapi";
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async confirmation(ctx) {
-    strapi.log.info(JSON.stringify(ctx, null, 4));
-
-    console.log(util.inspect(ctx.body, { depth: null }));
+    console.log(util.inspect(ctx.request.body, { depth: null }));
     ctx.send("confirm");
   },
 });
