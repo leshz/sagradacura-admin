@@ -9,6 +9,7 @@ export default {
       handler: "confirmation.confirmation",
       config: {
         middlewares: ["plugin::strapi-ecommerce-mercadopago.loadConfig"],
+        auth: false,
       },
     },
   ],
