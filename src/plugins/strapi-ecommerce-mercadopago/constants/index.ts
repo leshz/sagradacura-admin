@@ -21,10 +21,15 @@ export const METHODS = {
   DELETE: "DELETE",
 };
 
-export const MERCADOPAGO_TOPIC = {
+export const NOTIFICATION_TYPES = {
   PAYMENT: "payment",
-  MERCHANT_ORDER: "merchant_order",
 };
+
+export const ACTIONS_TYPES = {
+  CREATE: "payment.created",
+  UPDATE: "payment.updated",
+};
+
 export const MERCADOPAGO_MERCHAN_STATUS = {
   OPENED: "opened",
   CLOSED: "closed",
