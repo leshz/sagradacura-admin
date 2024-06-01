@@ -4,7 +4,7 @@ export default {
   type: "content-api",
   routes: [
     {
-      method: METHODS.GET,
+      method: METHODS.POST,
       path: URLS.IPN,
       handler: "confirmation.confirmation",
       config: {
