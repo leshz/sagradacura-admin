@@ -34,7 +34,7 @@
       },
       "type": "integer",
       "required": true,
-      "min": 10000
+      "min": 1000
     },
     "pictures": {
       "type": "media",
@@ -73,7 +73,6 @@
       },
       "required": true,
       "unique": false,
-      "min": 0,
       "max": 100
     },
     "sku": {
