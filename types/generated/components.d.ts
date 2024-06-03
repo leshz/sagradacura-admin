@@ -93,32 +93,6 @@ export interface MenuSingleItem extends Schema.Component {
   };
 }
 
-export interface PaymentPlatformsMercadopago extends Schema.Component {
-  collectionName: 'components_platform_mercadopagos';
-  info: {
-    displayName: 'mercadopago';
-    icon: 'shoppingCart';
-    description: '';
-  };
-  attributes: {
-    token: Attribute.String & Attribute.Required & Attribute.Private;
-    active: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.Private &
-      Attribute.DefaultTo<true>;
-    notification_url: Attribute.String & Attribute.Private;
-    default_currency: Attribute.String &
-      Attribute.Required &
-      Attribute.Private &
-      Attribute.SetMinMaxLength<{
-        maxLength: 3;
-      }> &
-      Attribute.DefaultTo<'COP'>;
-    back_urls: Attribute.String;
-    effecty: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
-  };
-}
-
 export interface ProductInformation extends Schema.Component {
   collectionName: 'components_product_information';
   info: {
@@ -505,7 +479,6 @@ declare module '@strapi/types' {
       'menu.cart': MenuCart;
       'menu.multiple-item': MenuMultipleItem;
       'menu.single-item': MenuSingleItem;
-      'payment-platforms.mercadopago': PaymentPlatformsMercadopago;
       'product.information': ProductInformation;
       'product.promises': ProductPromises;
       'promotions.promotion': PromotionsPromotion;

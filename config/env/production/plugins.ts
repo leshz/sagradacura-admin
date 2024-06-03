@@ -1,9 +1,5 @@
 export default ({ env }) => {
   return {
-    payments: {
-      enabled: true,
-      resolve: "./src/plugins/payments",
-    },
     upload: {
       config: {
         provider: "aws-s3",
@@ -39,10 +35,15 @@ export default ({ env }) => {
         },
         plugins: {
           ids: {
+            mercadopago: true,
             menus: true,
           },
         },
       },
+    },
+    "strapi-ecommerce-mercadopago": {
+      enabled: true,
+      resolve: "./src/plugins/strapi-ecommerce-mercadopago",
     },
     menus: {
       config: {
