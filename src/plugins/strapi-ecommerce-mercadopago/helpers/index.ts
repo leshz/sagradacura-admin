@@ -61,3 +61,11 @@ export const productsPricesSummary = (products) => {
     total,
   };
 };
+
+export const fieldsImage = [
+  "url",
+  "width",
+  "height",
+  "alternativeText",
+  "formats",
+];
