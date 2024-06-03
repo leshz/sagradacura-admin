@@ -8,7 +8,10 @@ export default {
       path: URLS.WEBHOOK,
       handler: "notification.notification",
       config: {
-        middlewares: ["plugin::strapi-ecommerce-mercadopago.loadConfig"],
+        middlewares: [
+          "plugin::strapi-ecommerce-mercadopago.loadConfig",
+          "plugin::strapi-ecommerce-mercadopago.verifySign",
+        ],
         auth: false,
       },
     },

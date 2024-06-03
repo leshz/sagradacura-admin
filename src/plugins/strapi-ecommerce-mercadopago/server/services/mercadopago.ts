@@ -5,9 +5,11 @@ import type {
   buildedProduct,
   buyer,
   shipping,
+  PaymentPayload,
 } from "../../types";
 import { errors } from "@strapi/utils";
-import { MercadoPagoConfig, Preference, MerchantOrder } from "mercadopago";
+import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
+import { INVOICES_STATUS } from "../../constants";
 
 const productFormatter = (products, config: config): buildedProduct[] => {
   const { default_currency } = config;
@@ -86,8 +88,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     { products, payer, internalInvoiceId },
     config: config
   ) => {
-    const { token, back_urls, bussiness_description } =
-      config;
+    const { token, back_urls, bussiness_description } = config;
 
     const items = productFormatter(products, config);
     const client = new MercadoPagoConfig({
@@ -120,6 +121,103 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       throw new errors.ApplicationError(error.message, {
         service: "createPreference",
       });
+    }
+  },
+  paymentAction: async (payload: PaymentPayload, config: config) => {
+    const { token = "" } = config;
+    const {
+      data: { id = "" },
+    } = payload;
+
+    const client = new MercadoPagoConfig({
+      accessToken: token,
+      options: { timeout: 5000, idempotencyKey: "abc" },
+    });
+
+    if (id === "") {
+      throw new errors.ApplicationError("no ID", {
+        service: "paymentAction",
+      });
+    }
+
+    const service = new Payment(client);
+    const response = await service.get({ id });
+
+    const {
+      status,
+      additional_info,
+      external_reference: invoiceId,
+      payment_type_id = "",
+    } = response;
+    const { items = [], ip_address } = additional_info || {};
+
+    const invoice = await strapi
+      .query("plugin::strapi-ecommerce-mercadopago.invoice")
+      .findOne({
+        select: ["*"],
+        where: { id: invoiceId },
+      });
+
+    if (invoice === null) {
+      strapi.log.info(`Invoice: not found`);
+      return;
+    }
+
+    if (invoice.status === INVOICES_STATUS.APPROVED) {
+      strapi.log.info(`Invoice: On retry but it has status approved`);
+      return;
+    }
+
+    // PAYMENT SUCCESSFULL
+    if (status === INVOICES_STATUS.APPROVED) {
+      // UPDATE STATUS FROM PAYMENT SERVICE
+      strapi.log.info(`TO THE MOON 🚀`);
+      await strapi
+        .query("plugin::strapi-ecommerce-mercadopago.invoice")
+        .update({
+          where: { id: invoiceId },
+          data: {
+            status,
+            paid_with: payment_type_id,
+          },
+        });
+
+      strapi.log.info(
+        `Invoice: ${invoiceId} has been updated with Status: ${status}`
+      );
+
+      await items.forEach(async (product) => {
+        const dbproduct = await strapi
+          .query("plugin::strapi-ecommerce-mercadopago.product")
+          .findOne({ where: { sku: product.id } });
+
+        const newStock = Number(dbproduct.stock) - Number(product.quantity);
+
+        await strapi
+          .query("plugin::strapi-ecommerce-mercadopago.product")
+          .update({
+            where: { sku: product.id },
+            data: {
+              stock: newStock,
+            },
+          });
+        strapi.log.info(
+          `Product: ${dbproduct.sku} has been updated with Stock: ${newStock}`
+        );
+      });
+    } else {
+      await strapi
+        .query("plugin::strapi-ecommerce-mercadopago.invoice")
+        .update({
+          where: { id: invoiceId },
+          data: {
+            status,
+            paid_with: payment_type_id,
+          },
+        });
+      strapi.log.info(
+        `Invoice: ${invoiceId} has been updated with Status: ${status}`
+      );
     }
   },
 });

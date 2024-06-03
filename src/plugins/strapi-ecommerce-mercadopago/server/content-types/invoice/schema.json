@@ -15,10 +15,14 @@
       "tags": {
         "initial": { "color": "neutral" },
         "approved": { "color": "success" },
+        "authorized": { "color": "primary" },
         "in_process": { "color": "primary" },
+        "in_mediation": { "color": "primary" },
         "pending": { "color": "primary" },
         "cancelled": { "color": "danger" },
-        "rejected": { "color": "danger" }
+        "rejected": { "color": "danger" },
+        "refunded": { "color": "danger" },
+        "charged_back": { "color": "danger" }
       },
       "defaultTag": "initial"
     }

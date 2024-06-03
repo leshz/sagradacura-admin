@@ -9,14 +9,14 @@ const loadConfig = (options, { strapi }) => {
           "webhook_pass",
           "default_currency",
           "back_urls",
-          "bussiness_description"
+          "bussiness_description",
         ],
       });
 
     const { active = false, token = "" } = config;
     if (active && token) {
       ctx.state.config = config;
-      return await next();
+      return next();
     }
 
     return ctx.serviceUnavailable("Service Unavailable");

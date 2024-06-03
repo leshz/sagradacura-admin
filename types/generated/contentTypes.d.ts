@@ -846,7 +846,13 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
         approved: {
           color: 'success';
         };
+        authorized: {
+          color: 'primary';
+        };
         in_process: {
+          color: 'primary';
+        };
+        in_mediation: {
           color: 'primary';
         };
         pending: {
@@ -856,6 +862,12 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
           color: 'danger';
         };
         rejected: {
+          color: 'danger';
+        };
+        refunded: {
+          color: 'danger';
+        };
+        charged_back: {
           color: 'danger';
         };
       };
