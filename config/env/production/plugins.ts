@@ -35,7 +35,7 @@ export default ({ env }) => {
         },
         plugins: {
           ids: {
-            mercadopago: true,
+            "strapi-ecommerce-mercadopago": true,
             menus: true,
           },
         },
