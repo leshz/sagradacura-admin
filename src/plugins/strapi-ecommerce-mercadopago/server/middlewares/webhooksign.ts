@@ -37,6 +37,8 @@ const verifySign = (option, { strapi }: { strapi: Strapi }) => {
         });
       }
 
+      console.debug({ ts, hash, dataID, xRequestId });
+
       if (ts && hash && dataID && xRequestId) {
         const secret = config.webhook_pass;
         const manifest = `id:${dataID};request-id:${xRequestId};ts:${ts};`;
@@ -45,6 +47,8 @@ const verifySign = (option, { strapi }: { strapi: Strapi }) => {
         hmac.update(manifest);
 
         const sha = hmac.digest("hex");
+        console.log(sha);
+        console.log(hash);
 
         if (sha === hash) {
           strapi.log.info("Webhook Auth Success");
