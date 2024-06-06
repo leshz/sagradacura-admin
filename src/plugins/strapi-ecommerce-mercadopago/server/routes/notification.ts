@@ -10,7 +10,7 @@ export default {
       config: {
         middlewares: [
           "plugin::strapi-ecommerce-mercadopago.loadConfig",
-          "plugin::strapi-ecommerce-mercadopago.verifySign",
+          // "plugin::strapi-ecommerce-mercadopago.verifySign",
         ],
         auth: false,
       },
