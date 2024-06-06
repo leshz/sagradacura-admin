@@ -10,63 +10,64 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   async checkout(ctx, next) {
     const { config }: { config: config } = ctx.state;
 
-    const { items = [], buyer = {}, shipping = {} } = ctx.request.body || {};
-    if (items.length === 0) return ctx.badRequest("Bad Request");
+    const { items = [], buyer = {}, ship = {} } = ctx.request.body || {};
+    if (items.length === 0) return ctx.badRequest();
 
-    const products = await strapi
-      .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
-      .products(items, config);
+    try {
+      const products = await strapi
+        .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
+        .products(items, config);
 
-    const buyerData = await strapi
-      .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
-      .buyer(buyer);
+      const buyerData = await strapi
+        .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
+        .buyer(buyer, ship);
 
-    const shippingData = await strapi
-      .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
-      .shipping(shipping);
-
-    const initInvoice = await strapi
-      .service("plugin::strapi-ecommerce-mercadopago.invoice")
-      .createInitialInvoice({
-        shipping,
-        buyer: buyerData,
-        products,
-      });
-
-    if (!initInvoice) {
-      ctx.internalServerError("Creating invoice Error", {
-        controller: "createInvoice",
-      });
-    }
-
-    const preference = await strapi
-      .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
-      .createPreference(
-        {
+      const initInvoice = await strapi
+        .service("plugin::strapi-ecommerce-mercadopago.invoice")
+        .createInitialInvoice({
+          ship,
+          buyer: buyerData,
           products,
-          payer: buyerData,
-          internalInvoiceId: initInvoice.id,
-        },
-        config
-      );
+        });
 
-    const { id, collector_id, init_point } = preference;
+      if (!initInvoice) {
+        ctx.internalServerError("Creating invoice Error", {
+          controller: "createInvoice",
+        });
+      }
 
-    const updatedInvoice = await strapi
-      .service("plugin::strapi-ecommerce-mercadopago.invoice")
-      .updateInvoice({
-        invoiceId: initInvoice.id,
-        data: {
-          status: INVOICES_STATUS.IN_PROCESS,
-          collector_id: collector_id,
-          preference_id: id,
-        },
+      const preference = await strapi
+        .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
+        .createPreference(
+          {
+            products,
+            payer: buyerData,
+            internalInvoiceId: initInvoice.id,
+          },
+          config
+        );
+
+      const { id, collector_id, init_point } = preference;
+
+      const updatedInvoice = await strapi
+        .service("plugin::strapi-ecommerce-mercadopago.invoice")
+        .updateInvoice({
+          invoiceId: initInvoice.id,
+          data: {
+            status: INVOICES_STATUS.IN_PROCESS,
+            collector_id: collector_id,
+            preference_id: id,
+          },
+        });
+
+      return ctx.send({
+        init_point,
+        preferenceId: id,
+        invoiceId: updatedInvoice.id,
       });
-
-    return ctx.send({
-      init_point,
-      preferenceId: id,
-      invoiceId: updatedInvoice.id,
-    });
+    } catch (error) {
+      strapi.log.error(error);
+      return ctx.internalServerError();
+    }
   },
 });

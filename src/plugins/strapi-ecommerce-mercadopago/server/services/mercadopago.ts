@@ -4,6 +4,7 @@ import type {
   reqProduct,
   buildedProduct,
   buyer,
+  buyerMeli,
   shipping,
   PaymentPayload,
 } from "../../types";
@@ -78,8 +79,29 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       };
     });
   },
-  buyer: async (buyer: buyer): Promise<buyer> => {
-    return buyer;
+  buyer: async (buyer: buyer, ship: shipping): Promise<buyerMeli> => {
+    const { dni, email, lastName, name, phone } = buyer;
+    const { postalCode = "", address, city, department } = ship;
+    const payer = {
+      name,
+      surname: lastName,
+      email,
+      phone: {
+        area_code: "57",
+        number: phone,
+      },
+      identification: {
+        type: "CC",
+        number: dni,
+      },
+      address: {
+        zip_code: postalCode,
+        street_name: `${department} ${city}`,
+        street_number: `${address}`,
+      },
+    };
+
+    return payer;
   },
   shipping: async (shipping: shipping): Promise<shipping> => {
     return shipping;
