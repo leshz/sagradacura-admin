@@ -47,7 +47,7 @@ const verifySign = (option, { strapi }: { strapi: Strapi }) => {
         const sha = hmac.digest("hex");
 
         if (sha === hash) {
-          strapi.log.info("Webhook Auth Auccess");
+          strapi.log.info("Webhook Auth Success");
           return next();
         } else {
           strapi.log.info("Webhook Auth Failed");

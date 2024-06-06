@@ -153,6 +153,10 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       data: { id = "" },
     } = payload;
 
+    if (Number(id) === 123456) {
+      return;
+    }
+
     const client = new MercadoPagoConfig({
       accessToken: token,
       options: { timeout: 5000, idempotencyKey: "abc" },

@@ -19,13 +19,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         await strapi
           .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
           .paymentAction(payload, config);
-        return ctx.send("ok");
+        return ctx.send();
         break;
 
       default:
         strapi.log.info(`Meli Webhook type: ${type}`);
         strapi.log.info(`Meli Webhook action: ${action}`);
-        return ctx.send("ok");
+        return ctx.send();
         break;
     }
   },
