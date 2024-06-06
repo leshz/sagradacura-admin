@@ -5,4 +5,5 @@ export type config = {
   back_urls: string;
   webhook_pass: string;
   bussiness_description: string;
+  notification_url: string;
 };

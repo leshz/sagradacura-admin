@@ -110,7 +110,8 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     { products, payer, internalInvoiceId },
     config: config
   ) => {
-    const { token, back_urls, bussiness_description } = config;
+    const { token, back_urls, bussiness_description, notification_url } =
+      config;
 
     const items = productFormatter(products, config);
     const client = new MercadoPagoConfig({
@@ -132,6 +133,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       external_reference: internalInvoiceId,
       items,
       metadata,
+      notification_url,
       payer,
       payment_methods,
       statement_descriptor: bussiness_description,

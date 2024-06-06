@@ -36,6 +36,11 @@
       "required": true,
       "private": true
     },
+    "notification_url": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
     "bussiness_description": {
       "type": "string",
       "required": true,

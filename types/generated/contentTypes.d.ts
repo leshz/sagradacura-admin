@@ -805,6 +805,7 @@ export interface PluginStrapiEcommerceMercadopagoConfiguration
     default_currency: Attribute.String & Attribute.Required & Attribute.Private;
     back_urls: Attribute.String & Attribute.Required & Attribute.Private;
     webhook_pass: Attribute.String & Attribute.Required & Attribute.Private;
+    notification_url: Attribute.String & Attribute.Required & Attribute.Private;
     bussiness_description: Attribute.String &
       Attribute.Required &
       Attribute.Private;

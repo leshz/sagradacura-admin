@@ -10,6 +10,7 @@ const loadConfig = (options, { strapi }) => {
           "default_currency",
           "back_urls",
           "bussiness_description",
+          "notification_url"
         ],
       });
 
