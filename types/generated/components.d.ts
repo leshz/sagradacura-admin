@@ -469,6 +469,17 @@ export interface UtilitySingle extends Schema.Component {
   };
 }
 
+export interface HuhuMini extends Schema.Component {
+  collectionName: 'components_huhu_minis';
+  info: {
+    displayName: 'mini';
+    icon: 'alien';
+  };
+  attributes: {
+    attribut1: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -506,6 +517,7 @@ declare module '@strapi/types' {
       'utility.multi-link': UtilityMultiLink;
       'utility.multilink': UtilityMultilink;
       'utility.single': UtilitySingle;
+      'huhu.mini': HuhuMini;
     }
   }
 }

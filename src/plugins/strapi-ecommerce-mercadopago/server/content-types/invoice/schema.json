@@ -63,6 +63,20 @@
       "type": "customField",
       "required": true,
       "customField": "plugin::content-tags.content-tags"
+    },
+    "shopper": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "mercadolibre.shopper",
+      "required": true
+    },
+    "shipping": {
+      "type": "component",
+      "required": true,
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "mercadolibre.shipping"
     }
   }
 }

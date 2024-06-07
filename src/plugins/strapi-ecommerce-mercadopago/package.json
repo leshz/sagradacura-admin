@@ -47,7 +47,7 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "develop": "tsc -p tsconfig.server.json -w",
+    "dev": "tsc -p tsconfig.server.json -w",
     "build": "tsc -p tsconfig.server.json"
   },
   "license": "MIT"
