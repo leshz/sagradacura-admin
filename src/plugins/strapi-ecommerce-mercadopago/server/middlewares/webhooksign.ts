@@ -17,7 +17,9 @@ const verifySign = (option, { strapi }: { strapi: Strapi }) => {
       const xRequestId = ctx.request.headers["x-request-id"] || "";
       const dataID = queryParams?.["data.id"] || "";
 
-      const { config }: { config: config } = ctx.state;
+      const {
+        config: { webhook_pass },
+      }: { config: config } = ctx.state;
       let ts = "";
       let hash = "";
 
@@ -37,10 +39,10 @@ const verifySign = (option, { strapi }: { strapi: Strapi }) => {
         });
       }
 
-      console.debug({ ts, hash, dataID, xRequestId });
+      console.debug({ ts, hash, dataID, xRequestId, webhook_pass });
 
       if (ts && hash && dataID && xRequestId) {
-        const secret = config.webhook_pass;
+        const secret = webhook_pass;
         const manifest = `id:${dataID};request-id:${xRequestId};ts:${ts};`;
 
         const hmac = crypto.createHmac("sha256", secret);
