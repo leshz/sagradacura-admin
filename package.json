@@ -1,11 +1,11 @@
 {
-  "name": "shz-cms",
-  "version": "0.0.1",
+  "name": "strapi-cms",
+  "version": "1.0.0",
   "private": true,
-  "description": "A Strapi application",
+  "description": "Strapi Custom to admin sagrada cura web site",
   "license": "MIT",
   "author": {
-    "name": "A Strapi developer"
+    "name": "@leshz"
   },
   "scripts": {
     "build": "strapi build",
