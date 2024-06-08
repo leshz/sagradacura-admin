@@ -208,7 +208,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         .update({
           where: { id: invoiceId },
           data: {
-            status,
+            payment_status: status,
             paid_with: payment_type_id,
           },
         });
