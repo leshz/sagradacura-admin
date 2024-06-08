@@ -37,7 +37,7 @@ export default factories.createCoreService(
               products: formatedProducts,
               shipping_status: SHIPPING_STATUS.INITIAL,
               shopper: { ...shopper, last_name: shopper.lastName },
-              shipping: { ...shipping, postal_code: shipping.postalCode },
+              shipping: { ...shipping, postal_code: shipping.postalCode || 0 },
             },
           }
         );
