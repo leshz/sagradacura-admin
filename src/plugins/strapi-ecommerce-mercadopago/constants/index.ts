@@ -11,6 +11,16 @@ export const INVOICES_STATUS: { [key: string]: string } = {
   INITIAL: "initial",
 };
 
+export const SHIPPING_STATUS = {
+  INITIAL: "initial",
+  IN_PROCESS: "in_process",
+  ON_DELIVERY: "on_delivery", 
+  DELIVERED: "delivered",
+  CANCELLED: "cancelled",
+  REFUNDED: "refunded",
+}
+
+
 export const URLS = {
   CHECK: "/",
   CHECKOUT: "/checkout",

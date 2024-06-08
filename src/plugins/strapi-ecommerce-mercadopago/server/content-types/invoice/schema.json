@@ -11,7 +11,7 @@
   },
   "pluginOptions": {
     "content-tags": {
-      "fieldName": "status",
+      "fieldName": "payment_status",
       "tags": {
         "initial": { "color": "neutral" },
         "approved": { "color": "success" },
@@ -28,15 +28,12 @@
     }
   },
   "attributes": {
-    "resume": {
-      "type": "text"
-    },
     "products": {
       "require": true,
       "type": "json"
     },
-    "buyer_email": {
-      "required": true,
+    "client_id": {
+      "require": true,
       "type": "string"
     },
     "total_discount": {
@@ -51,18 +48,25 @@
     "paid_with": {
       "type": "string"
     },
-    "collector_id": {
-      "type": "string",
-      "required": false
-    },
     "preference_id": {
       "type": "string",
       "required": false
     },
-    "status": {
+    "payment_status": {
       "type": "customField",
       "required": true,
       "customField": "plugin::content-tags.content-tags"
+    },
+    "shipping_status":  {
+      "type": "enumeration",
+      "enum": [
+        "initial",
+        "in_process",
+        "on_delivery",
+        "delivered",
+        "cancelled",
+        "refunded"
+      ]
     },
     "shopper": {
       "type": "component",

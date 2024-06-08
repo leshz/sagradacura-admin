@@ -36,6 +36,9 @@ const productFormatter = (products, config: config): buildedProduct[] => {
 };
 
 export default ({ strapi }: { strapi: Strapi }) => ({
+  meliProduct: (product, config) => {
+    return productFormatter(product, config);
+  },
   products: async (items: reqProduct[]): Promise<any[]> => {
     const attibutes = [
       "id",
