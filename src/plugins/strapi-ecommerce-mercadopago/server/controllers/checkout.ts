@@ -30,47 +30,48 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           shipping: ship,
           shopper: buyer,
           products,
-          config
+          config,
         });
 
-      // if (!initInvoice) {
-      //   ctx.internalServerError("Creating invoice Error", {
-      //     controller: "createInvoice",
-      //   });
-      // }
+      if (!initInvoice) {
+        ctx.internalServerError("Creating invoice Error", {
+          controller: "createInvoice",
+        });
+      }
 
-      // const preference = await strapi
-      //   .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
-      //   .createPreference(
-      //     {
-      //       products,
-      //       payer: buyerData,
-      //       internalInvoiceId: initInvoice.id,
-      //     },
-      //     config
-      //   );
+      const preference = await strapi
+        .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
+        .createPreference(
+          {
+            products,
+            payer: buyerData,
+            internalInvoiceId: initInvoice.id,
+          },
+          config
+        );
 
-      // const { id, collector_id, init_point } = preference;
+      const { id, client_id, init_point } = preference;
 
-      // const updatedInvoice = await strapi
-      //   .service("plugin::strapi-ecommerce-mercadopago.invoice")
-      //   .updateInvoice({
-      //     invoiceId: initInvoice.id,
-      //     data: {
-      //       status: INVOICES_STATUS.IN_PROCESS,
-      //       collector_id: collector_id,
-      //       preference_id: id,
-      //     },
-      //   });
-      return ctx.send();
-      // return ctx.send({
-      //   init_point,
-      //   preferenceId: id,
-      //   invoiceId: updatedInvoice.id,
-      // });
+      const updatedInvoice = await strapi
+        .service("plugin::strapi-ecommerce-mercadopago.invoice")
+        .updateInvoice({
+          id: initInvoice.id,
+          data: {
+            ...initInvoice,
+            payment_status: INVOICES_STATUS.IN_PROCESS,
+            client_id: client_id,
+            preference_id: id,
+          },
+        });
+
+      return ctx.send({
+        init_point,
+        preferenceId: id,
+        invoiceId: updatedInvoice.id,
+      });
     } catch (error) {
       strapi.log.error(error);
-      return ctx.internalServerError({error});
+      return ctx.internalServerError({ error });
     }
   },
 });

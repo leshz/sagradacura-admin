@@ -48,17 +48,13 @@ export default factories.createCoreService(
         });
       }
     },
-    updateInvoice: async ({ invoiceId, data }) => {
+    updateInvoice: async ({ id, data }) => {
       try {
-        const savedata = await strapi
-          .query("plugin::strapi-ecommerce-mercadopago.invoice")
-          .update({
-            where: { id: invoiceId },
-            data: {
-              ...data,
-            },
-          });
-
+        const savedata = await strapi.entityService?.update(
+          "plugin::strapi-ecommerce-mercadopago.invoice",
+          id,
+          { data }
+        );
         return savedata;
       } catch (error) {
         throw new errors.ApplicationError(error.message, {
