@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_ui_footers",
+  "info": {
+    "displayName": "footer",
+    "icon": "hashtag",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "columns": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.column-links"
+    },
+    "botton": {
+      "displayName": "bottom",
+      "type": "component",
+      "repeatable": false,
+      "component": "ui.bottom"
+    },
+    "news_letter": {
+      "displayName": "news_letter",
+      "type": "component",
+      "repeatable": false,
+      "component": "ui-utility.news-letter"
+    }
+  }
+}

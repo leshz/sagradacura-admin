@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_product_promises",
+  "info": {
+    "displayName": "Promises",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "bi-truck",
+        "bi-box2-heart"
+      ]
+    },
+    "message": {
+      "type": "blocks"
+    }
+  }
+}

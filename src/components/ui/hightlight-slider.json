@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_ui_hightlight_sliders",
+  "info": {
+    "displayName": "hightlight_slider",
+    "icon": "command"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    },
+    "button": {
+      "type": "string"
+    }
+  }
+}

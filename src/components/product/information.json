@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_product_information",
+  "info": {
+    "displayName": "information",
+    "icon": "bell"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "information": {
+      "type": "blocks"
+    }
+  }
+}

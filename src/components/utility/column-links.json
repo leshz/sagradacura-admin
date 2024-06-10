@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_utility_column_links",
+  "info": {
+    "displayName": "columnLinks",
+    "icon": "stack",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "column": {
+      "type": "blocks"
+    }
+  }
+}

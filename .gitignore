@@ -82,6 +82,8 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
+!public/uploads/scicon.png
+!public/uploads/sclogo.png
 
 ############################
 # Node.js
@@ -99,7 +101,6 @@ node_modules
 # Tests
 ############################
 
-testApp
 coverage
 
 ############################
@@ -109,9 +110,13 @@ coverage
 .env
 license.txt
 exports
-*.cache
+.strapi
 dist
 build
 .strapi-updater.json
+*.cache
 docker-compose.yml
 database/*
+data/*
+.vscode/settings.json
+**.tar.gz.enc

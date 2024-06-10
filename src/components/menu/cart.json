@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_menu_carts",
+  "info": {
+    "displayName": "cart",
+    "icon": "cast"
+  },
+  "options": {},
+  "attributes": {
+    "sub_total": {
+      "type": "string",
+      "required": true
+    },
+    "discount": {
+      "type": "string",
+      "required": true
+    },
+    "continue_shopping": {
+      "type": "string",
+      "required": true
+    },
+    "got_checkout": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

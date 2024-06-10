@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_ui_fixed_banners",
+  "info": {
+    "displayName": "fixed_banner",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui-utility.link"
+    },
+    "dinamic_banner": {
+      "displayName": "dinamic_banner",
+      "type": "component",
+      "repeatable": true,
+      "component": "ui.dinamic-banner"
+    }
+  }
+}

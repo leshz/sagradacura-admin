@@ -1,8 +1,0 @@
-.git
-.cache
-.env
-.editorconfig
-docker-compose.yml
-README.md
-/node_modules
-/src/plugins/mercado-pago/node_modules

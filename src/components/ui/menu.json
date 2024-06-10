@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_ui_menus",
+  "info": {
+    "displayName": "menu",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mobile": {
+      "displayName": "mobile-information",
+      "type": "component",
+      "repeatable": false,
+      "component": "ui.mobile-information"
+    },
+    "cart_menu": {
+      "displayName": "cart",
+      "type": "component",
+      "repeatable": false,
+      "component": "menu.cart"
+    }
+  }
+}

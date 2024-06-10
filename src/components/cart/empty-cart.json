@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_cart_empty_carts",
+  "info": {
+    "displayName": "empty_cart",
+    "icon": "brush"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "button": {
+      "type": "string"
+    }
+  }
+}

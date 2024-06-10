@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_ui_mobile_informations",
+  "info": {
+    "displayName": "mobile-information",
+    "icon": "cog",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    }
+  }
+}

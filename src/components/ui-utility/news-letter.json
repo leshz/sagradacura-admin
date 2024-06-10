@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_ui_utility_news_letters",
+  "info": {
+    "displayName": "news_letter"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    }
+  }
+}

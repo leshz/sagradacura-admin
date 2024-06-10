@@ -1,0 +1,86 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "Invoice"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-tags": {
+      "fieldName": "payment_status",
+      "tags": {
+        "initial": { "color": "neutral" },
+        "approved": { "color": "success" },
+        "authorized": { "color": "primary" },
+        "in_process": { "color": "primary" },
+        "in_mediation": { "color": "primary" },
+        "pending": { "color": "primary" },
+        "cancelled": { "color": "danger" },
+        "rejected": { "color": "danger" },
+        "refunded": { "color": "danger" },
+        "charged_back": { "color": "danger" }
+      },
+      "defaultTag": "initial"
+    }
+  },
+  "attributes": {
+    "products": {
+      "require": true,
+      "type": "json"
+    },
+    "client_id": {
+      "require": true,
+      "type": "string"
+    },
+    "total_discount": {
+      "type": "integer",
+      "default": 0
+    },
+    "total": {
+      "required": true,
+      "default": 0,
+      "type": "integer"
+    },
+    "paid_with": {
+      "type": "string"
+    },
+    "preference_id": {
+      "type": "string",
+      "required": false
+    },
+    "payment_status": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::content-tags.content-tags"
+    },
+    "shipping_status":  {
+      "type": "enumeration",
+      "enum": [
+        "initial",
+        "in_process",
+        "on_delivery",
+        "delivered",
+        "cancelled",
+        "refunded"
+      ]
+    },
+    "shopper": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "mercadolibre.shopper",
+      "required": true
+    },
+    "shipping": {
+      "type": "component",
+      "required": true,
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "mercadolibre.shipping"
+    }
+  }
+}

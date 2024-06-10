@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_ui_top_mains",
+  "info": {
+    "displayName": "topMain",
+    "icon": "database",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "richtext"
+    },
+    "social_links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui-utility.link"
+    }
+  }
+}

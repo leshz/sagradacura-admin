@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "carts",
+  "info": {
+    "singularName": "cart",
+    "pluralName": "carts",
+    "displayName": "Cart",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "table": {
+      "displayName": "table",
+      "type": "component",
+      "repeatable": false,
+      "component": "cart.table",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "summary": {
+      "displayName": "summary",
+      "type": "component",
+      "repeatable": false,
+      "component": "cart.summary",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "empty": {
+      "displayName": "empty_cart",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "cart.empty-cart"
+    }
+  }
+}

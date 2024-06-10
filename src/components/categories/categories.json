@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_categories_categories",
+  "info": {
+    "displayName": "categories",
+    "icon": "cloud"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "all_products": {
+      "type": "string"
+    }
+  }
+}
