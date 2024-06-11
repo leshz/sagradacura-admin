@@ -7,12 +7,8 @@
   },
   "options": {},
   "attributes": {
-    "phone": {
-      "type": "string",
-      "required": true
-    },
     "title": {
-      "type": "richtext"
+      "type": "string"
     },
     "social_links": {
       "type": "component",
