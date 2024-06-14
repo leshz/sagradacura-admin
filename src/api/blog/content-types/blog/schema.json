@@ -23,6 +23,7 @@
     },
     "slug": {
       "type": "uid",
+      "required": true,
       "targetField": "title"
     },
     "tags": {
@@ -39,9 +40,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     }
   }
 }
