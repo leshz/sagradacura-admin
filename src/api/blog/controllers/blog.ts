@@ -10,10 +10,13 @@ export default factories.createCoreController(
     async findOne(ctx) {
       await this.validateQuery(ctx);
       const { id } = ctx.params;
+
       const entity = await strapi.db.query("api::blog.blog").findOne({
         where: { slug: id },
-        populate: true,
+        populate: { tags: true, author: true, image: true },
       });
+
+      if (entity === null) return ctx.send({ data: null });
       const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
       return this.transformResponse(sanitizedEntity);
     },
