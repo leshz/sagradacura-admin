@@ -1,5 +1,9 @@
 {
-  "collectionName": "components_mercadopago_shoppers",
+  "collectionName": "components_mercadopago_shopper",
+  "category": "mercadolibre",
+  "modelName": "shopper",
+  "globalId": "ComponentMercadolibreShopper",
+  "uid": "mercadolibre.shopper",
   "info": {
     "displayName": "shopper",
     "icon": "user"
@@ -15,15 +19,15 @@
       "required": true
     },
     "dni": {
-      "type": "string",
+      "type": "biginteger",
       "required": true
     },
     "phone": {
-      "type": "string",
+      "type": "biginteger",
       "required": true
     },
     "email": {
-      "type": "string",
+      "type": "email",
       "required": true
     }
   }

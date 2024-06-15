@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_mercadopago_shipping",
+  "category": "mercadolibre",
+  "modelName": "shipping",
+  "globalId": "ComponentMercadolibreShipping",
+  "uid": "mercadolibre.shipping",
+  "info": {
+    "displayName": "shipping",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "department": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "postal_code": {
+      "type": "biginteger",
+      "required": false
+    },
+    "message": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
