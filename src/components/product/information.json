@@ -2,15 +2,18 @@
   "collectionName": "components_product_information",
   "info": {
     "displayName": "information",
-    "icon": "bell"
+    "icon": "bell",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "information": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     }
   }
 }
