@@ -28,7 +28,7 @@
       },
       "required": true
     },
-    "titlle": {
+    "title": {
       "pluginOptions": {
         "i18n": {
           "localized": true
