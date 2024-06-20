@@ -98,10 +98,11 @@ export interface ProductInformation extends Schema.Component {
   info: {
     displayName: 'information';
     icon: 'bell';
+    description: '';
   };
   attributes: {
-    title: Attribute.String;
-    information: Attribute.Blocks;
+    title: Attribute.String & Attribute.Required;
+    information: Attribute.Blocks & Attribute.Required;
   };
 }
 
@@ -416,8 +417,7 @@ export interface UiTopMain extends Schema.Component {
     description: '';
   };
   attributes: {
-    phone: Attribute.String & Attribute.Required;
-    title: Attribute.RichText;
+    title: Attribute.String;
     social_links: Attribute.Component<'ui-utility.link', true>;
   };
 }
@@ -469,17 +469,6 @@ export interface UtilitySingle extends Schema.Component {
   };
 }
 
-export interface HuhuMini extends Schema.Component {
-  collectionName: 'components_huhu_minis';
-  info: {
-    displayName: 'mini';
-    icon: 'alien';
-  };
-  attributes: {
-    attribut1: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -517,7 +506,6 @@ declare module '@strapi/types' {
       'utility.multi-link': UtilityMultiLink;
       'utility.multilink': UtilityMultilink;
       'utility.single': UtilitySingle;
-      'huhu.mini': HuhuMini;
     }
   }
 }
