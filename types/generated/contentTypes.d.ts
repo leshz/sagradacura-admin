@@ -1062,7 +1062,7 @@ export interface ApiCondicionesDeEnvioCondicionesDeEnvio
           localized: false;
         };
       }>;
-    titlle: Attribute.String &
+    title: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1270,13 +1270,13 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
-export interface ApiPaquetesCoorporativoPaquetesCoorporativo
+export interface ApiPlanesCorporativoPlanesCorporativo
   extends Schema.SingleType {
-  collectionName: 'paquetes_coorporativos';
+  collectionName: 'planes_corporativos';
   info: {
-    singularName: 'paquetes-coorporativo';
-    pluralName: 'paquetes-coorporativos';
-    displayName: 'Paquetes-coorporativo';
+    singularName: 'planes-corporativo';
+    pluralName: 'planes-corporativos';
+    displayName: 'Planes-corporativos';
   };
   options: {
     draftAndPublish: true;
@@ -1302,7 +1302,6 @@ export interface ApiPaquetesCoorporativoPaquetesCoorporativo
         };
       }>;
     content: Attribute.Blocks &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1312,21 +1311,21 @@ export interface ApiPaquetesCoorporativoPaquetesCoorporativo
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::paquetes-coorporativo.paquetes-coorporativo',
+      'api::planes-corporativo.planes-corporativo',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::paquetes-coorporativo.paquetes-coorporativo',
+      'api::planes-corporativo.planes-corporativo',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     localizations: Attribute.Relation<
-      'api::paquetes-coorporativo.paquetes-coorporativo',
+      'api::planes-corporativo.planes-corporativo',
       'oneToMany',
-      'api::paquetes-coorporativo.paquetes-coorporativo'
+      'api::planes-corporativo.planes-corporativo'
     >;
     locale: Attribute.String;
   };
@@ -1710,7 +1709,7 @@ declare module '@strapi/types' {
       'api::derecho-de-retracto.derecho-de-retracto': ApiDerechoDeRetractoDerechoDeRetracto;
       'api::general.general': ApiGeneralGeneral;
       'api::home.home': ApiHomeHome;
-      'api::paquetes-coorporativo.paquetes-coorporativo': ApiPaquetesCoorporativoPaquetesCoorporativo;
+      'api::planes-corporativo.planes-corporativo': ApiPlanesCorporativoPlanesCorporativo;
       'api::politicas-de-devolucion.politicas-de-devolucion': ApiPoliticasDeDevolucionPoliticasDeDevolucion;
       'api::product-detail.product-detail': ApiProductDetailProductDetail;
       'api::shop.shop': ApiShopShop;

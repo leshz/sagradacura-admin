@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "paquetes_coorporativos",
+  "collectionName": "planes_corporativos",
   "info": {
-    "singularName": "paquetes-coorporativo",
-    "pluralName": "paquetes-coorporativos",
-    "displayName": "Paquetes-coorporativo"
+    "singularName": "planes-corporativo",
+    "pluralName": "planes-corporativos",
+    "displayName": "Planes-corporativos"
   },
   "options": {
     "draftAndPublish": true
@@ -39,7 +39,6 @@
     },
     "content": {
       "type": "blocks",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
