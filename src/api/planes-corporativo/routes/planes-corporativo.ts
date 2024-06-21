@@ -1,15 +1,15 @@
 /**
- * paquetes-coorporativo router
+ * planes-corporativo router
  */
 
 import { factories } from "@strapi/strapi";
 
 export default factories.createCoreRouter(
-  "api::paquetes-coorporativo.paquetes-coorporativo",
+  "api::planes-corporativo.planes-corporativo",
   {
     config: {
       find: {
-        middlewares: ["api::paquetes-coorporativo.populating"],
+        middlewares: ["api::planes-corporativo.populating"],
       },
     },
   }
