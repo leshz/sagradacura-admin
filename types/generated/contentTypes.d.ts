@@ -868,7 +868,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    profile_pic: Attribute.Media;
+    profile_pic: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -903,7 +903,7 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
     };
   };
   attributes: {
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -975,7 +975,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    image: Attribute.Media;
+    image: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1055,7 +1055,7 @@ export interface ApiCondicionesDeEnvioCondicionesDeEnvio
     };
   };
   attributes: {
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1118,7 +1118,7 @@ export interface ApiDerechoDeRetractoDerechoDeRetracto
     };
   };
   attributes: {
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1287,7 +1287,7 @@ export interface ApiPlanesCorporativoPlanesCorporativo
     };
   };
   attributes: {
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1349,7 +1349,7 @@ export interface ApiPoliticasDeDevolucionPoliticasDeDevolucion
     };
   };
   attributes: {
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1567,7 +1567,7 @@ export interface ApiTestimonialTestimonial extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1637,7 +1637,7 @@ export interface ApiTratamientoDeDatoTratamientoDeDato
     };
   };
   attributes: {
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {

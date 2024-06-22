@@ -18,7 +18,7 @@ export default ({ env }) => {
       },
     },
     "strapi-ecommerce-mercadopago": {
-      enabled: false,
+      enabled: true,
       resolve: "./src/plugins/strapi-ecommerce-mercadopago",
     },
     "media-prefix": {
