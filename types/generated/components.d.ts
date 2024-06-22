@@ -9,7 +9,7 @@ export interface CartEmptyCart extends Schema.Component {
   attributes: {
     title: Attribute.String;
     description: Attribute.String;
-    image: Attribute.Media & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
     button: Attribute.String;
   };
 }
@@ -154,7 +154,7 @@ export interface SharedMetaSocial extends Schema.Component {
       Attribute.SetMinMaxLength<{
         maxLength: 65;
       }>;
-    image: Attribute.Media;
+    image: Attribute.Media<'images' | 'files' | 'videos'>;
   };
 }
 
@@ -176,7 +176,7 @@ export interface SharedSeo extends Schema.Component {
         minLength: 50;
         maxLength: 160;
       }>;
-    metaImage: Attribute.Media;
+    metaImage: Attribute.Media<'images' | 'files' | 'videos'>;
     metaSocial: Attribute.Component<'shared.meta-social', true>;
     keywords: Attribute.Text;
     metaRobots: Attribute.String;
@@ -244,7 +244,7 @@ export interface UiCategories extends Schema.Component {
   attributes: {
     first_line: Attribute.String;
     second_line: Attribute.String;
-    image: Attribute.Media;
+    image: Attribute.Media<'images'>;
     link: Attribute.String;
   };
 }
@@ -257,7 +257,7 @@ export interface UiDinamicBanner extends Schema.Component {
   };
   attributes: {
     text: Attribute.Blocks;
-    image: Attribute.Media & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
   };
 }
 
@@ -269,7 +269,7 @@ export interface UiFixedBanner extends Schema.Component {
   };
   attributes: {
     title: Attribute.Blocks;
-    image: Attribute.Media & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
     link: Attribute.Component<'ui-utility.link'>;
     dinamic_banner: Attribute.Component<'ui.dinamic-banner', true>;
   };
@@ -298,7 +298,7 @@ export interface UiHightlightSlider extends Schema.Component {
   attributes: {
     title: Attribute.String;
     description: Attribute.Blocks;
-    image: Attribute.Media;
+    image: Attribute.Media<'images'>;
     link: Attribute.String;
     button: Attribute.String;
   };
@@ -327,7 +327,7 @@ export interface UiInstagram extends Schema.Component {
     title: Attribute.String & Attribute.Required;
     subtitle: Attribute.String & Attribute.Required;
     profile_url: Attribute.String & Attribute.Required;
-    feed: Attribute.Media & Attribute.Required;
+    feed: Attribute.Media<'images', true> & Attribute.Required;
   };
 }
 
@@ -355,7 +355,7 @@ export interface UiMainBanner extends Schema.Component {
   attributes: {
     Title: Attribute.String & Attribute.Required;
     Description: Attribute.String;
-    image: Attribute.Media & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
   };
 }
 
@@ -367,7 +367,7 @@ export interface UiMenu extends Schema.Component {
     description: '';
   };
   attributes: {
-    logo: Attribute.Media & Attribute.Required;
+    logo: Attribute.Media<'images'> & Attribute.Required;
     mobile: Attribute.Component<'ui.mobile-information'>;
     cart_menu: Attribute.Component<'menu.cart'>;
   };
