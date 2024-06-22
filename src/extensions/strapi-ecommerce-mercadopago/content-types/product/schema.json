@@ -40,7 +40,9 @@
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": true

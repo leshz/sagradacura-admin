@@ -590,320 +590,6 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
-export interface PluginStrapiEcommerceMercadopagoCategory
-  extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'Category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    slug: Attribute.UID<
-      'plugin::strapi-ecommerce-mercadopago.category',
-      'name'
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.category',
-      'oneToMany',
-      'plugin::strapi-ecommerce-mercadopago.category'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface PluginStrapiEcommerceMercadopagoProduct
-  extends Schema.CollectionType {
-  collectionName: 'products';
-  info: {
-    singularName: 'product';
-    pluralName: 'products';
-    displayName: 'Product';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    price: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.SetMinMax<
-        {
-          min: 1000;
-        },
-        number
-      >;
-    pictures: Attribute.Media &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    short_description: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    slug: Attribute.UID<
-      'plugin::strapi-ecommerce-mercadopago.product',
-      'name'
-    > &
-      Attribute.Required;
-    stock: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.SetMinMax<
-        {
-          max: 100;
-        },
-        number
-      > &
-      Attribute.DefaultTo<0>;
-    sku: Attribute.UID<
-      undefined,
-      undefined,
-      {
-        'uuid-format': '^[A-Za-z0-9]{8}$';
-        'disable-regenerate': true;
-      }
-    > &
-      Attribute.CustomField<
-        'plugin::strapi-advanced-uuid.uuid',
-        {
-          'uuid-format': '^[A-Za-z0-9]{8}$';
-          'disable-regenerate': true;
-        }
-      > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    promotion: Attribute.Component<'promotions.promotion'> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    categories: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.product',
-      'oneToMany',
-      'plugin::strapi-ecommerce-mercadopago.category'
-    >;
-    middle_description: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    information: Attribute.Component<'product.information', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.product',
-      'oneToMany',
-      'plugin::strapi-ecommerce-mercadopago.product'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface PluginStrapiEcommerceMercadopagoConfiguration
-  extends Schema.SingleType {
-  collectionName: 'configurations';
-  info: {
-    singularName: 'configuration';
-    pluralName: 'configurations';
-    displayName: 'configuration';
-  };
-  options: {
-    draftAndPublish: false;
-    comment: '';
-  };
-  attributes: {
-    active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
-    token: Attribute.String & Attribute.Required & Attribute.Private;
-    default_currency: Attribute.String & Attribute.Required & Attribute.Private;
-    back_urls: Attribute.String & Attribute.Required & Attribute.Private;
-    webhook_pass: Attribute.String & Attribute.Required & Attribute.Private;
-    notification_url: Attribute.String & Attribute.Required & Attribute.Private;
-    bussiness_description: Attribute.String &
-      Attribute.Required &
-      Attribute.Private;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.configuration',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.configuration',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginStrapiEcommerceMercadopagoInvoice
-  extends Schema.CollectionType {
-  collectionName: 'invoices';
-  info: {
-    singularName: 'invoice';
-    pluralName: 'invoices';
-    displayName: 'Invoice';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-tags': {
-      fieldName: 'status';
-      tags: {
-        initial: {
-          color: 'neutral';
-        };
-        approved: {
-          color: 'success';
-        };
-        authorized: {
-          color: 'primary';
-        };
-        in_process: {
-          color: 'primary';
-        };
-        in_mediation: {
-          color: 'primary';
-        };
-        pending: {
-          color: 'primary';
-        };
-        cancelled: {
-          color: 'danger';
-        };
-        rejected: {
-          color: 'danger';
-        };
-        refunded: {
-          color: 'danger';
-        };
-        charged_back: {
-          color: 'danger';
-        };
-      };
-      defaultTag: 'initial';
-    };
-  };
-  attributes: {
-    resume: Attribute.Text;
-    products: Attribute.JSON;
-    buyer_email: Attribute.String & Attribute.Required;
-    total_discount: Attribute.Integer & Attribute.DefaultTo<0>;
-    total: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
-    paid_with: Attribute.String;
-    collector_id: Attribute.String;
-    preference_id: Attribute.String;
-    status: Attribute.Text &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::content-tags.content-tags'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.invoice',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::strapi-ecommerce-mercadopago.invoice',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginMenusMenu extends Schema.CollectionType {
   collectionName: 'menus';
   info: {
@@ -1182,6 +868,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    profile_pic: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1216,7 +903,7 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
     };
   };
   attributes: {
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1281,14 +968,14 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     title: Attribute.String;
     short_description: Attribute.Text;
     article: Attribute.Blocks;
-    slug: Attribute.UID<'api::blog.blog', 'title'>;
+    slug: Attribute.UID<'api::blog.blog', 'title'> & Attribute.Required;
     tags: Attribute.Relation<'api::blog.blog', 'oneToMany', 'api::tag.tag'>;
     author: Attribute.Relation<
       'api::blog.blog',
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    image: Attribute.Media;
+    image: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1346,6 +1033,131 @@ export interface ApiCartCart extends Schema.SingleType {
       'api::cart.cart',
       'oneToMany',
       'api::cart.cart'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiCondicionesDeEnvioCondicionesDeEnvio
+  extends Schema.SingleType {
+  collectionName: 'condiciones_de_envios';
+  info: {
+    singularName: 'condiciones-de-envio';
+    pluralName: 'condiciones-de-envios';
+    displayName: 'condiciones-de-envio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    image: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::condiciones-de-envio.condiciones-de-envio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::condiciones-de-envio.condiciones-de-envio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::condiciones-de-envio.condiciones-de-envio',
+      'oneToMany',
+      'api::condiciones-de-envio.condiciones-de-envio'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiDerechoDeRetractoDerechoDeRetracto
+  extends Schema.SingleType {
+  collectionName: 'derecho_de_retractos';
+  info: {
+    singularName: 'derecho-de-retracto';
+    pluralName: 'derecho-de-retractos';
+    displayName: 'derecho-de-retracto';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    image: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::derecho-de-retracto.derecho-de-retracto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::derecho-de-retracto.derecho-de-retracto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::derecho-de-retracto.derecho-de-retracto',
+      'oneToMany',
+      'api::derecho-de-retracto.derecho-de-retracto'
     >;
     locale: Attribute.String;
   };
@@ -1453,6 +1265,130 @@ export interface ApiHomeHome extends Schema.SingleType {
       'api::home.home',
       'oneToMany',
       'api::home.home'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPlanesCorporativoPlanesCorporativo
+  extends Schema.SingleType {
+  collectionName: 'planes_corporativos';
+  info: {
+    singularName: 'planes-corporativo';
+    pluralName: 'planes-corporativos';
+    displayName: 'Planes-corporativos';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    image: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::planes-corporativo.planes-corporativo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::planes-corporativo.planes-corporativo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::planes-corporativo.planes-corporativo',
+      'oneToMany',
+      'api::planes-corporativo.planes-corporativo'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPoliticasDeDevolucionPoliticasDeDevolucion
+  extends Schema.SingleType {
+  collectionName: 'politicas_de_devoluciones';
+  info: {
+    singularName: 'politicas-de-devolucion';
+    pluralName: 'politicas-de-devoluciones';
+    displayName: 'politicas-de-devolucion';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    image: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::politicas-de-devolucion.politicas-de-devolucion',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::politicas-de-devolucion.politicas-de-devolucion',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::politicas-de-devolucion.politicas-de-devolucion',
+      'oneToMany',
+      'api::politicas-de-devolucion.politicas-de-devolucion'
     >;
     locale: Attribute.String;
   };
@@ -1631,7 +1567,7 @@ export interface ApiTestimonialTestimonial extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    image: Attribute.Media &
+    image: Attribute.Media<'images'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1684,6 +1620,68 @@ export interface ApiTestimonialTestimonial extends Schema.CollectionType {
   };
 }
 
+export interface ApiTratamientoDeDatoTratamientoDeDato
+  extends Schema.SingleType {
+  collectionName: 'tratamiento_de_datos';
+  info: {
+    singularName: 'tratamiento-de-dato';
+    pluralName: 'tratamiento-de-datos';
+    displayName: 'tratamiento-de-datos';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    image: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.Blocks &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tratamiento-de-dato.tratamiento-de-dato',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tratamiento-de-dato.tratamiento-de-dato',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tratamiento-de-dato.tratamiento-de-dato',
+      'oneToMany',
+      'api::tratamiento-de-dato.tratamiento-de-dato'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1698,10 +1696,6 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
-      'plugin::strapi-ecommerce-mercadopago.category': PluginStrapiEcommerceMercadopagoCategory;
-      'plugin::strapi-ecommerce-mercadopago.product': PluginStrapiEcommerceMercadopagoProduct;
-      'plugin::strapi-ecommerce-mercadopago.configuration': PluginStrapiEcommerceMercadopagoConfiguration;
-      'plugin::strapi-ecommerce-mercadopago.invoice': PluginStrapiEcommerceMercadopagoInvoice;
       'plugin::menus.menu': PluginMenusMenu;
       'plugin::menus.menu-item': PluginMenusMenuItem;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -1711,12 +1705,17 @@ declare module '@strapi/types' {
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::blog.blog': ApiBlogBlog;
       'api::cart.cart': ApiCartCart;
+      'api::condiciones-de-envio.condiciones-de-envio': ApiCondicionesDeEnvioCondicionesDeEnvio;
+      'api::derecho-de-retracto.derecho-de-retracto': ApiDerechoDeRetractoDerechoDeRetracto;
       'api::general.general': ApiGeneralGeneral;
       'api::home.home': ApiHomeHome;
+      'api::planes-corporativo.planes-corporativo': ApiPlanesCorporativoPlanesCorporativo;
+      'api::politicas-de-devolucion.politicas-de-devolucion': ApiPoliticasDeDevolucionPoliticasDeDevolucion;
       'api::product-detail.product-detail': ApiProductDetailProductDetail;
       'api::shop.shop': ApiShopShop;
       'api::tag.tag': ApiTagTag;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
+      'api::tratamiento-de-dato.tratamiento-de-dato': ApiTratamientoDeDatoTratamientoDeDato;
     }
   }
 }

@@ -9,5 +9,8 @@ export default factories.createCoreRouter("api::blog.blog", {
     find: {
       middlewares: ["api::blog.populating"],
     },
+    findOne: {
+      middlewares: ["api::blog.populating"],
+    },
   },
 });
