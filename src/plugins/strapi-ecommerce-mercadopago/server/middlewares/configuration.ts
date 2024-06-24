@@ -14,7 +14,7 @@ const loadConfig = (options, { strapi }) => {
         ],
       });
 
-    const { active = false, token = "" } = config;
+    const { active = false, token = "" } = config || {};
     if (active && token) {
       ctx.state.config = config;
       return next();
