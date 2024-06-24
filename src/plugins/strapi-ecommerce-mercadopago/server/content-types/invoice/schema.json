@@ -57,7 +57,7 @@
       "required": true,
       "customField": "plugin::content-tags.content-tags"
     },
-    "shipping_status":  {
+    "shipping_status": {
       "type": "enumeration",
       "enum": [
         "initial",
@@ -68,19 +68,17 @@
         "refunded"
       ]
     },
+    "shipping": {
+      "type": "component",
+      "repeatable": false,
+      "component": "mercadopago.shipping",
+      "required": true
+    },
     "shopper": {
       "type": "component",
       "repeatable": false,
-      "pluginOptions": {},
-      "component": "mercadolibre.shopper",
+      "component": "mercadopago.shopper",
       "required": true
-    },
-    "shipping": {
-      "type": "component",
-      "required": true,
-      "repeatable": false,
-      "pluginOptions": {},
-      "component": "mercadolibre.shipping"
     }
   }
 }

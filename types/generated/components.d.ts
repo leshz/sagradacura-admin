@@ -469,6 +469,37 @@ export interface UtilitySingle extends Schema.Component {
   };
 }
 
+export interface MercadopagoShipping extends Schema.Component {
+  collectionName: 'components_mercadopago_shippings';
+  info: {
+    displayName: 'Shipping';
+    icon: 'exit';
+    description: '';
+  };
+  attributes: {
+    department: Attribute.String & Attribute.Required & Attribute.Unique;
+    city: Attribute.String & Attribute.Required;
+    address: Attribute.String & Attribute.Required;
+    postal_code: Attribute.BigInteger;
+    message: Attribute.Text;
+  };
+}
+
+export interface MercadopagoShopper extends Schema.Component {
+  collectionName: 'components_mercadopago_shoppers';
+  info: {
+    displayName: 'Shopper';
+    icon: 'emotionHappy';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    last_name: Attribute.String & Attribute.Required;
+    dni: Attribute.BigInteger & Attribute.Required;
+    phone: Attribute.BigInteger & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -506,6 +537,8 @@ declare module '@strapi/types' {
       'utility.multi-link': UtilityMultiLink;
       'utility.multilink': UtilityMultilink;
       'utility.single': UtilitySingle;
+      'mercadopago.shipping': MercadopagoShipping;
+      'mercadopago.shopper': MercadopagoShopper;
     }
   }
 }

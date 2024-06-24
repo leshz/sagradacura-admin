@@ -1,0 +1,67 @@
+{
+  "collectionName": "components_mercadopago_shippings",
+  "info": {
+    "displayName": "Shipping",
+    "icon": "exit",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "department": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "postal_code": {
+      "type": "biginteger"
+    },
+    "message": {
+      "type": "text"
+    }
+  },
+  "__filename__": "shipping.json",
+  "__schema__": {
+    "collectionName": "components_mercadopago_shippings",
+    "info": {
+      "displayName": "Shipping",
+      "icon": "exit",
+      "description": ""
+    },
+    "options": {},
+    "attributes": {
+      "department": {
+        "type": "string",
+        "required": true,
+        "unique": true
+      },
+      "city": {
+        "type": "string",
+        "required": true
+      },
+      "address": {
+        "type": "string",
+        "required": true
+      },
+      "postal_code": {
+        "type": "biginteger"
+      },
+      "message": {
+        "type": "text"
+      }
+    },
+    "__filename__": "shipping.json"
+  },
+  "uid": "mercadopago.shipping",
+  "category": "mercadopago",
+  "modelType": "component",
+  "modelName": "shipping",
+  "globalId": "ComponentMercadopagoShipping"
+}
