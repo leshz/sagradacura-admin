@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_mercadopago_shoppers",
+  "info": {
+    "displayName": "Shopper",
+    "icon": "emotionHappy",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "last_name": {
+      "type": "string",
+      "required": true
+    },
+    "dni": {
+      "type": "biginteger",
+      "required": true
+    },
+    "phone": {
+      "type": "biginteger",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    }
+  }
+}
