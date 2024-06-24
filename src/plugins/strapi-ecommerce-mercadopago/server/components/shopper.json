@@ -1,12 +1,8 @@
 {
-  "collectionName": "components_mercadopago_shopper",
-  "category": "mercadolibre",
-  "modelName": "shopper",
-  "globalId": "ComponentMercadolibreShopper",
-  "uid": "mercadolibre.shopper",
+  "collectionName": "components_mercadopago_shoppers",
   "info": {
-    "displayName": "shopper",
-    "icon": "user"
+    "displayName": "Shopper",
+    "icon": "emotionHappy"
   },
   "options": {},
   "attributes": {
@@ -30,5 +26,42 @@
       "type": "email",
       "required": true
     }
-  }
+  },
+  "__filename__": "shopper.json",
+  "__schema__": {
+    "collectionName": "components_mercadopago_shoppers",
+    "info": {
+      "displayName": "Shopper",
+      "icon": "emotionHappy"
+    },
+    "options": {},
+    "attributes": {
+      "name": {
+        "type": "string",
+        "required": true
+      },
+      "last_name": {
+        "type": "string",
+        "required": true
+      },
+      "dni": {
+        "type": "biginteger",
+        "required": true
+      },
+      "phone": {
+        "type": "biginteger",
+        "required": true
+      },
+      "email": {
+        "type": "email",
+        "required": true
+      }
+    },
+    "__filename__": "shopper.json"
+  },
+  "uid": "mercadopago.shopper",
+  "category": "mercadopago",
+  "modelType": "component",
+  "modelName": "shopper",
+  "globalId": "ComponentMercadopagoShopper"
 }

@@ -1,18 +1,16 @@
 {
-  "collectionName": "components_mercadopago_shipping",
-  "category": "mercadolibre",
-  "modelName": "shipping",
-  "globalId": "ComponentMercadolibreShipping",
-  "uid": "mercadolibre.shipping",
+  "collectionName": "components_mercadopago_shippings",
   "info": {
-    "displayName": "shipping",
-    "icon": "user"
+    "displayName": "Shipping",
+    "icon": "exit",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "department": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "city": {
       "type": "string",
@@ -23,12 +21,47 @@
       "required": true
     },
     "postal_code": {
-      "type": "biginteger",
-      "required": false
+      "type": "biginteger"
     },
     "message": {
-      "type": "string",
-      "required": false
+      "type": "text"
     }
-  }
+  },
+  "__filename__": "shipping.json",
+  "__schema__": {
+    "collectionName": "components_mercadopago_shippings",
+    "info": {
+      "displayName": "Shipping",
+      "icon": "exit",
+      "description": ""
+    },
+    "options": {},
+    "attributes": {
+      "department": {
+        "type": "string",
+        "required": true,
+        "unique": true
+      },
+      "city": {
+        "type": "string",
+        "required": true
+      },
+      "address": {
+        "type": "string",
+        "required": true
+      },
+      "postal_code": {
+        "type": "biginteger"
+      },
+      "message": {
+        "type": "text"
+      }
+    },
+    "__filename__": "shipping.json"
+  },
+  "uid": "mercadopago.shipping",
+  "category": "mercadopago",
+  "modelType": "component",
+  "modelName": "shipping",
+  "globalId": "ComponentMercadopagoShipping"
 }
