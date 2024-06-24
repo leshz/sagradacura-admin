@@ -590,6 +590,330 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginStrapiEcommerceMercadopagoCategory
+  extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<
+      'plugin::strapi-ecommerce-mercadopago.category',
+      'name'
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.category',
+      'oneToMany',
+      'plugin::strapi-ecommerce-mercadopago.category'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface PluginStrapiEcommerceMercadopagoProduct
+  extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          min: 1000;
+        },
+        number
+      >;
+    pictures: Attribute.Media<'images', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    short_description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<
+      'plugin::strapi-ecommerce-mercadopago.product',
+      'name'
+    > &
+      Attribute.Required;
+    stock: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMax<
+        {
+          max: 100;
+        },
+        number
+      > &
+      Attribute.DefaultTo<0>;
+    sku: Attribute.UID<
+      undefined,
+      undefined,
+      {
+        'uuid-format': '^SGWP[A-Z]{2}\\d{5}$';
+        'disable-regenerate': true;
+      }
+    > &
+      Attribute.CustomField<
+        'plugin::strapi-advanced-uuid.uuid',
+        {
+          'uuid-format': '^SGWP[A-Z]{2}\\d{5}$';
+          'disable-regenerate': true;
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    promotion: Attribute.Component<'promotions.promotion'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    categories: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.product',
+      'oneToMany',
+      'plugin::strapi-ecommerce-mercadopago.category'
+    >;
+    middle_description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    information: Attribute.Component<'product.information', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.product',
+      'oneToMany',
+      'plugin::strapi-ecommerce-mercadopago.product'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface PluginStrapiEcommerceMercadopagoConfiguration
+  extends Schema.SingleType {
+  collectionName: 'configurations';
+  info: {
+    singularName: 'configuration';
+    pluralName: 'configurations';
+    displayName: 'configuration';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  attributes: {
+    active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    token: Attribute.String & Attribute.Required & Attribute.Private;
+    default_currency: Attribute.String & Attribute.Required & Attribute.Private;
+    back_urls: Attribute.String & Attribute.Required & Attribute.Private;
+    webhook_pass: Attribute.String & Attribute.Required & Attribute.Private;
+    notification_url: Attribute.String & Attribute.Required & Attribute.Private;
+    bussiness_description: Attribute.String &
+      Attribute.Required &
+      Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.configuration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.configuration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginStrapiEcommerceMercadopagoInvoice
+  extends Schema.CollectionType {
+  collectionName: 'invoices';
+  info: {
+    singularName: 'invoice';
+    pluralName: 'invoices';
+    displayName: 'Invoice';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-tags': {
+      fieldName: 'payment_status';
+      tags: {
+        initial: {
+          color: 'neutral';
+        };
+        approved: {
+          color: 'success';
+        };
+        authorized: {
+          color: 'primary';
+        };
+        in_process: {
+          color: 'primary';
+        };
+        in_mediation: {
+          color: 'primary';
+        };
+        pending: {
+          color: 'primary';
+        };
+        cancelled: {
+          color: 'danger';
+        };
+        rejected: {
+          color: 'danger';
+        };
+        refunded: {
+          color: 'danger';
+        };
+        charged_back: {
+          color: 'danger';
+        };
+      };
+      defaultTag: 'initial';
+    };
+  };
+  attributes: {
+    products: Attribute.JSON;
+    client_id: Attribute.String;
+    total_discount: Attribute.Integer & Attribute.DefaultTo<0>;
+    total: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
+    paid_with: Attribute.String;
+    preference_id: Attribute.String;
+    payment_status: Attribute.Text &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::content-tags.content-tags'>;
+    shipping_status: Attribute.Enumeration<
+      [
+        'initial',
+        'in_process',
+        'on_delivery',
+        'delivered',
+        'cancelled',
+        'refunded'
+      ]
+    >;
+    shipping: Attribute.Component<'mercadopago.shipping'> & Attribute.Required;
+    shopper: Attribute.Component<'mercadopago.shopper'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginMenusMenu extends Schema.CollectionType {
   collectionName: 'menus';
   info: {
@@ -1696,6 +2020,10 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::strapi-ecommerce-mercadopago.category': PluginStrapiEcommerceMercadopagoCategory;
+      'plugin::strapi-ecommerce-mercadopago.product': PluginStrapiEcommerceMercadopagoProduct;
+      'plugin::strapi-ecommerce-mercadopago.configuration': PluginStrapiEcommerceMercadopagoConfiguration;
+      'plugin::strapi-ecommerce-mercadopago.invoice': PluginStrapiEcommerceMercadopagoInvoice;
       'plugin::menus.menu': PluginMenusMenu;
       'plugin::menus.menu-item': PluginMenusMenuItem;
       'plugin::i18n.locale': PluginI18NLocale;

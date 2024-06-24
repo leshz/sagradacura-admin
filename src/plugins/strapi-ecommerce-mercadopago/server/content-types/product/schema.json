@@ -82,7 +82,7 @@
       "type": "customField",
       "options": {
         "uuid-format": "^SGWP[A-Z]{2}\\d{5}$",
-        "disable-regenerate": false
+        "disable-regenerate": true
       },
       "customField": "plugin::strapi-advanced-uuid.uuid"
     },
