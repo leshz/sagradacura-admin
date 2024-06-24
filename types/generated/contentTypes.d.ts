@@ -833,6 +833,7 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
     singularName: 'invoice';
     pluralName: 'invoices';
     displayName: 'Invoice';
+    description: '';
   };
   options: {
     draftAndPublish: false;
