@@ -20,7 +20,7 @@ jobs:
             - name: Tag/Release on Push Action
               uses: rymndhng/release-on-push-action@v0.9.3 
               with:
-                strategy: entryPoint
+                strategy: minor
                 
             - name: Update version in package.json
               uses: maks-stupak/gh-action-bump-version@v7.1.5
