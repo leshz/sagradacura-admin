@@ -5,19 +5,27 @@ on:
       - main
   pull_request:
     branches:
-      - main
+      - develop
 jobs:
-  create_version:
+
+  avoid_reduncy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Cancel Previous Redundant Builds
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+  create__rellease_tag:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
       - name: Tag/Release on Push Action
-        uses: rymndhng/release-on-push-action@v0.27.0      
+        if: github.event_name == 'push'
+        uses: rymndhng/release-on-push-action@v0.27.0
         with:
           bump_version_scheme: patch
-          
-
+        
