@@ -1,5 +1,4 @@
 name: version
-
 on:
   push:
     branches:
@@ -7,17 +6,18 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   create_version:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Tag/Release on Push Action
-        uses: rymndhng/release-on-push-action@v0.28.0
+        uses: rymndhng/release-on-push-action@v0.27.0      
         with:
           bump_version_scheme: patch
+          
 
-      - name: Update version in package.json
-        uses: maks-stupak/gh-action-bump-version@v7.1.5
