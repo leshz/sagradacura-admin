@@ -18,3 +18,5 @@ jobs:
         uses: rymndhng/release-on-push-action@v0.28.0
         with:
           bump_version_scheme: patch
+          use_github_release_notes: true
+          max_commits: 200
