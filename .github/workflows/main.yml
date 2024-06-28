@@ -16,11 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+
       - name: Tag/Release on Push Action
-        uses: rymndhng/release-on-push-action@v0.28.0
+        uses: rymndhng/release-on-push-action@v0.27.0      
         with:
           bump_version_scheme: patch
-          use_github_release_notes: false
-          max_commits: 200
-          release_body: "Release Notes"
