@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - develop
   pull_request:
     branches:
       - develop
@@ -16,7 +17,7 @@ jobs:
   #         access_token: ${{ github.token }}
 
   create_release_tag:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
@@ -24,11 +25,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Tag/Release on Push Action
-        if: github.event_name == 'push'
-        uses: rymndhng/release-on-push-action@v0.27.0
-        with:
-          bump_version_scheme: patch 
+      # - name: Tag/Release on Push Action
+      #   if: github.event_name == 'push'
+      #   uses: rymndhng/release-on-push-action@v0.27.0
+      #   with:
+      #     bump_version_scheme: patch 
 
       - name: Increment Package.json Version
         uses: copapow/version-bump-package@v1
