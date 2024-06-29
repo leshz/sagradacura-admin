@@ -1,31 +1,45 @@
 name: version
-on:
+on: 
   push:
     branches:
       - main
   pull_request:
     branches:
-      - develop
+      - main
 jobs:
+  # avoid_reduncy:
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #     - name: Cancel Previous Redundant Builds
+  #       uses: styfle/cancel-workflow-action@0.9.1
+  #       with:
+  #         access_token: ${{ github.token }}
 
-  avoid_reduncy:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Cancel Previous Redundant Builds
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-
-  create__rellease_tag:
+  create_release_tag:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Tag/Release on Push Action
         if: github.event_name == 'push'
         uses: rymndhng/release-on-push-action@v0.27.0
         with:
-          bump_version_scheme: patch
-        
+          bump_version_scheme: patch 
+
+      - name: Increment Package.json Version
+        uses: copapow/version-bump-package@v1
+        with:
+          major_label: release:major 
+          minor_label: release:minor 
+          patch_label: release:patch
+          github_token: ${{ github.token }}
+          default_branch: main
+
+      - uses: EndBug/add-and-commit@v7
+        with:
+          branch: main
+          message: 'Bump package version'
