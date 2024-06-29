@@ -7,13 +7,13 @@ on:
     branches:
       - main
 jobs:
-  avoid_reduncy:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Cancel Previous Redundant Builds
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
+  # avoid_reduncy:
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #     - name: Cancel Previous Redundant Builds
+  #       uses: styfle/cancel-workflow-action@0.9.1
+  #       with:
+  #         access_token: ${{ github.token }}
 
   create_release_tag:
     if: github.event.pull_request.merged == true
