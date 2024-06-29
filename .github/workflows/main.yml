@@ -38,7 +38,7 @@ jobs:
           minor_label: release:minor 
           patch_label: release:patch
           github_token: ${{ github.token }}
-          # default_branch: main
+          default_branch: main
 
       - uses: EndBug/add-and-commit@v7
         with:
