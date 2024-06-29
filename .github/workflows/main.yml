@@ -15,7 +15,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  create__release_tag:
+  create_release_tag:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
@@ -38,7 +38,7 @@ jobs:
           patch_label: release:patch
           github_token: ${{ github.token }}
           default_branch: main
-          
+
       - uses: EndBug/add-and-commit@v7
         with:
           branch: main
