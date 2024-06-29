@@ -5,7 +5,7 @@ on:
       - main
   pull_request:
     branches:
-      - main
+      - develop
 jobs:
   # avoid_reduncy:
   #   runs-on: ubuntu-18.04
