@@ -10,16 +10,16 @@ jobs:
   
   create_release_tag:
   if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+  runs-on: ubuntu-latest
+  env:
+    GITHUB_TOKEN: ${{ github.token }}
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Tag/Release on Push Action
-        uses: rymndhng/release-on-push-action@v0.27.0
-        with:
-          bump_version_scheme: patch
+    - name: Tag/Release on Push Action
+      uses: rymndhng/release-on-push-action@v0.27.0
+      with:
+        bump_version_scheme: patch
 
         
