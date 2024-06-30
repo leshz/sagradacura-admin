@@ -6,8 +6,6 @@ on:
   pull_request:
     branches:
       - main
-      - develop
-    types: [closed]
 jobs:
   # avoid_reduncy:
   #   runs-on: ubuntu-18.04
