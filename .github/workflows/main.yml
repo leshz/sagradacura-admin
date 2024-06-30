@@ -1,11 +1,12 @@
 name: version
-on: 
+on:
   push:
     branches:
       - main
   pull_request:
     branches:
       - main
+      - develop
 jobs:
   # avoid_reduncy:
   #   runs-on: ubuntu-18.04
@@ -28,13 +29,13 @@ jobs:
   #     #   if: github.event_name == 'push'
   #     #   uses: rymndhng/release-on-push-action@v0.27.0
   #     #   with:
-  #     #     bump_version_scheme: patch 
+  #     #     bump_version_scheme: patch
 
   #     - name: Increment Package.json Version
   #       uses: copapow/version-bump-package@v1
   #       with:
-  #         major_label: release:major 
-  #         minor_label: release:minor 
+  #         major_label: release:major
+  #         minor_label: release:minor
   #         patch_label: release:patch
   #         github_token: ${{ github.token }}
   #         default_branch: main
@@ -43,12 +44,12 @@ jobs:
   #       with:
   #         branch: main
   #         message: 'Bump package version'
-  
+
   testing:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: run some action 
-        run: echo "running some action"
+      - name: run some action
+        run: echo "${{github.event.pull_request}}"
