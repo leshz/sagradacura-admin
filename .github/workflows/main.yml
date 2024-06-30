@@ -53,8 +53,12 @@ jobs:
       - name: "cat package.json" 
         run: cat ./package.json
         
-      - name: Update version in package.json
-        uses: maks-stupak/gh-action-bump-version@v7.1.5
+      - name: package-json-version
+        uses: dmikey/package-json-version@v0.0.2
+        with:
+          version: 1.0.0
+          git-tag-version: true
+    
         
       - name: run some action
         run: echo "${{github.event.pull_request.merged}}"
