@@ -50,5 +50,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: "cat package.json" 
+        run: cat ./package.json
+        
+      - name: Update version in package.json
+        uses: maks-stupak/gh-action-bump-version@v7.1.5
+        
       - name: run some action
         run: echo "${{github.event.pull_request.merged}}"
+        
+      - name: "cat package.json" 
+        run: cat ./package.json
+        
