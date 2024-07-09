@@ -1503,6 +1503,7 @@ export interface ApiGeneralGeneral extends Schema.SingleType {
     top: Attribute.Component<'ui.top-main'> & Attribute.Required;
     menu: Attribute.Component<'ui.menu'>;
     footer: Attribute.Component<'ui.footer'>;
+    seo: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
