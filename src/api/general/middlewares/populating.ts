@@ -3,7 +3,7 @@
  */
 
 import { Strapi } from "@strapi/strapi";
-import { fieldsImage } from "../../../helpers/constants";
+import { fieldsImage, seo } from "../../../helpers/constants";
 
 export default (config, { strapi }: { strapi: Strapi }) => {
   return async (ctx, next) => {
@@ -44,6 +44,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           },
         },
       },
+      seo: seo,
       ...ctx.query.populate,
     };
     await next();
