@@ -98,9 +98,10 @@ export interface MercadopagoShipping extends Schema.Component {
   info: {
     displayName: 'Shipping';
     icon: 'exit';
+    description: '';
   };
   attributes: {
-    department: Attribute.String & Attribute.Required & Attribute.Unique;
+    department: Attribute.String & Attribute.Required;
     city: Attribute.String & Attribute.Required;
     address: Attribute.String & Attribute.Required;
     postal_code: Attribute.BigInteger;

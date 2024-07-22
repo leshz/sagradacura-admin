@@ -40,7 +40,7 @@
       "department": {
         "type": "string",
         "required": true,
-        "unique": true
+        "unique": false
       },
       "city": {
         "type": "string",

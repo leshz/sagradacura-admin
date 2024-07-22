@@ -171,8 +171,8 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       });
     }
 
-    const service = new Payment(client);
-    const response = await service.get({ id });
+    const paymentService = new Payment(client);
+    const response = await paymentService.get({ id });
 
     const {
       status,
