@@ -61,6 +61,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
             payment_status: INVOICES_STATUS.IN_PROCESS,
             client_id: client_id,
             preference_id: id,
+            payment_link: init_point,
           },
         });
 

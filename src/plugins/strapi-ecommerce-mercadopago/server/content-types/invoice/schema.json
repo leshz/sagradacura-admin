@@ -32,6 +32,10 @@
       "require": true,
       "type": "json"
     },
+    "payment_link": {
+      "require": true,
+      "type": "string"
+    },
     "client_id": {
       "require": true,
       "type": "string"

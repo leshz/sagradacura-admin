@@ -35,6 +35,7 @@ export default factories.createCoreService(
               total: total,
               total_discount: totalDiscounted,
               products: formatedProducts,
+              payment_link: "",
               shipping_status: SHIPPING_STATUS.INITIAL,
               shopper: { ...shopper, last_name: shopper.lastName },
               shipping: { ...shipping, postal_code: shipping.postalCode || 0 },
@@ -43,6 +44,8 @@ export default factories.createCoreService(
         );
         return savedata;
       } catch (error) {
+        console.log(JSON.stringify(error, null, 2));
+
         throw new errors.ApplicationError(error.message, {
           service: "createInitialInvoice",
         });

@@ -2,14 +2,15 @@
   "collectionName": "components_mercadopago_shippings",
   "info": {
     "displayName": "Shipping",
-    "icon": "exit"
+    "icon": "exit",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "department": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "city": {
       "type": "string",
