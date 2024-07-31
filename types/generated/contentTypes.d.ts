@@ -763,6 +763,14 @@ export interface PluginStrapiEcommerceMercadopagoProduct
           localized: true;
         };
       }>;
+    type: Attribute.Enumeration<['producto', 'servicio']> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'producto'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1721,6 +1729,7 @@ export interface ApiProductDetailProductDetail extends Schema.SingleType {
     singularName: 'product-detail';
     pluralName: 'product-details';
     displayName: 'Product detail';
+    description: '';
   };
   options: {
     draftAndPublish: true;

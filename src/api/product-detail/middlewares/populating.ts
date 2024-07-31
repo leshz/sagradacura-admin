@@ -8,7 +8,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
   return async (ctx, next) => {
     ctx.query.populate = {
       promises: {
-        fields: ["message", "icon"],
+        fields: ["message", "icon" , "type"],
       },
       ...ctx.query.populate,
     };

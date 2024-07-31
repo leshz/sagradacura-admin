@@ -15,6 +15,15 @@
     },
     "message": {
       "type": "blocks"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "producto",
+        "servicio"
+      ],
+      "required": true,
+      "default": "producto"
     }
   }
 }
