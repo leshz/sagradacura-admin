@@ -147,6 +147,9 @@ export interface ProductPromises extends Schema.Component {
   attributes: {
     icon: Attribute.Enumeration<['bi-truck', 'bi-box2-heart']>;
     message: Attribute.Blocks;
+    type: Attribute.Enumeration<['producto', 'servicio']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'producto'>;
   };
 }
 

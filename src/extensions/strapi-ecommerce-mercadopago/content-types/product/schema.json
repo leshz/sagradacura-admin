@@ -123,6 +123,20 @@
         }
       },
       "component": "product.information"
+    },
+    "type": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "producto",
+        "servicio"
+      ],
+      "required": true,
+      "default": "producto"
     }
   }
 }
