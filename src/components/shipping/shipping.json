@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shipping_shippings",
+  "info": {
+    "displayName": "Shipping",
+    "icon": "wheelchair",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "price": {
+      "type": "integer",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "unique": true,
+      "required": true,
+      "regex": "^SW\\d{2}$",
+      "default": "SW00"
+    }
+  }
+}

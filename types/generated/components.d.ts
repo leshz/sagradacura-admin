@@ -221,6 +221,23 @@ export interface SharedSeo extends Schema.Component {
   };
 }
 
+export interface ShippingShipping extends Schema.Component {
+  collectionName: 'components_shipping_shippings';
+  info: {
+    displayName: 'Shipping';
+    icon: 'wheelchair';
+    description: '';
+  };
+  attributes: {
+    price: Attribute.Integer & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    type: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.DefaultTo<'SW00'>;
+  };
+}
+
 export interface UiUtilityFooterDescription extends Schema.Component {
   collectionName: 'components_ui_utility_footer_descriptions';
   info: {
@@ -521,6 +538,7 @@ declare module '@strapi/types' {
       'promotions.promotion': PromotionsPromotion;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
+      'shipping.shipping': ShippingShipping;
       'ui-utility.footer-description': UiUtilityFooterDescription;
       'ui-utility.link': UiUtilityLink;
       'ui-utility.news-letter': UiUtilityNewsLetter;

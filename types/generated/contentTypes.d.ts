@@ -1497,6 +1497,38 @@ export interface ApiDerechoDeRetractoDerechoDeRetracto
   };
 }
 
+export interface ApiEnvioEnvio extends Schema.SingleType {
+  collectionName: 'envios';
+  info: {
+    singularName: 'envio';
+    pluralName: 'envios';
+    displayName: 'envios';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    shipping: Attribute.Component<'shipping.shipping', true> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::envio.envio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::envio.envio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGeneralGeneral extends Schema.SingleType {
   collectionName: 'generals';
   info: {
@@ -2041,6 +2073,7 @@ declare module '@strapi/types' {
       'api::cart.cart': ApiCartCart;
       'api::condiciones-de-envio.condiciones-de-envio': ApiCondicionesDeEnvioCondicionesDeEnvio;
       'api::derecho-de-retracto.derecho-de-retracto': ApiDerechoDeRetractoDerechoDeRetracto;
+      'api::envio.envio': ApiEnvioEnvio;
       'api::general.general': ApiGeneralGeneral;
       'api::home.home': ApiHomeHome;
       'api::planes-corporativo.planes-corporativo': ApiPlanesCorporativoPlanesCorporativo;
