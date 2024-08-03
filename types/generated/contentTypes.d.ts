@@ -596,7 +596,7 @@ export interface PluginStrapiEcommerceMercadopagoCategory
   info: {
     singularName: 'category';
     pluralName: 'categories';
-    displayName: 'Category';
+    displayName: 'Categoria';
     description: '';
   };
   options: {
@@ -801,7 +801,7 @@ export interface PluginStrapiEcommerceMercadopagoConfiguration
   info: {
     singularName: 'configuration';
     pluralName: 'configurations';
-    displayName: 'configuration';
+    displayName: 'Mercadopago Config';
   };
   options: {
     draftAndPublish: false;
@@ -840,7 +840,7 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
   info: {
     singularName: 'invoice';
     pluralName: 'invoices';
-    displayName: 'Invoice';
+    displayName: 'Facturas';
     description: '';
   };
   options: {
@@ -917,6 +917,39 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::strapi-ecommerce-mercadopago.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginStrapiEcommerceMercadopagoShipment
+  extends Schema.CollectionType {
+  collectionName: 'shipments';
+  info: {
+    singularName: 'shipment';
+    pluralName: 'shipments';
+    displayName: 'Envios';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    price: Attribute.Integer;
+    code: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.shipment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-ecommerce-mercadopago.shipment',
       'oneToOne',
       'admin::user'
     > &
@@ -1497,38 +1530,6 @@ export interface ApiDerechoDeRetractoDerechoDeRetracto
   };
 }
 
-export interface ApiEnvioEnvio extends Schema.SingleType {
-  collectionName: 'envios';
-  info: {
-    singularName: 'envio';
-    pluralName: 'envios';
-    displayName: 'envios';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    shipping: Attribute.Component<'shipping.shipping', true> &
-      Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::envio.envio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::envio.envio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiGeneralGeneral extends Schema.SingleType {
   collectionName: 'generals';
   info: {
@@ -2062,6 +2063,7 @@ declare module '@strapi/types' {
       'plugin::strapi-ecommerce-mercadopago.product': PluginStrapiEcommerceMercadopagoProduct;
       'plugin::strapi-ecommerce-mercadopago.configuration': PluginStrapiEcommerceMercadopagoConfiguration;
       'plugin::strapi-ecommerce-mercadopago.invoice': PluginStrapiEcommerceMercadopagoInvoice;
+      'plugin::strapi-ecommerce-mercadopago.shipment': PluginStrapiEcommerceMercadopagoShipment;
       'plugin::menus.menu': PluginMenusMenu;
       'plugin::menus.menu-item': PluginMenusMenuItem;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -2073,7 +2075,6 @@ declare module '@strapi/types' {
       'api::cart.cart': ApiCartCart;
       'api::condiciones-de-envio.condiciones-de-envio': ApiCondicionesDeEnvioCondicionesDeEnvio;
       'api::derecho-de-retracto.derecho-de-retracto': ApiDerechoDeRetractoDerechoDeRetracto;
-      'api::envio.envio': ApiEnvioEnvio;
       'api::general.general': ApiGeneralGeneral;
       'api::home.home': ApiHomeHome;
       'api::planes-corporativo.planes-corporativo': ApiPlanesCorporativoPlanesCorporativo;

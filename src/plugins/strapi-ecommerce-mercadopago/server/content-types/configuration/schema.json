@@ -4,7 +4,7 @@
   "info": {
     "singularName": "configuration",
     "pluralName": "configurations",
-    "displayName": "configuration"
+    "displayName": "Mercadopago Config"
   },
   "options": {
     "draftAndPublish": false,
