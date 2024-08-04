@@ -4,7 +4,7 @@
   "info": {
     "singularName": "invoice",
     "pluralName": "invoices",
-    "displayName": "Invoice"
+    "displayName": "Facturas"
   },
   "options": {
     "draftAndPublish": false

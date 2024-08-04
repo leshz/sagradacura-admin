@@ -3,6 +3,7 @@ import product from "./product";
 import configuration from "./configuration";
 import invoice from "./invoice";
 import mercadopago from "./mercadopago";
+import shipment from "./shipment";
 
 export default {
   category,
@@ -10,4 +11,5 @@ export default {
   configuration,
   invoice,
   mercadopago,
+  shipment,
 };

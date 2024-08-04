@@ -4,8 +4,8 @@
   "info": {
     "singularName": "shop",
     "pluralName": "shops",
-    "displayName": "Shop",
-    "description": ""
+    "displayName": "Tienda",
+    "description": "Pagina de la tienda online"
   },
   "options": {
     "draftAndPublish": true
