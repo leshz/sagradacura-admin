@@ -84,6 +84,23 @@ export interface UiUtilityFooterDescription extends Schema.Component {
   };
 }
 
+export interface ShippingShipping extends Schema.Component {
+  collectionName: 'components_shipping_shippings';
+  info: {
+    displayName: 'Shipping';
+    icon: 'wheelchair';
+    description: '';
+  };
+  attributes: {
+    price: Attribute.Integer & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    type: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.DefaultTo<'SW00'>;
+  };
+}
+
 export interface UiTopMain extends Schema.Component {
   collectionName: 'components_ui_top_mains';
   info: {
@@ -283,23 +300,6 @@ export interface UiBottom extends Schema.Component {
   };
 }
 
-export interface ShippingShipping extends Schema.Component {
-  collectionName: 'components_shipping_shippings';
-  info: {
-    displayName: 'Shipping';
-    icon: 'wheelchair';
-    description: '';
-  };
-  attributes: {
-    price: Attribute.Integer & Attribute.Required;
-    name: Attribute.String & Attribute.Required;
-    type: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.DefaultTo<'SW00'>;
-  };
-}
-
 export interface SharedSeo extends Schema.Component {
   collectionName: 'components_shared_seos';
   info: {
@@ -466,6 +466,18 @@ export interface MenuCart extends Schema.Component {
   };
 }
 
+export interface CategoriesCategories extends Schema.Component {
+  collectionName: 'components_categories_categories';
+  info: {
+    displayName: 'categories';
+    icon: 'cloud';
+  };
+  attributes: {
+    title: Attribute.String;
+    all_products: Attribute.String;
+  };
+}
+
 export interface CartTable extends Schema.Component {
   collectionName: 'components_cart_tables';
   info: {
@@ -509,18 +521,6 @@ export interface CartEmptyCart extends Schema.Component {
   };
 }
 
-export interface CategoriesCategories extends Schema.Component {
-  collectionName: 'components_categories_categories';
-  info: {
-    displayName: 'categories';
-    icon: 'cloud';
-  };
-  attributes: {
-    title: Attribute.String;
-    all_products: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -531,6 +531,7 @@ declare module '@strapi/types' {
       'ui-utility.news-letter': UiUtilityNewsLetter;
       'ui-utility.link': UiUtilityLink;
       'ui-utility.footer-description': UiUtilityFooterDescription;
+      'shipping.shipping': ShippingShipping;
       'ui.top-main': UiTopMain;
       'ui.testimonial': UiTestimonial;
       'ui.product-categories': UiProductCategories;
@@ -546,7 +547,6 @@ declare module '@strapi/types' {
       'ui.dinamic-banner': UiDinamicBanner;
       'ui.categories': UiCategories;
       'ui.bottom': UiBottom;
-      'shipping.shipping': ShippingShipping;
       'shared.seo': SharedSeo;
       'shared.meta-social': SharedMetaSocial;
       'promotions.promotion': PromotionsPromotion;
@@ -557,10 +557,10 @@ declare module '@strapi/types' {
       'menu.single-item': MenuSingleItem;
       'menu.multiple-item': MenuMultipleItem;
       'menu.cart': MenuCart;
+      'categories.categories': CategoriesCategories;
       'cart.table': CartTable;
       'cart.summary': CartSummary;
       'cart.empty-cart': CartEmptyCart;
-      'categories.categories': CategoriesCategories;
     }
   }
 }
