@@ -596,7 +596,7 @@ export interface PluginStrapiEcommerceMercadopagoCategory
   info: {
     singularName: 'category';
     pluralName: 'categories';
-    displayName: 'Categoria';
+    displayName: 'Categorias';
     description: '';
   };
   options: {

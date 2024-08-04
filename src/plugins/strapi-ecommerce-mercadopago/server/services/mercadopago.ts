@@ -106,7 +106,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     return payer;
   },
-  shipping: async (shipping: shipping): Promise<shipping> => {
+  shipment: async (shipping: shipping): Promise<shipping> => {
     return shipping;
   },
   createPreference: async (
