@@ -4,7 +4,7 @@
   "info": {
     "singularName": "condiciones-de-envio",
     "pluralName": "condiciones-de-envios",
-    "displayName": "condiciones-de-envio"
+    "displayName": "Condiciones de envio"
   },
   "options": {
     "draftAndPublish": true

@@ -428,18 +428,6 @@ export interface MercadopagoShipping extends Schema.Component {
   };
 }
 
-export interface CategoriesCategories extends Schema.Component {
-  collectionName: 'components_categories_categories';
-  info: {
-    displayName: 'categories';
-    icon: 'cloud';
-  };
-  attributes: {
-    title: Attribute.String;
-    all_products: Attribute.String;
-  };
-}
-
 export interface MenuSingleItem extends Schema.Component {
   collectionName: 'components_menu_single_items';
   info: {
@@ -521,6 +509,18 @@ export interface CartEmptyCart extends Schema.Component {
   };
 }
 
+export interface CategoriesCategories extends Schema.Component {
+  collectionName: 'components_categories_categories';
+  info: {
+    displayName: 'categories';
+    icon: 'cloud';
+  };
+  attributes: {
+    title: Attribute.String;
+    all_products: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -554,13 +554,13 @@ declare module '@strapi/types' {
       'product.information': ProductInformation;
       'mercadopago.shopper': MercadopagoShopper;
       'mercadopago.shipping': MercadopagoShipping;
-      'categories.categories': CategoriesCategories;
       'menu.single-item': MenuSingleItem;
       'menu.multiple-item': MenuMultipleItem;
       'menu.cart': MenuCart;
       'cart.table': CartTable;
       'cart.summary': CartSummary;
       'cart.empty-cart': CartEmptyCart;
+      'categories.categories': CategoriesCategories;
     }
   }
 }

@@ -653,7 +653,7 @@ export interface PluginStrapiEcommerceMercadopagoProduct
   info: {
     singularName: 'product';
     pluralName: 'products';
-    displayName: 'Product';
+    displayName: 'Productos';
     description: '';
   };
   options: {
@@ -1258,7 +1258,7 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
   info: {
     singularName: 'about-us';
     pluralName: 'about-uses';
-    displayName: 'About-us';
+    displayName: 'Nosotros';
     description: '';
   };
   options: {
@@ -1325,7 +1325,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   info: {
     singularName: 'blog';
     pluralName: 'blogs';
-    displayName: 'Blog';
+    displayName: 'Blogs';
     description: '';
   };
   options: {
@@ -1358,7 +1358,7 @@ export interface ApiCartCart extends Schema.SingleType {
   info: {
     singularName: 'cart';
     pluralName: 'carts';
-    displayName: 'Cart';
+    displayName: 'Carrito de compras';
     description: '';
   };
   options: {
@@ -1411,7 +1411,7 @@ export interface ApiCondicionesDeEnvioCondicionesDeEnvio
   info: {
     singularName: 'condiciones-de-envio';
     pluralName: 'condiciones-de-envios';
-    displayName: 'condiciones-de-envio';
+    displayName: 'Condiciones de envio';
   };
   options: {
     draftAndPublish: true;
@@ -1473,7 +1473,7 @@ export interface ApiDerechoDeRetractoDerechoDeRetracto
   info: {
     singularName: 'derecho-de-retracto';
     pluralName: 'derecho-de-retractos';
-    displayName: 'derecho-de-retracto';
+    displayName: 'Derecho de retracto';
     description: '';
   };
   options: {
@@ -1535,7 +1535,7 @@ export interface ApiGeneralGeneral extends Schema.SingleType {
   info: {
     singularName: 'general';
     pluralName: 'generals';
-    displayName: 'General';
+    displayName: 'Web General';
     description: '';
   };
   options: {
@@ -1568,7 +1568,7 @@ export interface ApiHomeHome extends Schema.SingleType {
   info: {
     singularName: 'home';
     pluralName: 'homes';
-    displayName: 'Home';
+    displayName: 'Pagina principal';
     description: '';
   };
   options: {
@@ -1638,7 +1638,7 @@ export interface ApiPlanesCorporativoPlanesCorporativo
   info: {
     singularName: 'planes-corporativo';
     pluralName: 'planes-corporativos';
-    displayName: 'Planes-corporativos';
+    displayName: 'Planes corporativos';
   };
   options: {
     draftAndPublish: true;
@@ -1699,7 +1699,7 @@ export interface ApiPoliticasDeDevolucionPoliticasDeDevolucion
   info: {
     singularName: 'politicas-de-devolucion';
     pluralName: 'politicas-de-devoluciones';
-    displayName: 'politicas-de-devolucion';
+    displayName: 'Politicas de devolucion';
     description: '';
   };
   options: {
@@ -1761,7 +1761,7 @@ export interface ApiProductDetailProductDetail extends Schema.SingleType {
   info: {
     singularName: 'product-detail';
     pluralName: 'product-details';
-    displayName: 'Product detail';
+    displayName: 'Detalle de producto';
     description: '';
   };
   options: {
@@ -1821,8 +1821,8 @@ export interface ApiShopShop extends Schema.SingleType {
   info: {
     singularName: 'shop';
     pluralName: 'shops';
-    displayName: 'Shop';
-    description: '';
+    displayName: 'Tienda';
+    description: 'Pagina de la tienda online';
   };
   options: {
     draftAndPublish: true;
@@ -1882,7 +1882,7 @@ export interface ApiTagTag extends Schema.CollectionType {
   info: {
     singularName: 'tag';
     pluralName: 'tags';
-    displayName: 'Tag';
+    displayName: 'Tags';
     description: '';
   };
   options: {
@@ -1905,7 +1905,7 @@ export interface ApiTestimonialTestimonial extends Schema.CollectionType {
   info: {
     singularName: 'testimonial';
     pluralName: 'testimonials';
-    displayName: 'Testimonial';
+    displayName: 'Testimonios';
     description: '';
   };
   options: {
@@ -1989,7 +1989,7 @@ export interface ApiTratamientoDeDatoTratamientoDeDato
   info: {
     singularName: 'tratamiento-de-dato';
     pluralName: 'tratamiento-de-datos';
-    displayName: 'tratamiento-de-datos';
+    displayName: 'Tratamiento de datos';
   };
   options: {
     draftAndPublish: true;
