@@ -466,6 +466,18 @@ export interface MenuCart extends Schema.Component {
   };
 }
 
+export interface CategoriesCategories extends Schema.Component {
+  collectionName: 'components_categories_categories';
+  info: {
+    displayName: 'categories';
+    icon: 'cloud';
+  };
+  attributes: {
+    title: Attribute.String;
+    all_products: Attribute.String;
+  };
+}
+
 export interface CartTable extends Schema.Component {
   collectionName: 'components_cart_tables';
   info: {
@@ -509,18 +521,6 @@ export interface CartEmptyCart extends Schema.Component {
   };
 }
 
-export interface CategoriesCategories extends Schema.Component {
-  collectionName: 'components_categories_categories';
-  info: {
-    displayName: 'categories';
-    icon: 'cloud';
-  };
-  attributes: {
-    title: Attribute.String;
-    all_products: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -557,10 +557,10 @@ declare module '@strapi/types' {
       'menu.single-item': MenuSingleItem;
       'menu.multiple-item': MenuMultipleItem;
       'menu.cart': MenuCart;
+      'categories.categories': CategoriesCategories;
       'cart.table': CartTable;
       'cart.summary': CartSummary;
       'cart.empty-cart': CartEmptyCart;
-      'categories.categories': CategoriesCategories;
     }
   }
 }
