@@ -180,7 +180,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     }
   },
   paymentHook: async (payload: PaymentPayload, config: config) => {
-    const { token = "" } = config;
+    const { token = "", send_emails, email } = config;
     const {
       data: { id = "" },
     } = payload;
@@ -269,6 +269,17 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           strapi.log.info(`Product without update: ${product.id}`);
         }
       });
+      // TODO : move to service
+      if (send_emails) {
+        await strapi.plugins["email"].services.email.send({
+          to: email,
+          from: "venta@sc.com", //e.g. single sender verification in SendGrid
+          cc: "valid email address",
+          subject: "Nuevo pedido",
+          text: "Hello world!",
+          html: `<pre>${JSON.stringify(items, null, 2)}</pre>`,
+        });
+      }
     } else {
       await strapi
         .query("plugin::strapi-ecommerce-mercadopago.invoice")
