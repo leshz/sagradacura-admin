@@ -62,6 +62,18 @@ export const productsPricesSummary = (products) => {
   };
 };
 
+export const mergeShipmentAtProducts = (products, shipment) => {
+  const addShipment = Object.keys(shipment).length > 0;
+  return addShipment ? [...products, shipment] : products;
+};
+
+export const calculateWithShipment = (total: number, shipment: any) => {
+  console.debug(shipment, "shipment");
+
+  const addShipment = Object.keys(shipment).length > 0;
+  return addShipment ? total + shipment?.unit_price : total;
+};
+
 export const fieldsImage = [
   "url",
   "width",

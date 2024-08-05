@@ -5,7 +5,11 @@
 import { factories } from "@strapi/strapi";
 import { INVOICES_STATUS, SHIPPING_STATUS } from "../../constants";
 import { errors } from "@strapi/utils";
-import { productsPricesSummary } from "../../helpers";
+import {
+  calculateWithShipment,
+  mergeShipmentAtProducts,
+  productsPricesSummary,
+} from "../../helpers";
 import type { buildedProduct, Reqbuyer, Reqship, config } from "../../types";
 
 export default factories.createCoreService(
@@ -15,18 +19,29 @@ export default factories.createCoreService(
       shipping,
       products,
       shopper,
+      shipment,
       config,
     }: {
       shipping: Reqship;
       shopper: Reqbuyer;
       products: buildedProduct[];
+      shipment: any;
       config: config;
     }) {
       try {
         const formatedProducts = await strapi
           .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
           .meliProduct(products, config);
-        const { total, totalDiscounted } = productsPricesSummary(products);
+        const productsWithShipment = mergeShipmentAtProducts(
+          formatedProducts,
+          shipment
+        );
+        const { total: subtotal, totalDiscounted } = productsPricesSummary(products);
+        const total = calculateWithShipment(subtotal, shipment);
+
+        console.debug(total);
+        
+
         const savedata = await strapi?.entityService?.create(
           "plugin::strapi-ecommerce-mercadopago.invoice",
           {
@@ -34,7 +49,7 @@ export default factories.createCoreService(
               payment_status: INVOICES_STATUS.INITIAL,
               total: total,
               total_discount: totalDiscounted,
-              products: formatedProducts,
+              products: productsWithShipment,
               payment_link: "",
               shipping_status: SHIPPING_STATUS.INITIAL,
               shopper: { ...shopper, last_name: shopper.lastName },

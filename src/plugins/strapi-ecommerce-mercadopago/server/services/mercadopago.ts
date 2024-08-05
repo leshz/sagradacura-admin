@@ -10,7 +10,8 @@ import type {
 } from "../../types";
 import { errors } from "@strapi/utils";
 import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
-import { INVOICES_STATUS } from "../../constants";
+import { INVOICES_STATUS, TYPE_OF_PRODUCTS } from "../../constants";
+import { mergeShipmentAtProducts } from "../../helpers";
 
 const productFormatter = (products, config: config): buildedProduct[] => {
   const { default_currency } = config;
@@ -47,6 +48,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       "short_description",
       "slug",
       "stock",
+      "type",
       "sku",
     ];
 
@@ -106,17 +108,44 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     return payer;
   },
-  shipment: async (shipping: shipping): Promise<shipping> => {
-    return shipping;
+  shipment: async (shipping: shipping, products): Promise<any> => {
+    const { type: shippingType = "SW01" } = shipping;
+    const includeShipment = products.some(({ type }) => {
+      return type === TYPE_OF_PRODUCTS.PRODUCT;
+    });
+
+    if (includeShipment) {
+      const shipment = await strapi
+        .query("plugin::strapi-ecommerce-mercadopago.shipment")
+        .findOne({
+          select: ["*"],
+          where: { code: shippingType },
+        });
+
+      if (!shipment) {
+        return {};
+      }
+
+      return {
+        id: shipment.code,
+        title: "Cargo de envio",
+        description: "Cargo de envio",
+        quantity: 1,
+        unit_price: shipment.price,
+        currency_id: "COP",
+      };
+    }
+    return {};
   },
   createPreference: async (
-    { products, payer, internalInvoiceId },
+    { products, payer, internalInvoiceId, shipment },
     config: config
   ) => {
     const { token, back_urls, bussiness_description, notification_url } =
       config;
 
-    const items = productFormatter(products, config);
+    const productsFormmated = productFormatter(products, config);
+    const items = mergeShipmentAtProducts(productsFormmated, shipment);
     const client = new MercadoPagoConfig({
       accessToken: token,
       options: { timeout: 5000, idempotencyKey: "abc" },

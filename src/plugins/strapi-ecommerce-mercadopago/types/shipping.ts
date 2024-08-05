@@ -4,4 +4,5 @@ export type shipping = {
   city: string;
   postalCode?: string;
   message?: string;
+  type: string;
 };

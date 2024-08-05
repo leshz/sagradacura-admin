@@ -26,9 +26,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
       const shipment = await strapi
         .service("plugin::strapi-ecommerce-mercadopago.mercadopago")
-        .shipment(ship);
-
-        //TODO Continue Here
+        .shipment(ship, products);
 
       const initInvoice = await strapi
         .service("plugin::strapi-ecommerce-mercadopago.invoice")
@@ -36,6 +34,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           shipping: ship,
           shopper: buyer,
           products,
+          shipment,
           config,
         });
 
@@ -51,6 +50,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           {
             products,
             payer: buyerData,
+            shipment,
             internalInvoiceId: initInvoice.id,
           },
           config
