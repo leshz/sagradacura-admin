@@ -273,7 +273,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       if (send_emails) {
         await strapi.plugins["email"].services.email.send({
           to: email,
-          from: "venta@sc.com",
+          from: "admin@sagradacura.com",
           subject: "Nuevo pedido",
           text: "Hello world!",
           html: `<pre>${JSON.stringify(items, null, 2)}</pre>`,
