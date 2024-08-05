@@ -179,7 +179,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       });
     }
   },
-  paymentAction: async (payload: PaymentPayload, config: config) => {
+  paymentHook: async (payload: PaymentPayload, config: config) => {
     const { token = "" } = config;
     const {
       data: { id = "" },
@@ -209,6 +209,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       external_reference: invoiceId,
       payment_type_id = "",
     } = response;
+
     const { items = [], ip_address } = additional_info || {};
 
     const invoice = await strapi
@@ -251,19 +252,22 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           .query("plugin::strapi-ecommerce-mercadopago.product")
           .findOne({ where: { sku: product.id } });
 
-        const newStock = Number(dbproduct.stock) - Number(product.quantity);
-
-        await strapi
-          .query("plugin::strapi-ecommerce-mercadopago.product")
-          .update({
-            where: { sku: product.id },
-            data: {
-              stock: newStock,
-            },
-          });
-        strapi.log.info(
-          `Product: ${dbproduct.sku} has been updated with Stock: ${newStock}`
-        );
+        if (dbproduct) {
+          const newStock = Number(dbproduct.stock) - Number(product.quantity);
+          await strapi
+            .query("plugin::strapi-ecommerce-mercadopago.product")
+            .update({
+              where: { sku: product.id },
+              data: {
+                stock: newStock,
+              },
+            });
+          strapi.log.info(
+            `Product: ${dbproduct.sku} has been updated with Stock: ${newStock}`
+          );
+        } else {
+          strapi.log.info(`Product without update: ${product.id}`);
+        }
       });
     } else {
       await strapi

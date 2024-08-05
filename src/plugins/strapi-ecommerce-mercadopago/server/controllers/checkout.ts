@@ -56,8 +56,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           config
         );
 
-      const { id, client_id, init_point } = preference;
-
+      const { id, init_point, collector_id } = preference;
       const updatedInvoice = await strapi
         .service("plugin::strapi-ecommerce-mercadopago.invoice")
         .updateInvoice({
@@ -65,7 +64,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           data: {
             ...initInvoice,
             payment_status: INVOICES_STATUS.IN_PROCESS,
-            client_id: client_id,
+            collector_id: `${collector_id}`,
             preference_id: id,
             payment_link: init_point,
           },
@@ -74,6 +73,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       return ctx.send({
         init_point,
         preferenceId: id,
+        collector_id,
         invoiceId: updatedInvoice.id,
       });
     } catch (error) {

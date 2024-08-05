@@ -1,42 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface UiUtilityNewsLetter extends Schema.Component {
-  collectionName: 'components_ui_utility_news_letters';
-  info: {
-    displayName: 'news_letter';
-  };
-  attributes: {
-    title: Attribute.String;
-    label: Attribute.String;
-  };
-}
-
-export interface UiUtilityLink extends Schema.Component {
-  collectionName: 'components_ui_utility_links';
-  info: {
-    displayName: 'Link';
-    icon: 'attachment';
-  };
-  attributes: {
-    link: Attribute.String;
-    icon: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
-    text: Attribute.String;
-  };
-}
-
-export interface UiUtilityFooterDescription extends Schema.Component {
-  collectionName: 'components_ui_utility_footer_descriptions';
-  info: {
-    displayName: 'FooterDescription';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    footer_title: Attribute.String & Attribute.Required;
-    description: Attribute.String & Attribute.Required;
-  };
-}
-
 export interface UtilitySingle extends Schema.Component {
   collectionName: 'components_utility_singles';
   info: {
@@ -81,6 +44,43 @@ export interface UtilityColumnLinks extends Schema.Component {
   attributes: {
     title: Attribute.String;
     column: Attribute.Blocks;
+  };
+}
+
+export interface UiUtilityNewsLetter extends Schema.Component {
+  collectionName: 'components_ui_utility_news_letters';
+  info: {
+    displayName: 'news_letter';
+  };
+  attributes: {
+    title: Attribute.String;
+    label: Attribute.String;
+  };
+}
+
+export interface UiUtilityLink extends Schema.Component {
+  collectionName: 'components_ui_utility_links';
+  info: {
+    displayName: 'Link';
+    icon: 'attachment';
+  };
+  attributes: {
+    link: Attribute.String;
+    icon: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    text: Attribute.String;
+  };
+}
+
+export interface UiUtilityFooterDescription extends Schema.Component {
+  collectionName: 'components_ui_utility_footer_descriptions';
+  info: {
+    displayName: 'FooterDescription';
+    icon: 'stack';
+    description: '';
+  };
+  attributes: {
+    footer_title: Attribute.String & Attribute.Required;
+    description: Attribute.String & Attribute.Required;
   };
 }
 
@@ -466,18 +466,6 @@ export interface MenuCart extends Schema.Component {
   };
 }
 
-export interface CategoriesCategories extends Schema.Component {
-  collectionName: 'components_categories_categories';
-  info: {
-    displayName: 'categories';
-    icon: 'cloud';
-  };
-  attributes: {
-    title: Attribute.String;
-    all_products: Attribute.String;
-  };
-}
-
 export interface CartTable extends Schema.Component {
   collectionName: 'components_cart_tables';
   info: {
@@ -521,16 +509,28 @@ export interface CartEmptyCart extends Schema.Component {
   };
 }
 
+export interface CategoriesCategories extends Schema.Component {
+  collectionName: 'components_categories_categories';
+  info: {
+    displayName: 'categories';
+    icon: 'cloud';
+  };
+  attributes: {
+    title: Attribute.String;
+    all_products: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'ui-utility.news-letter': UiUtilityNewsLetter;
-      'ui-utility.link': UiUtilityLink;
-      'ui-utility.footer-description': UiUtilityFooterDescription;
       'utility.single': UtilitySingle;
       'utility.multilink': UtilityMultilink;
       'utility.multi-link': UtilityMultiLink;
       'utility.column-links': UtilityColumnLinks;
+      'ui-utility.news-letter': UiUtilityNewsLetter;
+      'ui-utility.link': UiUtilityLink;
+      'ui-utility.footer-description': UiUtilityFooterDescription;
       'ui.top-main': UiTopMain;
       'ui.testimonial': UiTestimonial;
       'ui.product-categories': UiProductCategories;
@@ -557,10 +557,10 @@ declare module '@strapi/types' {
       'menu.single-item': MenuSingleItem;
       'menu.multiple-item': MenuMultipleItem;
       'menu.cart': MenuCart;
-      'categories.categories': CategoriesCategories;
       'cart.table': CartTable;
       'cart.summary': CartSummary;
       'cart.empty-cart': CartEmptyCart;
+      'categories.categories': CategoriesCategories;
     }
   }
 }

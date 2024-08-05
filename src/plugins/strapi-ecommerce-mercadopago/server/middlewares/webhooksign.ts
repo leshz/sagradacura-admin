@@ -65,6 +65,7 @@ const verifySign = (option, { strapi }: { strapi: Strapi }) => {
         if (!hash) strapi.log.warn("hash is missing");
         if (!dataID) strapi.log.warn("dataID is missing");
         if (!xRequestId) strapi.log.warn("xRequestId is missing");
+        return ctx.internalServerError()
       }
     } catch (error) {
       strapi.log.error("Error Sign Auth Middleware");
