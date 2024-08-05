@@ -39,9 +39,6 @@ export default factories.createCoreService(
         const { total: subtotal, totalDiscounted } = productsPricesSummary(products);
         const total = calculateWithShipment(subtotal, shipment);
 
-        console.debug(total);
-        
-
         const savedata = await strapi?.entityService?.create(
           "plugin::strapi-ecommerce-mercadopago.invoice",
           {

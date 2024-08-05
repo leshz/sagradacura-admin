@@ -68,8 +68,6 @@ export const mergeShipmentAtProducts = (products, shipment) => {
 };
 
 export const calculateWithShipment = (total: number, shipment: any) => {
-  console.debug(shipment, "shipment");
-
   const addShipment = Object.keys(shipment).length > 0;
   return addShipment ? total + shipment?.unit_price : total;
 };
