@@ -84,23 +84,6 @@ export interface UiUtilityFooterDescription extends Schema.Component {
   };
 }
 
-export interface ShippingShipping extends Schema.Component {
-  collectionName: 'components_shipping_shippings';
-  info: {
-    displayName: 'Shipping';
-    icon: 'wheelchair';
-    description: '';
-  };
-  attributes: {
-    price: Attribute.Integer & Attribute.Required;
-    name: Attribute.String & Attribute.Required;
-    type: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.DefaultTo<'SW00'>;
-  };
-}
-
 export interface UiTopMain extends Schema.Component {
   collectionName: 'components_ui_top_mains';
   info: {
@@ -297,6 +280,23 @@ export interface UiBottom extends Schema.Component {
   attributes: {
     copyright: Attribute.String & Attribute.Required;
     phone: Attribute.String;
+  };
+}
+
+export interface ShippingShipping extends Schema.Component {
+  collectionName: 'components_shipping_shippings';
+  info: {
+    displayName: 'Shipping';
+    icon: 'wheelchair';
+    description: '';
+  };
+  attributes: {
+    price: Attribute.Integer & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    type: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.DefaultTo<'SW00'>;
   };
 }
 
@@ -531,7 +531,6 @@ declare module '@strapi/types' {
       'ui-utility.news-letter': UiUtilityNewsLetter;
       'ui-utility.link': UiUtilityLink;
       'ui-utility.footer-description': UiUtilityFooterDescription;
-      'shipping.shipping': ShippingShipping;
       'ui.top-main': UiTopMain;
       'ui.testimonial': UiTestimonial;
       'ui.product-categories': UiProductCategories;
@@ -547,6 +546,7 @@ declare module '@strapi/types' {
       'ui.dinamic-banner': UiDinamicBanner;
       'ui.categories': UiCategories;
       'ui.bottom': UiBottom;
+      'shipping.shipping': ShippingShipping;
       'shared.seo': SharedSeo;
       'shared.meta-social': SharedMetaSocial;
       'promotions.promotion': PromotionsPromotion;

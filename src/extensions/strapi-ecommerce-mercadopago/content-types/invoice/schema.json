@@ -57,7 +57,7 @@
       "require": true,
       "type": "string"
     },
-    "client_id": {
+    "collector_id": {
       "require": true,
       "type": "string"
     },

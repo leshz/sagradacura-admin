@@ -10,7 +10,8 @@ import type {
 } from "../../types";
 import { errors } from "@strapi/utils";
 import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
-import { INVOICES_STATUS } from "../../constants";
+import { INVOICES_STATUS, TYPE_OF_PRODUCTS } from "../../constants";
+import { mergeShipmentAtProducts } from "../../helpers";
 
 const productFormatter = (products, config: config): buildedProduct[] => {
   const { default_currency } = config;
@@ -47,6 +48,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       "short_description",
       "slug",
       "stock",
+      "type",
       "sku",
     ];
 
@@ -106,17 +108,44 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     return payer;
   },
-  shipping: async (shipping: shipping): Promise<shipping> => {
-    return shipping;
+  shipment: async (shipping: shipping, products): Promise<any> => {
+    const { type: shippingType = "SW01" } = shipping;
+    const includeShipment = products.some(({ type }) => {
+      return type === TYPE_OF_PRODUCTS.PRODUCT;
+    });
+
+    if (includeShipment) {
+      const shipment = await strapi
+        .query("plugin::strapi-ecommerce-mercadopago.shipment")
+        .findOne({
+          select: ["*"],
+          where: { code: shippingType },
+        });
+
+      if (!shipment) {
+        return {};
+      }
+
+      return {
+        id: shipment.code,
+        title: "Cargo de envio",
+        description: "Cargo de envio",
+        quantity: 1,
+        unit_price: shipment.price,
+        currency_id: "COP",
+      };
+    }
+    return {};
   },
   createPreference: async (
-    { products, payer, internalInvoiceId },
+    { products, payer, internalInvoiceId, shipment },
     config: config
   ) => {
     const { token, back_urls, bussiness_description, notification_url } =
       config;
 
-    const items = productFormatter(products, config);
+    const productsFormmated = productFormatter(products, config);
+    const items = mergeShipmentAtProducts(productsFormmated, shipment);
     const client = new MercadoPagoConfig({
       accessToken: token,
       options: { timeout: 5000, idempotencyKey: "abc" },
@@ -150,7 +179,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       });
     }
   },
-  paymentAction: async (payload: PaymentPayload, config: config) => {
+  paymentHook: async (payload: PaymentPayload, config: config) => {
     const { token = "" } = config;
     const {
       data: { id = "" },
@@ -180,6 +209,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       external_reference: invoiceId,
       payment_type_id = "",
     } = response;
+
     const { items = [], ip_address } = additional_info || {};
 
     const invoice = await strapi
@@ -222,19 +252,22 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           .query("plugin::strapi-ecommerce-mercadopago.product")
           .findOne({ where: { sku: product.id } });
 
-        const newStock = Number(dbproduct.stock) - Number(product.quantity);
-
-        await strapi
-          .query("plugin::strapi-ecommerce-mercadopago.product")
-          .update({
-            where: { sku: product.id },
-            data: {
-              stock: newStock,
-            },
-          });
-        strapi.log.info(
-          `Product: ${dbproduct.sku} has been updated with Stock: ${newStock}`
-        );
+        if (dbproduct) {
+          const newStock = Number(dbproduct.stock) - Number(product.quantity);
+          await strapi
+            .query("plugin::strapi-ecommerce-mercadopago.product")
+            .update({
+              where: { sku: product.id },
+              data: {
+                stock: newStock,
+              },
+            });
+          strapi.log.info(
+            `Product: ${dbproduct.sku} has been updated with Stock: ${newStock}`
+          );
+        } else {
+          strapi.log.info(`Product without update: ${product.id}`);
+        }
       });
     } else {
       await strapi

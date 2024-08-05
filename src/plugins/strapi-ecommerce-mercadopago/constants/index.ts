@@ -14,12 +14,11 @@ export const INVOICES_STATUS: { [key: string]: string } = {
 export const SHIPPING_STATUS = {
   INITIAL: "initial",
   IN_PROCESS: "in_process",
-  ON_DELIVERY: "on_delivery", 
+  ON_DELIVERY: "on_delivery",
   DELIVERED: "delivered",
   CANCELLED: "cancelled",
   REFUNDED: "refunded",
-}
-
+};
 
 export const URLS = {
   CHECK: "/",
@@ -57,3 +56,8 @@ export const INVOICES_MEANING: { [key: string]: string } = {
   charged_back:
     "Se realizó un contracargo en la tarjeta de crédito del comprador.",
 };
+
+export const enum TYPE_OF_PRODUCTS {
+  PRODUCT = "producto",
+  SERVICE = "servicio",
+}

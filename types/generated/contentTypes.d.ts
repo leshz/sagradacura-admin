@@ -596,7 +596,7 @@ export interface PluginStrapiEcommerceMercadopagoCategory
   info: {
     singularName: 'category';
     pluralName: 'categories';
-    displayName: 'Categoria';
+    displayName: 'Categorias';
     description: '';
   };
   options: {
@@ -887,7 +887,7 @@ export interface PluginStrapiEcommerceMercadopagoInvoice
   attributes: {
     products: Attribute.JSON;
     payment_link: Attribute.String;
-    client_id: Attribute.String;
+    collector_id: Attribute.String;
     total_discount: Attribute.Integer & Attribute.DefaultTo<0>;
     total: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<0>;
     paid_with: Attribute.String;
