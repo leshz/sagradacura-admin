@@ -45,6 +45,16 @@
       "type": "string",
       "required": true,
       "private": true
+    },
+    "send_emails": {
+      "type": "boolean",
+      "required": true,
+      "private": true
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "private": true
     }
   }
 }

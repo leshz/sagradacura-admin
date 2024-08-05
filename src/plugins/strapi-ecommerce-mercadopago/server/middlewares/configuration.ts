@@ -10,7 +10,9 @@ const loadConfig = (options, { strapi }) => {
           "default_currency",
           "back_urls",
           "bussiness_description",
-          "notification_url"
+          "notification_url",
+          "send_emails",
+          "email",
         ],
       });
 
@@ -19,7 +21,6 @@ const loadConfig = (options, { strapi }) => {
       ctx.state.config = config;
       return next();
     }
-
     return ctx.serviceUnavailable("Service Unavailable");
   };
 };

@@ -6,4 +6,6 @@ export type config = {
   webhook_pass: string;
   bussiness_description: string;
   notification_url: string;
+  send_emails: boolean;
+  email: string;
 };

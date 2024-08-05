@@ -817,6 +817,8 @@ export interface PluginStrapiEcommerceMercadopagoConfiguration
     bussiness_description: Attribute.String &
       Attribute.Required &
       Attribute.Private;
+    send_emails: Attribute.Boolean & Attribute.Required & Attribute.Private;
+    email: Attribute.String & Attribute.Required & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
