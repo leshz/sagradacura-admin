@@ -1,42 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface UiUtilityNewsLetter extends Schema.Component {
-  collectionName: 'components_ui_utility_news_letters';
-  info: {
-    displayName: 'news_letter';
-  };
-  attributes: {
-    title: Attribute.String;
-    label: Attribute.String;
-  };
-}
-
-export interface UiUtilityLink extends Schema.Component {
-  collectionName: 'components_ui_utility_links';
-  info: {
-    displayName: 'Link';
-    icon: 'attachment';
-  };
-  attributes: {
-    link: Attribute.String;
-    icon: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
-    text: Attribute.String;
-  };
-}
-
-export interface UiUtilityFooterDescription extends Schema.Component {
-  collectionName: 'components_ui_utility_footer_descriptions';
-  info: {
-    displayName: 'FooterDescription';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    footer_title: Attribute.String & Attribute.Required;
-    description: Attribute.String & Attribute.Required;
-  };
-}
-
 export interface UtilitySingle extends Schema.Component {
   collectionName: 'components_utility_singles';
   info: {
@@ -84,20 +47,40 @@ export interface UtilityColumnLinks extends Schema.Component {
   };
 }
 
-export interface ShippingShipping extends Schema.Component {
-  collectionName: 'components_shipping_shippings';
+export interface UiUtilityNewsLetter extends Schema.Component {
+  collectionName: 'components_ui_utility_news_letters';
   info: {
-    displayName: 'Shipping';
-    icon: 'wheelchair';
+    displayName: 'news_letter';
+  };
+  attributes: {
+    title: Attribute.String;
+    label: Attribute.String;
+  };
+}
+
+export interface UiUtilityLink extends Schema.Component {
+  collectionName: 'components_ui_utility_links';
+  info: {
+    displayName: 'Link';
+    icon: 'attachment';
+  };
+  attributes: {
+    link: Attribute.String;
+    icon: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    text: Attribute.String;
+  };
+}
+
+export interface UiUtilityFooterDescription extends Schema.Component {
+  collectionName: 'components_ui_utility_footer_descriptions';
+  info: {
+    displayName: 'FooterDescription';
+    icon: 'stack';
     description: '';
   };
   attributes: {
-    price: Attribute.Integer & Attribute.Required;
-    name: Attribute.String & Attribute.Required;
-    type: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.DefaultTo<'SW00'>;
+    footer_title: Attribute.String & Attribute.Required;
+    description: Attribute.String & Attribute.Required;
   };
 }
 
@@ -300,20 +283,20 @@ export interface UiBottom extends Schema.Component {
   };
 }
 
-export interface PromotionsPromotion extends Schema.Component {
-  collectionName: 'components_promotions_promotions';
+export interface ShippingShipping extends Schema.Component {
+  collectionName: 'components_shipping_shippings';
   info: {
-    displayName: 'Promotion';
-    icon: 'walk';
+    displayName: 'Shipping';
+    icon: 'wheelchair';
     description: '';
   };
   attributes: {
-    with_discount: Attribute.Boolean & Attribute.DefaultTo<false>;
-    price_with_discount: Attribute.Integer;
-    recommended: Attribute.Boolean & Attribute.DefaultTo<false>;
-    best_seller: Attribute.Boolean & Attribute.DefaultTo<false>;
-    new: Attribute.Boolean & Attribute.DefaultTo<false>;
-    discount_tag: Attribute.String;
+    price: Attribute.Integer & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    type: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.DefaultTo<'SW00'>;
   };
 }
 
@@ -365,6 +348,23 @@ export interface SharedMetaSocial extends Schema.Component {
         maxLength: 65;
       }>;
     image: Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface PromotionsPromotion extends Schema.Component {
+  collectionName: 'components_promotions_promotions';
+  info: {
+    displayName: 'Promotion';
+    icon: 'walk';
+    description: '';
+  };
+  attributes: {
+    with_discount: Attribute.Boolean & Attribute.DefaultTo<false>;
+    price_with_discount: Attribute.Integer;
+    recommended: Attribute.Boolean & Attribute.DefaultTo<false>;
+    best_seller: Attribute.Boolean & Attribute.DefaultTo<false>;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    discount_tag: Attribute.String;
   };
 }
 
@@ -524,14 +524,13 @@ export interface CartEmptyCart extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'ui-utility.news-letter': UiUtilityNewsLetter;
-      'ui-utility.link': UiUtilityLink;
-      'ui-utility.footer-description': UiUtilityFooterDescription;
       'utility.single': UtilitySingle;
       'utility.multilink': UtilityMultilink;
       'utility.multi-link': UtilityMultiLink;
       'utility.column-links': UtilityColumnLinks;
-      'shipping.shipping': ShippingShipping;
+      'ui-utility.news-letter': UiUtilityNewsLetter;
+      'ui-utility.link': UiUtilityLink;
+      'ui-utility.footer-description': UiUtilityFooterDescription;
       'ui.top-main': UiTopMain;
       'ui.testimonial': UiTestimonial;
       'ui.product-categories': UiProductCategories;
@@ -547,9 +546,10 @@ declare module '@strapi/types' {
       'ui.dinamic-banner': UiDinamicBanner;
       'ui.categories': UiCategories;
       'ui.bottom': UiBottom;
-      'promotions.promotion': PromotionsPromotion;
+      'shipping.shipping': ShippingShipping;
       'shared.seo': SharedSeo;
       'shared.meta-social': SharedMetaSocial;
+      'promotions.promotion': PromotionsPromotion;
       'product.promises': ProductPromises;
       'product.information': ProductInformation;
       'mercadopago.shopper': MercadopagoShopper;

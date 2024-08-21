@@ -1,3 +1,4 @@
+import { purchase } from "../../templates/admin-purchase";
 import type { Strapi } from "@strapi/strapi";
 import type {
   config,
@@ -274,9 +275,8 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         await strapi.plugins["email"].services.email.send({
           to: email,
           from: "admin@sagradacura.com",
-          subject: "Nuevo pedido",
-          text: "Hello world!",
-          html: `<pre>${JSON.stringify(items, null, 2)}</pre>`,
+          subject: "Nuevo pedido recibido :)",
+          html: purchase,
         });
       }
     } else {
