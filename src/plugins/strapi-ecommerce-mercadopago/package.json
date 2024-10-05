@@ -9,11 +9,11 @@
     "displayName": "Mercado Pago"
   },
   "dependencies": {
-    "@strapi/design-system": "^1.6.3",
-    "@strapi/helper-plugin": "^4.6.0",
-    "@strapi/icons": "^1.6.3",
+    "@strapi/design-system": "^1.19.0",
+    "@strapi/helper-plugin": "^4.25.12",
+    "@strapi/icons": "^1.19.0",
     "prop-types": "^15.7.2",
-    "mercadopago": "^2.0.9"
+    "mercadopago": "^2.0.15"
   },
   "devDependencies": {
     "@strapi/typescript-utils": "^4.6.0",
@@ -25,7 +25,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",
     "styled-components": "^5.3.6",
-    "typescript": "5.0.4"
+    "typescript": "5.6.2"
   },
   "peerDependencies": {
     "react": "^18.0.0",
