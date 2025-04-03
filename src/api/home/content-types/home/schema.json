@@ -48,7 +48,7 @@
       },
       "component": "ui.hightlights-products"
     },
-    "last_blogposts": {
+    "last_blogs": {
       "displayName": "last_blogposts",
       "type": "component",
       "repeatable": false,

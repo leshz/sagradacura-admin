@@ -1,52 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface UtilitySingle extends Schema.Component {
-  collectionName: 'components_utility_singles';
-  info: {
-    displayName: 'single';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityMultilink extends Schema.Component {
-  collectionName: 'components_utility_multilinks';
-  info: {
-    displayName: 'multilink';
-    icon: 'bulletList';
-  };
-  attributes: {
-    multi_link: Attribute.Component<'utility.multi-link', true>;
-  };
-}
-
-export interface UtilityMultiLink extends Schema.Component {
-  collectionName: 'components_utility_multi_links';
-  info: {
-    displayName: 'multi-link';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityColumnLinks extends Schema.Component {
-  collectionName: 'components_utility_column_links';
-  info: {
-    displayName: 'columnLinks';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String;
-    column: Attribute.Blocks;
-  };
-}
-
 export interface UiUtilityNewsLetter extends Schema.Component {
   collectionName: 'components_ui_utility_news_letters';
   info: {
@@ -142,7 +95,6 @@ export interface UiMenu extends Schema.Component {
   };
   attributes: {
     logo: Attribute.Media<'images'> & Attribute.Required;
-    mobile: Attribute.Component<'ui.mobile-information'>;
     cart_menu: Attribute.Component<'menu.cart'>;
   };
 }
@@ -241,7 +193,7 @@ export interface UiFixedBanner extends Schema.Component {
     title: Attribute.Blocks;
     image: Attribute.Media<'images'> & Attribute.Required;
     link: Attribute.Component<'ui-utility.link'>;
-    dinamic_banner: Attribute.Component<'ui.dinamic-banner', true>;
+    dynamic_banner: Attribute.Component<'ui.dinamic-banner', true>;
   };
 }
 
@@ -466,15 +418,50 @@ export interface MenuCart extends Schema.Component {
   };
 }
 
-export interface CategoriesCategories extends Schema.Component {
-  collectionName: 'components_categories_categories';
+export interface UtilitySingle extends Schema.Component {
+  collectionName: 'components_utility_singles';
   info: {
-    displayName: 'categories';
-    icon: 'cloud';
+    displayName: 'single';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityMultilink extends Schema.Component {
+  collectionName: 'components_utility_multilinks';
+  info: {
+    displayName: 'multilink';
+    icon: 'bulletList';
+  };
+  attributes: {
+    multi_link: Attribute.Component<'utility.multi-link', true>;
+  };
+}
+
+export interface UtilityMultiLink extends Schema.Component {
+  collectionName: 'components_utility_multi_links';
+  info: {
+    displayName: 'multi-link';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityColumnLinks extends Schema.Component {
+  collectionName: 'components_utility_column_links';
+  info: {
+    displayName: 'columnLinks';
+    icon: 'stack';
+    description: '';
   };
   attributes: {
     title: Attribute.String;
-    all_products: Attribute.String;
+    column: Attribute.Blocks;
   };
 }
 
@@ -521,13 +508,21 @@ export interface CartEmptyCart extends Schema.Component {
   };
 }
 
+export interface CategoriesCategories extends Schema.Component {
+  collectionName: 'components_categories_categories';
+  info: {
+    displayName: 'categories';
+    icon: 'cloud';
+  };
+  attributes: {
+    title: Attribute.String;
+    all_products: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'utility.single': UtilitySingle;
-      'utility.multilink': UtilityMultilink;
-      'utility.multi-link': UtilityMultiLink;
-      'utility.column-links': UtilityColumnLinks;
       'ui-utility.news-letter': UiUtilityNewsLetter;
       'ui-utility.link': UiUtilityLink;
       'ui-utility.footer-description': UiUtilityFooterDescription;
@@ -557,10 +552,14 @@ declare module '@strapi/types' {
       'menu.single-item': MenuSingleItem;
       'menu.multiple-item': MenuMultipleItem;
       'menu.cart': MenuCart;
-      'categories.categories': CategoriesCategories;
+      'utility.single': UtilitySingle;
+      'utility.multilink': UtilityMultilink;
+      'utility.multi-link': UtilityMultiLink;
+      'utility.column-links': UtilityColumnLinks;
       'cart.table': CartTable;
       'cart.summary': CartSummary;
       'cart.empty-cart': CartEmptyCart;
+      'categories.categories': CategoriesCategories;
     }
   }
 }

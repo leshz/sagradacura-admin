@@ -1600,7 +1600,7 @@ export interface ApiHomeHome extends Schema.SingleType {
           localized: true;
         };
       }>;
-    last_blogposts: Attribute.Component<'ui.last-blogposts'> &
+    last_blogs: Attribute.Component<'ui.last-blogposts'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

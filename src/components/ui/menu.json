@@ -15,12 +15,6 @@
         "images"
       ]
     },
-    "mobile": {
-      "displayName": "mobile-information",
-      "type": "component",
-      "repeatable": false,
-      "component": "ui.mobile-information"
-    },
     "cart_menu": {
       "displayName": "cart",
       "type": "component",
