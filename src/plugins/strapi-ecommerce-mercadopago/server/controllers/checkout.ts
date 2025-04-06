@@ -12,7 +12,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
     //TODO : Add validation
 
-    const { items, buyer, ship }: request = ctx.request.body || {};
+    const { items = [], buyer, ship }: request = ctx.request.body || {};
     if (items.length === 0) return ctx.badRequest();
 
     try {
@@ -71,10 +71,12 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         });
 
       return ctx.send({
-        init_point,
-        preferenceId: id,
-        collector_id,
-        invoiceId: updatedInvoice.id,
+        data: {
+          init_point,
+          preferenceId: id,
+          collector_id,
+          invoiceId: updatedInvoice.id,
+        }
       });
     } catch (error) {
       strapi.log.error(error);

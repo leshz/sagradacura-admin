@@ -1,0 +1,45 @@
+{
+    "name": "strapi with postgres",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "strapi",
+    "workspaceFolder": "/workspace",
+    // "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "mounts": [
+        "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/bin/zsh"
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "workbench.iconTheme": "bearded-icons",
+                "cSpell.ignorePaths": [
+                    "package-lock.json",
+                    "node_modules",
+                    "vscode-extension",
+                    ".git/{info,lfs,logs,refs,objects}/**",
+                    ".git/{index,*refs,*HEAD}",
+                    ".vscode",
+                    ".devcontainer/**"
+                ]
+            },
+            "extensions": [
+                "vivaxy.vscode-conventional-commits",
+                "dbaeumer.vscode-eslint",
+                "usernamehw.errorlens",
+                "esbenp.prettier-vscode",
+                "streetsidesoftware.code-spell-checker",
+                "ms-vscode.vscode-typescript-next",
+                "Yummygum.city-lights-icon-vsc"
+            ]
+        }
+    }
+}

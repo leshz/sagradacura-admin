@@ -9,7 +9,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
   return async (ctx, next) => {
     ctx.query.populate = {
       banners: {
-        fields: ["title", "image", "link", "dinamic_banner"],
+        fields: ["title", "image", "link", "dynamic_banner"],
         populate: {
           link: {
             fields: ["link", "text"],
@@ -17,7 +17,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           image: {
             fields: fieldsImage,
           },
-          dinamic_banner: {
+          dynamic_banner: {
             fields: ["text", "image"],
             populate: {
               image: {
@@ -53,7 +53,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
           },
         },
       },
-      last_blogposts: {
+      last_blogs: {
         fields: ["title", "get_last", "sub_title", "read_more"],
       },
       testimonial: {
