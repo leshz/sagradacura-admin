@@ -42,7 +42,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     return productFormatter(product, config);
   },
   products: async (items: reqProduct[]): Promise<any[]> => {
-    const attibutes = [
+    const attributes = [
       "id",
       "name",
       "price",
@@ -60,7 +60,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     const results: any[] = await strapi.db
       .query("plugin::strapi-ecommerce-mercadopago.product")
       .findMany({
-        select: attibutes,
+        select: attributes,
         where: { $or: sku },
         populate: ["pictures", "promotion", "categories"],
       });
