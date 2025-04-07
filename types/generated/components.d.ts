@@ -37,6 +37,53 @@ export interface UiUtilityFooterDescription extends Schema.Component {
   };
 }
 
+export interface UtilitySingle extends Schema.Component {
+  collectionName: 'components_utility_singles';
+  info: {
+    displayName: 'single';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityMultilink extends Schema.Component {
+  collectionName: 'components_utility_multilinks';
+  info: {
+    displayName: 'multilink';
+    icon: 'bulletList';
+  };
+  attributes: {
+    multi_link: Attribute.Component<'utility.multi-link', true>;
+  };
+}
+
+export interface UtilityMultiLink extends Schema.Component {
+  collectionName: 'components_utility_multi_links';
+  info: {
+    displayName: 'multi-link';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityColumnLinks extends Schema.Component {
+  collectionName: 'components_utility_column_links';
+  info: {
+    displayName: 'columnLinks';
+    icon: 'stack';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    column: Attribute.Blocks;
+  };
+}
+
 export interface ShippingShipping extends Schema.Component {
   collectionName: 'components_shipping_shippings';
   info: {
@@ -102,53 +149,6 @@ export interface SharedMetaSocial extends Schema.Component {
         maxLength: 65;
       }>;
     image: Attribute.Media<'images' | 'files' | 'videos'>;
-  };
-}
-
-export interface UtilitySingle extends Schema.Component {
-  collectionName: 'components_utility_singles';
-  info: {
-    displayName: 'single';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityMultilink extends Schema.Component {
-  collectionName: 'components_utility_multilinks';
-  info: {
-    displayName: 'multilink';
-    icon: 'bulletList';
-  };
-  attributes: {
-    multi_link: Attribute.Component<'utility.multi-link', true>;
-  };
-}
-
-export interface UtilityMultiLink extends Schema.Component {
-  collectionName: 'components_utility_multi_links';
-  info: {
-    displayName: 'multi-link';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityColumnLinks extends Schema.Component {
-  collectionName: 'components_utility_column_links';
-  info: {
-    displayName: 'columnLinks';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String;
-    column: Attribute.Blocks;
   };
 }
 
@@ -526,13 +526,13 @@ declare module '@strapi/types' {
       'ui-utility.news-letter': UiUtilityNewsLetter;
       'ui-utility.link': UiUtilityLink;
       'ui-utility.footer-description': UiUtilityFooterDescription;
-      'shipping.shipping': ShippingShipping;
-      'shared.seo': SharedSeo;
-      'shared.meta-social': SharedMetaSocial;
       'utility.single': UtilitySingle;
       'utility.multilink': UtilityMultilink;
       'utility.multi-link': UtilityMultiLink;
       'utility.column-links': UtilityColumnLinks;
+      'shipping.shipping': ShippingShipping;
+      'shared.seo': SharedSeo;
+      'shared.meta-social': SharedMetaSocial;
       'promotions.promotion': PromotionsPromotion;
       'ui.top-main': UiTopMain;
       'ui.testimonial': UiTestimonial;
