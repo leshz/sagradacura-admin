@@ -1407,6 +1407,42 @@ export interface ApiCartCart extends Schema.SingleType {
   };
 }
 
+export interface ApiComunidadComunidad extends Schema.CollectionType {
+  collectionName: 'comunidads';
+  info: {
+    singularName: 'comunidad';
+    pluralName: 'comunidads';
+    displayName: 'Comunidad';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    nombre: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+    fecha_nacimiento: Attribute.Date & Attribute.Required;
+    genero: Attribute.Enumeration<
+      ['masculino', 'femenino', 'prefiero_no_decir', 'otro']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'otro'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::comunidad.comunidad',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::comunidad.comunidad',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCondicionesDeEnvioCondicionesDeEnvio
   extends Schema.SingleType {
   collectionName: 'condiciones_de_envios';
@@ -2162,6 +2198,7 @@ declare module '@strapi/types' {
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::blog.blog': ApiBlogBlog;
       'api::cart.cart': ApiCartCart;
+      'api::comunidad.comunidad': ApiComunidadComunidad;
       'api::condiciones-de-envio.condiciones-de-envio': ApiCondicionesDeEnvioCondicionesDeEnvio;
       'api::contacto.contacto': ApiContactoContacto;
       'api::derecho-de-retracto.derecho-de-retracto': ApiDerechoDeRetractoDerechoDeRetracto;
