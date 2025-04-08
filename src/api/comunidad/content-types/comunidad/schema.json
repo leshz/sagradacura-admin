@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comunidads",
+  "info": {
+    "singularName": "comunidad",
+    "pluralName": "comunidads",
+    "displayName": "Comunidad"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "fecha_nacimiento": {
+      "type": "date",
+      "required": true
+    },
+    "genero": {
+      "type": "enumeration",
+      "enum": [
+        "masculino",
+        "femenino",
+        "prefiero_no_decir",
+        "otro"
+      ],
+      "required": true,
+      "default": "otro"
+    }
+  }
+}
