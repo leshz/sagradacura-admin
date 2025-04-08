@@ -105,70 +105,6 @@ export interface SharedMetaSocial extends Schema.Component {
   };
 }
 
-export interface UtilitySingle extends Schema.Component {
-  collectionName: 'components_utility_singles';
-  info: {
-    displayName: 'single';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityMultilink extends Schema.Component {
-  collectionName: 'components_utility_multilinks';
-  info: {
-    displayName: 'multilink';
-    icon: 'bulletList';
-  };
-  attributes: {
-    multi_link: Attribute.Component<'utility.multi-link', true>;
-  };
-}
-
-export interface UtilityMultiLink extends Schema.Component {
-  collectionName: 'components_utility_multi_links';
-  info: {
-    displayName: 'multi-link';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityColumnLinks extends Schema.Component {
-  collectionName: 'components_utility_column_links';
-  info: {
-    displayName: 'columnLinks';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String;
-    column: Attribute.Blocks;
-  };
-}
-
-export interface PromotionsPromotion extends Schema.Component {
-  collectionName: 'components_promotions_promotions';
-  info: {
-    displayName: 'Promotion';
-    icon: 'walk';
-    description: '';
-  };
-  attributes: {
-    with_discount: Attribute.Boolean & Attribute.DefaultTo<false>;
-    price_with_discount: Attribute.Integer;
-    recommended: Attribute.Boolean & Attribute.DefaultTo<false>;
-    best_seller: Attribute.Boolean & Attribute.DefaultTo<false>;
-    new: Attribute.Boolean & Attribute.DefaultTo<false>;
-    discount_tag: Attribute.String;
-  };
-}
-
 export interface UiTopMain extends Schema.Component {
   collectionName: 'components_ui_top_mains';
   info: {
@@ -367,6 +303,70 @@ export interface UiBottom extends Schema.Component {
   };
 }
 
+export interface PromotionsPromotion extends Schema.Component {
+  collectionName: 'components_promotions_promotions';
+  info: {
+    displayName: 'Promotion';
+    icon: 'walk';
+    description: '';
+  };
+  attributes: {
+    with_discount: Attribute.Boolean & Attribute.DefaultTo<false>;
+    price_with_discount: Attribute.Integer;
+    recommended: Attribute.Boolean & Attribute.DefaultTo<false>;
+    best_seller: Attribute.Boolean & Attribute.DefaultTo<false>;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    discount_tag: Attribute.String;
+  };
+}
+
+export interface UtilitySingle extends Schema.Component {
+  collectionName: 'components_utility_singles';
+  info: {
+    displayName: 'single';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityMultilink extends Schema.Component {
+  collectionName: 'components_utility_multilinks';
+  info: {
+    displayName: 'multilink';
+    icon: 'bulletList';
+  };
+  attributes: {
+    multi_link: Attribute.Component<'utility.multi-link', true>;
+  };
+}
+
+export interface UtilityMultiLink extends Schema.Component {
+  collectionName: 'components_utility_multi_links';
+  info: {
+    displayName: 'multi-link';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityColumnLinks extends Schema.Component {
+  collectionName: 'components_utility_column_links';
+  info: {
+    displayName: 'columnLinks';
+    icon: 'stack';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    column: Attribute.Blocks;
+  };
+}
+
 export interface ProductPromises extends Schema.Component {
   collectionName: 'components_product_promises';
   info: {
@@ -529,11 +529,6 @@ declare module '@strapi/types' {
       'shipping.shipping': ShippingShipping;
       'shared.seo': SharedSeo;
       'shared.meta-social': SharedMetaSocial;
-      'utility.single': UtilitySingle;
-      'utility.multilink': UtilityMultilink;
-      'utility.multi-link': UtilityMultiLink;
-      'utility.column-links': UtilityColumnLinks;
-      'promotions.promotion': PromotionsPromotion;
       'ui.top-main': UiTopMain;
       'ui.testimonial': UiTestimonial;
       'ui.product-categories': UiProductCategories;
@@ -549,6 +544,11 @@ declare module '@strapi/types' {
       'ui.dinamic-banner': UiDinamicBanner;
       'ui.categories': UiCategories;
       'ui.bottom': UiBottom;
+      'promotions.promotion': PromotionsPromotion;
+      'utility.single': UtilitySingle;
+      'utility.multilink': UtilityMultilink;
+      'utility.multi-link': UtilityMultiLink;
+      'utility.column-links': UtilityColumnLinks;
       'product.promises': ProductPromises;
       'product.information': ProductInformation;
       'mercadopago.shopper': MercadopagoShopper;

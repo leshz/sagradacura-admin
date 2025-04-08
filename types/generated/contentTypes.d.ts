@@ -1469,6 +1469,40 @@ export interface ApiCondicionesDeEnvioCondicionesDeEnvio
   };
 }
 
+export interface ApiContactoContacto extends Schema.CollectionType {
+  collectionName: 'contactos';
+  info: {
+    singularName: 'contacto';
+    pluralName: 'contactos';
+    displayName: 'Contacto';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    nombre: Attribute.String & Attribute.Required;
+    telefono: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+    asunto: Attribute.String;
+    nota: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contacto.contacto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contacto.contacto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDerechoDeRetractoDerechoDeRetracto
   extends Schema.SingleType {
   collectionName: 'derecho_de_retractos';
@@ -1629,6 +1663,59 @@ export interface ApiHomeHome extends Schema.SingleType {
       'api::home.home',
       'oneToMany',
       'api::home.home'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPaginaContactoPaginaContacto extends Schema.SingleType {
+  collectionName: 'pagina_contactos';
+  info: {
+    singularName: 'pagina-contacto';
+    pluralName: 'pagina-contactos';
+    displayName: 'Pagina Contacto';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    banner: Attribute.Media<'images'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    seo: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pagina-contacto.pagina-contacto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pagina-contacto.pagina-contacto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::pagina-contacto.pagina-contacto',
+      'oneToMany',
+      'api::pagina-contacto.pagina-contacto'
     >;
     locale: Attribute.String;
   };
@@ -2076,9 +2163,11 @@ declare module '@strapi/types' {
       'api::blog.blog': ApiBlogBlog;
       'api::cart.cart': ApiCartCart;
       'api::condiciones-de-envio.condiciones-de-envio': ApiCondicionesDeEnvioCondicionesDeEnvio;
+      'api::contacto.contacto': ApiContactoContacto;
       'api::derecho-de-retracto.derecho-de-retracto': ApiDerechoDeRetractoDerechoDeRetracto;
       'api::general.general': ApiGeneralGeneral;
       'api::home.home': ApiHomeHome;
+      'api::pagina-contacto.pagina-contacto': ApiPaginaContactoPaginaContacto;
       'api::planes-corporativo.planes-corporativo': ApiPlanesCorporativoPlanesCorporativo;
       'api::politicas-de-devolucion.politicas-de-devolucion': ApiPoliticasDeDevolucionPoliticasDeDevolucion;
       'api::product-detail.product-detail': ApiProductDetailProductDetail;
