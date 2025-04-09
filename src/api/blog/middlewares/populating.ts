@@ -15,7 +15,7 @@ export default (config, { strapi }: { strapi: Strapi }) => {
         fields: ["name", "slug"],
       },
       author: {
-        fields: ["username"],
+        fields: ["username"]
       },
       ...ctx.query.populate,
     };

@@ -1298,6 +1298,12 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
           localized: true;
         };
       }>;
+    seo: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1339,12 +1345,9 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     article: Attribute.Blocks;
     slug: Attribute.UID<'api::blog.blog', 'title'> & Attribute.Required;
     tags: Attribute.Relation<'api::blog.blog', 'oneToMany', 'api::tag.tag'>;
-    author: Attribute.Relation<
-      'api::blog.blog',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
+    author: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'>;
     image: Attribute.Media<'images'>;
+    seo: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1981,6 +1984,12 @@ export interface ApiShopShop extends Schema.SingleType {
       }>;
     categories: Attribute.Component<'categories.categories'> &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo: Attribute.Component<'shared.seo'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
