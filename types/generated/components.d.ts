@@ -1,52 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface UtilitySingle extends Schema.Component {
-  collectionName: 'components_utility_singles';
-  info: {
-    displayName: 'single';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityMultilink extends Schema.Component {
-  collectionName: 'components_utility_multilinks';
-  info: {
-    displayName: 'multilink';
-    icon: 'bulletList';
-  };
-  attributes: {
-    multi_link: Attribute.Component<'utility.multi-link', true>;
-  };
-}
-
-export interface UtilityMultiLink extends Schema.Component {
-  collectionName: 'components_utility_multi_links';
-  info: {
-    displayName: 'multi-link';
-  };
-  attributes: {
-    label: Attribute.String;
-    link: Attribute.String;
-  };
-}
-
-export interface UtilityColumnLinks extends Schema.Component {
-  collectionName: 'components_utility_column_links';
-  info: {
-    displayName: 'columnLinks';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String;
-    column: Attribute.Blocks;
-  };
-}
-
 export interface UiUtilityNewsLetter extends Schema.Component {
   collectionName: 'components_ui_utility_news_letters';
   info: {
@@ -350,6 +303,53 @@ export interface UiBottom extends Schema.Component {
   };
 }
 
+export interface UtilitySingle extends Schema.Component {
+  collectionName: 'components_utility_singles';
+  info: {
+    displayName: 'single';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityMultilink extends Schema.Component {
+  collectionName: 'components_utility_multilinks';
+  info: {
+    displayName: 'multilink';
+    icon: 'bulletList';
+  };
+  attributes: {
+    multi_link: Attribute.Component<'utility.multi-link', true>;
+  };
+}
+
+export interface UtilityMultiLink extends Schema.Component {
+  collectionName: 'components_utility_multi_links';
+  info: {
+    displayName: 'multi-link';
+  };
+  attributes: {
+    label: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
+export interface UtilityColumnLinks extends Schema.Component {
+  collectionName: 'components_utility_column_links';
+  info: {
+    displayName: 'columnLinks';
+    icon: 'stack';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    column: Attribute.Blocks;
+  };
+}
+
 export interface PromotionsPromotion extends Schema.Component {
   collectionName: 'components_promotions_promotions';
   info: {
@@ -364,34 +364,6 @@ export interface PromotionsPromotion extends Schema.Component {
     best_seller: Attribute.Boolean & Attribute.DefaultTo<false>;
     new: Attribute.Boolean & Attribute.DefaultTo<false>;
     discount_tag: Attribute.String;
-  };
-}
-
-export interface ProductPromises extends Schema.Component {
-  collectionName: 'components_product_promises';
-  info: {
-    displayName: 'Promises';
-    description: '';
-  };
-  attributes: {
-    icon: Attribute.Enumeration<['bi-truck', 'bi-box2-heart']>;
-    message: Attribute.Blocks;
-    type: Attribute.Enumeration<['producto', 'servicio']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'producto'>;
-  };
-}
-
-export interface ProductInformation extends Schema.Component {
-  collectionName: 'components_product_information';
-  info: {
-    displayName: 'information';
-    icon: 'bell';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    information: Attribute.Blocks & Attribute.Required;
   };
 }
 
@@ -424,6 +396,34 @@ export interface MercadopagoShipping extends Schema.Component {
     address: Attribute.String & Attribute.Required;
     postal_code: Attribute.BigInteger;
     message: Attribute.Text;
+  };
+}
+
+export interface ProductPromises extends Schema.Component {
+  collectionName: 'components_product_promises';
+  info: {
+    displayName: 'Promises';
+    description: '';
+  };
+  attributes: {
+    icon: Attribute.Enumeration<['bi-truck', 'bi-box2-heart']>;
+    message: Attribute.Blocks;
+    type: Attribute.Enumeration<['producto', 'servicio']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'producto'>;
+  };
+}
+
+export interface ProductInformation extends Schema.Component {
+  collectionName: 'components_product_information';
+  info: {
+    displayName: 'information';
+    icon: 'bell';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    information: Attribute.Blocks & Attribute.Required;
   };
 }
 
@@ -523,10 +523,6 @@ export interface CartEmptyCart extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'utility.single': UtilitySingle;
-      'utility.multilink': UtilityMultilink;
-      'utility.multi-link': UtilityMultiLink;
-      'utility.column-links': UtilityColumnLinks;
       'ui-utility.news-letter': UiUtilityNewsLetter;
       'ui-utility.link': UiUtilityLink;
       'ui-utility.footer-description': UiUtilityFooterDescription;
@@ -548,11 +544,15 @@ declare module '@strapi/types' {
       'ui.dinamic-banner': UiDinamicBanner;
       'ui.categories': UiCategories;
       'ui.bottom': UiBottom;
+      'utility.single': UtilitySingle;
+      'utility.multilink': UtilityMultilink;
+      'utility.multi-link': UtilityMultiLink;
+      'utility.column-links': UtilityColumnLinks;
       'promotions.promotion': PromotionsPromotion;
-      'product.promises': ProductPromises;
-      'product.information': ProductInformation;
       'mercadopago.shopper': MercadopagoShopper;
       'mercadopago.shipping': MercadopagoShipping;
+      'product.promises': ProductPromises;
+      'product.information': ProductInformation;
       'menu.single-item': MenuSingleItem;
       'menu.multiple-item': MenuMultipleItem;
       'menu.cart': MenuCart;

@@ -225,7 +225,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       return;
     }
 
-    if (invoice.status === INVOICES_STATUS.APPROVED) {
+    if (invoice.payment_status === INVOICES_STATUS.APPROVED) {
       strapi.log.info(`Invoice: On retry but it has status approved`);
       return;
     }
