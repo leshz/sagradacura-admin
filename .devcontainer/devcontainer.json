@@ -3,7 +3,6 @@
     "dockerComposeFile": "docker-compose.yml",
     "service": "strapi",
     "workspaceFolder": "/workspace",
-    // "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "mounts": [
         "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
         "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
@@ -41,5 +40,6 @@
                 "Yummygum.city-lights-icon-vsc"
             ]
         }
-    }
+    },
+    "postCreateCommand": "yarn"
 }

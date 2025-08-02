@@ -82,6 +82,10 @@
       "required": true,
       "customField": "plugin::content-tags.content-tags"
     },
+    "payment_id": {
+      "type": "string",
+      "required": false
+    },
     "shipping_status": {
       "type": "enumeration",
       "enum": [
