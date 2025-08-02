@@ -241,6 +241,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           data: {
             payment_status: status,
             paid_with: payment_type_id,
+            payment_id: id,
           },
         });
 
