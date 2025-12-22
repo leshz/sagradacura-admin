@@ -70,7 +70,7 @@ export const purchase = `
                                                     <tbody>
                                                         <tr>
                                                             <td align="center" bgcolor="#0092FF" role="presentation" style="border: none; border-radius: 5px; cursor: auto; font-style: normal; background: #0092ff;" valign="middle">
-                                                                <a href="https://sagradacura.shztech.dev/admin/content-manager/collection-types/plugin::strapi-ecommerce-mercadopago.invoice?page=1&pageSize=10&sort=id:DESC" style="display: inline-block; background: #0092ff; color: #ffffff; font-family: Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 100%; margin: 0; text-decoration: none; text-transform: none; padding: 15px 20px; border-radius: 5px;" target="_blank">
+                                                                <a href="https://cms.sagradacura.com/admin/content-manager/collection-types/plugin::strapi-ecommerce-mercadopago.invoice?page=1&pageSize=10&sort=id:DESC" style="display: inline-block; background: #0092ff; color: #ffffff; font-family: Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 100%; margin: 0; text-decoration: none; text-transform: none; padding: 15px 20px; border-radius: 5px;" target="_blank">
                                                                     <span>Ver orden de compra</span>
                                                                 </a>
                                                             </td>
