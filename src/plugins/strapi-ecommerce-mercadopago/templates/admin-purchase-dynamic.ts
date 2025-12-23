@@ -1,5 +1,63 @@
 export const purchaseDynamic = {
   subject: 'Nuevo pedido #<%= invoice.id %> recibido :)',
+  text: `
+¡Tienes un nuevo pedido! 🥳
+Pedido #<%= invoice.id %>
+
+═══════════════════════════════════════════
+📦 PRODUCTOS
+═══════════════════════════════════════════
+
+<% products.forEach(function(product) { %>
+- <%= product.title %>
+  SKU: <%= product.id %>
+  Cantidad: <%= product.quantity %>
+  Precio unitario: $<%= product.unit_price.toLocaleString('es-AR') %>
+  Subtotal: $<%= (product.unit_price * product.quantity).toLocaleString('es-AR') %>
+
+<% }); %>
+
+═══════════════════════════════════════════
+👤 INFORMACIÓN DEL CLIENTE
+═══════════════════════════════════════════
+
+Nombre completo: <%= shopper.name %> <%= shopper.last_name %>
+Email: <%= shopper.email %>
+Teléfono: <%= shopper.phone %>
+DNI: <%= shopper.dni %>
+
+═══════════════════════════════════════════
+🚚 INFORMACIÓN DE ENVÍO
+═══════════════════════════════════════════
+
+Dirección: <%= shipping.address %>
+Ciudad: <%= shipping.city %>
+Departamento: <%= shipping.department %>
+<% if (shipping.postal_code) { %>Código Postal: <%= shipping.postal_code %>
+<% } %><% if (shipping.message) { %>Mensaje: <%= shipping.message %>
+<% } %>
+
+═══════════════════════════════════════════
+💳 INFORMACIÓN DE PAGO
+═══════════════════════════════════════════
+<% if (invoice.total_discount > 0) { %>
+Subtotal: $<%= (invoice.total + invoice.total_discount).toLocaleString('es-AR') %>
+Descuento: -$<%= invoice.total_discount.toLocaleString('es-AR') %>
+<% } %>
+TOTAL: $<%= invoice.total.toLocaleString('es-AR') %>
+
+Método de pago: <%= invoice.paid_with || 'No especificado' %>
+ID de pago: <%= invoice.payment_id || 'Pendiente' %>
+Estado: ✓ <%= invoice.payment_status %>
+
+═══════════════════════════════════════════
+
+Ver detalles completos del pedido:
+https://cms.sagradacura.com/admin/content-manager/collection-types/plugin::strapi-ecommerce-mercadopago.invoice/<%= invoice.id %>
+
+---
+Este es un correo automático generado por el sistema de Sagrada Cura
+`,
   html: `
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
