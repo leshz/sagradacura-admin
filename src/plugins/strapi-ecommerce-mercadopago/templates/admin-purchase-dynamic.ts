@@ -8,12 +8,12 @@ Pedido #<%= invoice.id %>
 📦 PRODUCTOS
 ═══════════════════════════════════════════
 
-<% products.forEach(function(product) { %>
+<% _.forEach(products, function(product) { %>
 - <%= product.title %>
   SKU: <%= product.id %>
   Cantidad: <%= product.quantity %>
-  Precio unitario: $<%= product.unit_price.toLocaleString('es-AR') %>
-  Subtotal: $<%= (product.unit_price * product.quantity).toLocaleString('es-AR') %>
+  Precio unitario: $<%= product.unit_price %>
+  Subtotal: $<%= product.unit_price * product.quantity %>
 
 <% }); %>
 
@@ -41,10 +41,10 @@ Departamento: <%= shipping.department %>
 💳 INFORMACIÓN DE PAGO
 ═══════════════════════════════════════════
 <% if (invoice.total_discount > 0) { %>
-Subtotal: $<%= (invoice.total + invoice.total_discount).toLocaleString('es-AR') %>
-Descuento: -$<%= invoice.total_discount.toLocaleString('es-AR') %>
+Subtotal: $<%= invoice.total + invoice.total_discount %>
+Descuento: -$<%= invoice.total_discount %>
 <% } %>
-TOTAL: $<%= invoice.total.toLocaleString('es-AR') %>
+TOTAL: $<%= invoice.total %>
 
 Método de pago: <%= invoice.paid_with || 'No especificado' %>
 ID de pago: <%= invoice.payment_id || 'Pendiente' %>
@@ -156,7 +156,7 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                             <td align="left" style="font-size: 0px; padding: 15px;">
                                                 <div style="font-family: Ubuntu, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.5; text-align: left; color: #000000;">
                                                     <h2 style="font-size: 18px; margin-bottom: 15px; color: #333;">📦 Productos</h2>
-                                                    <% products.forEach(function(product) { %>
+                                                    <% _.forEach(products, function(product) { %>
                                                         <div class="product-item">
                                                             <div style="font-size: 15px; font-weight: bold; margin-bottom: 8px; color: #0092ff;"><%= product.title %></div>
                                                             <div class="product-details">
@@ -168,11 +168,11 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                                             </div>
                                                             <div class="product-details">
                                                                 <span style="color: #666;">Precio unitario:</span>
-                                                                <span style="font-weight: bold;">$<%= product.unit_price.toLocaleString('es-AR') %></span>
+                                                                <span style="font-weight: bold;">$<%= product.unit_price %></span>
                                                             </div>
                                                             <div class="product-details" style="border-top: 1px solid #ddd; margin-top: 8px; padding-top: 8px;">
                                                                 <span style="color: #666;">Subtotal:</span>
-                                                                <span style="font-weight: bold; color: #0092ff; font-size: 16px;">$<%= (product.unit_price * product.quantity).toLocaleString('es-AR') %></span>
+                                                                <span style="font-weight: bold; color: #0092ff; font-size: 16px;">$<%= product.unit_price * product.quantity %></span>
                                                             </div>
                                                         </div>
                                                     <% }); %>
@@ -241,14 +241,14 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                                     <div class="total-section">
                                                         <% if (invoice.total_discount > 0) { %>
                                                         <div class="info-row">
-                                                            <span class="label">Subtotal:</span> $<%= (invoice.total + invoice.total_discount).toLocaleString('es-AR') %>
+                                                            <span class="label">Subtotal:</span> $<%= invoice.total + invoice.total_discount %>
                                                         </div>
                                                         <div class="info-row">
-                                                            <span class="label">Descuento:</span> <span style="color: #4caf50;">-$<%= invoice.total_discount.toLocaleString('es-AR') %></span>
+                                                            <span class="label">Descuento:</span> <span style="color: #4caf50;">-$<%= invoice.total_discount %></span>
                                                         </div>
                                                         <% } %>
                                                         <div class="info-row" style="font-size: 18px; border-top: 2px solid #4caf50; padding-top: 10px; margin-top: 10px;">
-                                                            <span class="label">Total:</span> <span style="color: #4caf50; font-size: 22px;">$<%= invoice.total.toLocaleString('es-AR') %></span>
+                                                            <span class="label">Total:</span> <span style="color: #4caf50; font-size: 22px;">$<%= invoice.total %></span>
                                                         </div>
                                                         <div class="info-row">
                                                             <span class="label">Método de pago:</span> <%= invoice.paid_with || 'No especificado' %>
