@@ -1,4 +1,5 @@
 import { purchase } from "../../templates/admin-purchase";
+import { purchaseDynamic } from "../../templates/admin-purchase-dynamic";
 import type { Strapi } from "@strapi/strapi";
 import type {
   config,
@@ -218,6 +219,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       .findOne({
         select: ["*"],
         where: { id: invoiceId },
+        populate: ["shopper", "shipping"],
       });
 
     if (invoice === null) {
@@ -273,12 +275,20 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       });
       // TODO : move to service
       if (send_emails) {
-        await strapi.plugins["email"].services.email.send({
-          to: email,
-          from: "admin@sagradacura.com",
-          subject: "Nuevo pedido recibido :)",
-          html: purchase,
-        });
+        // Preparar los datos para el template dinámico
+        await strapi.plugins["email"].services.email.sendTemplatedEmail(
+          {
+            to: email,
+            from: "admin@sagradacura.com",
+          },
+          purchaseDynamic,
+          {
+            invoice: invoice,
+            products: items,
+            shopper: invoice.shopper || {},
+            shipping: invoice.shipping || {},
+          }
+        );
       }
     } else {
       await strapi
