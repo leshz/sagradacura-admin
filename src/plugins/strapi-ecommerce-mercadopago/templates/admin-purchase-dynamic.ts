@@ -8,14 +8,7 @@ Pedido #<%= invoice.id %>
 📦 PRODUCTOS
 ═══════════════════════════════════════════
 
-<% _.forEach(products, function(product) { %>
-- <%= product.title %>
-  SKU: <%= product.id %>
-  Cantidad: <%= product.quantity %>
-  Precio unitario: $<%= product.unit_price %>
-  Subtotal: $<%= product.unit_price * product.quantity %>
-
-<% }); %>
+<%= productsText %>
 
 ═══════════════════════════════════════════
 👤 INFORMACIÓN DEL CLIENTE
@@ -33,17 +26,13 @@ DNI: <%= shopper.dni %>
 Dirección: <%= shipping.address %>
 Ciudad: <%= shipping.city %>
 Departamento: <%= shipping.department %>
-<% if (shipping.postal_code) { %>Código Postal: <%= shipping.postal_code %>
-<% } %><% if (shipping.message) { %>Mensaje: <%= shipping.message %>
-<% } %>
+Código Postal: <%= shipping.postal_code || 'No especificado' %>
+Mensaje: <%= shipping.message || 'Sin mensaje' %>
 
 ═══════════════════════════════════════════
 💳 INFORMACIÓN DE PAGO
 ═══════════════════════════════════════════
-<% if (invoice.total_discount > 0) { %>
-Subtotal: $<%= invoice.total + invoice.total_discount %>
-Descuento: -$<%= invoice.total_discount %>
-<% } %>
+
 TOTAL: $<%= invoice.total %>
 
 Método de pago: <%= invoice.paid_with || 'No especificado' %>
@@ -82,18 +71,6 @@ Este es un correo automático generado por el sistema de Sagrada Cura
         a { text-decoration: none; color: inherit; }
         @media only screen and (max-width: 480px) {
             .mj-column-per-100 { width: 100% !important; max-width: 100% !important; }
-        }
-        .product-item {
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        .product-details {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
         }
         .info-section {
             background-color: #f5f5f5;
@@ -156,26 +133,7 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                             <td align="left" style="font-size: 0px; padding: 15px;">
                                                 <div style="font-family: Ubuntu, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.5; text-align: left; color: #000000;">
                                                     <h2 style="font-size: 18px; margin-bottom: 15px; color: #333;">📦 Productos</h2>
-                                                    <% _.forEach(products, function(product) { %>
-                                                        <div class="product-item">
-                                                            <div style="font-size: 15px; font-weight: bold; margin-bottom: 8px; color: #0092ff;"><%= product.title %></div>
-                                                            <div class="product-details">
-                                                                <span style="color: #666;">SKU: <%= product.id %></span>
-                                                            </div>
-                                                            <div class="product-details">
-                                                                <span style="color: #666;">Cantidad:</span>
-                                                                <span style="font-weight: bold;"><%= product.quantity %></span>
-                                                            </div>
-                                                            <div class="product-details">
-                                                                <span style="color: #666;">Precio unitario:</span>
-                                                                <span style="font-weight: bold;">$<%= product.unit_price %></span>
-                                                            </div>
-                                                            <div class="product-details" style="border-top: 1px solid #ddd; margin-top: 8px; padding-top: 8px;">
-                                                                <span style="color: #666;">Subtotal:</span>
-                                                                <span style="font-weight: bold; color: #0092ff; font-size: 16px;">$<%= product.unit_price * product.quantity %></span>
-                                                            </div>
-                                                        </div>
-                                                    <% }); %>
+                                                    <%= productsHtml %>
                                                 </div>
                                             </td>
                                         </tr>
@@ -218,16 +176,12 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                                         <div class="info-row">
                                                             <span class="label">Departamento:</span> <%= shipping.department %>
                                                         </div>
-                                                        <% if (shipping.postal_code) { %>
                                                         <div class="info-row">
-                                                            <span class="label">Código Postal:</span> <%= shipping.postal_code %>
+                                                            <span class="label">Código Postal:</span> <%= shipping.postal_code || 'No especificado' %>
                                                         </div>
-                                                        <% } %>
-                                                        <% if (shipping.message) { %>
                                                         <div class="info-row">
-                                                            <span class="label">Mensaje:</span> <%= shipping.message %>
+                                                            <span class="label">Mensaje:</span> <%= shipping.message || 'Sin mensaje' %>
                                                         </div>
-                                                        <% } %>
                                                     </div>
                                                 </div>
                                             </td>
@@ -239,15 +193,7 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                                 <div style="font-family: Ubuntu, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.5; text-align: left; color: #000000;">
                                                     <h2 style="font-size: 18px; margin-bottom: 15px; color: #333;">💳 Información de Pago</h2>
                                                     <div class="total-section">
-                                                        <% if (invoice.total_discount > 0) { %>
-                                                        <div class="info-row">
-                                                            <span class="label">Subtotal:</span> $<%= invoice.total + invoice.total_discount %>
-                                                        </div>
-                                                        <div class="info-row">
-                                                            <span class="label">Descuento:</span> <span style="color: #4caf50;">-$<%= invoice.total_discount %></span>
-                                                        </div>
-                                                        <% } %>
-                                                        <div class="info-row" style="font-size: 18px; border-top: 2px solid #4caf50; padding-top: 10px; margin-top: 10px;">
+                                                        <div class="info-row" style="font-size: 18px; padding-top: 10px; margin-top: 10px;">
                                                             <span class="label">Total:</span> <span style="color: #4caf50; font-size: 22px;">$<%= invoice.total %></span>
                                                         </div>
                                                         <div class="info-row">
