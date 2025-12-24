@@ -306,7 +306,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
 
         await strapi.plugins["email"].services.email.sendTemplatedEmail(
           {
-            to: "leshz@me.com",
+            to: email,
             from: "admin@sagradacura.com",
           },
           purchaseDynamic,
