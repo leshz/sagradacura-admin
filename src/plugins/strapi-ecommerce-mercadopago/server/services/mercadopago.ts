@@ -275,6 +275,35 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       });
       // TODO : move to service
       if (send_emails) {
+        // Pre-procesar productos para el template (evitar loops debido a restricciones de seguridad SSTI)
+        const productsHtml = items
+          .map(
+            (product) => `
+          <div style="background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 5px; padding: 15px; margin-bottom: 10px;">
+            <div style="font-size: 15px; font-weight: bold; margin-bottom: 8px; color: #0092ff;">${product.title}</div>
+            <div style="margin-bottom: 5px;"><span style="color: #666;">SKU: ${product.id}</span></div>
+            <div style="margin-bottom: 5px;"><span style="color: #666;">Cantidad:</span> <span style="font-weight: bold;">${product.quantity}</span></div>
+            <div style="margin-bottom: 5px;"><span style="color: #666;">Precio unitario:</span> <span style="font-weight: bold;">$${product.unit_price}</span></div>
+            <div style="border-top: 1px solid #ddd; margin-top: 8px; padding-top: 8px;">
+              <span style="color: #666;">Subtotal:</span> <span style="font-weight: bold; color: #0092ff; font-size: 16px;">$${product.unit_price * product.quantity}</span>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+
+        const productsText = items
+          .map(
+            (product) => `
+- ${product.title}
+  SKU: ${product.id}
+  Cantidad: ${product.quantity}
+  Precio unitario: $${product.unit_price}
+  Subtotal: $${product.unit_price * product.quantity}
+`
+          )
+          .join("\n");
+
         // Preparar los datos para el template dinámico
         await strapi.plugins["email"].services.email.sendTemplatedEmail(
           {
@@ -284,9 +313,12 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           purchaseDynamic,
           {
             invoice: invoice,
-            products: items,
+            productsHtml: productsHtml,
+            productsText: productsText,
             shopper: invoice.shopper || {},
             shipping: invoice.shipping || {},
+            hasDiscount: invoice.total_discount > 0,
+            subtotal: invoice.total + invoice.total_discount,
           }
         );
       }
