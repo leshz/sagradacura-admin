@@ -219,71 +219,9 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       .query("plugin::strapi-ecommerce-mercadopago.invoice")
       .findOne({
         select: ["*"],
-        where: { id: id },
+        where: { id: invoiceId },
         populate: ["shopper", "shipping"],
       });
-
-    if (send_emails) {
-      // Pre-procesar productos para el template
-      const productsHtml = invoice.products
-        .map(
-          (product: any) => `
-        <div style="background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 5px; padding: 15px; margin-bottom: 10px; display: flex; gap: 15px;">
-          ${product.picture_url
-              ? `<img src="${product.picture_url}" alt="${product.title}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;" />`
-              : ""
-            }
-          <div style="flex: 1;">
-            <div style="font-size: 15px; font-weight: bold; margin-bottom: 8px; color: #0092ff;">${product.title
-            }</div>
-            <div style="margin-bottom: 5px;"><span style="color: #666;">SKU: ${product.id
-            }</span></div>
-            <div style="margin-bottom: 5px;"><span style="color: #666;">Cantidad:</span> <span style="font-weight: bold;">${product.quantity
-            }</span></div>
-            <div style="margin-bottom: 5px;"><span style="color: #666;">Precio unitario:</span> <span style="font-weight: bold;">$${product.unit_price
-            }</span></div>
-            <div style="border-top: 1px solid #ddd; margin-top: 8px; padding-top: 8px;">
-              <span style="color: #666;">Subtotal:</span> <span style="font-weight: bold; color: #0092ff; font-size: 16px;">$${product.unit_price * product.quantity
-            }</span>
-            </div>
-          </div>
-        </div>
-      `
-        )
-        .join("");
-
-      await strapi.plugins["email"].services.email.sendTemplatedEmail(
-        {
-          to: "leshz@me.com",
-          from: "admin@sagradacura.com",
-        },
-        purchaseDynamic,
-        {
-          invoice: {
-            id: invoice.id,
-            total: invoice.total,
-            payment_status: invoice.payment_status,
-            paid_with: invoice.paid_with || "No especificado",
-            payment_id: invoice.payment_id || "Pendiente",
-          },
-          productsHtml: productsHtml,
-          shopper: _.pick(invoice.shopper || {}, [
-            "name",
-            "last_name",
-            "email",
-            "phone",
-            "dni",
-          ]),
-          shipping: {
-            address: invoice.shipping?.address || "",
-            city: invoice.shipping?.city || "",
-            department: invoice.shipping?.department || "",
-            postal_code: invoice.shipping?.postal_code || "No especificado",
-            message: invoice.shipping?.message || "Sin mensaje",
-          },
-        }
-      );
-    }
 
     if (invoice === null) {
       strapi.log.info(`Invoice: not found`);
@@ -337,6 +275,67 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         }
       });
       // TODO : move to service
+      if (send_emails) {
+        // Pre-procesar productos para el template
+        const productsHtml = invoice.products
+          .map(
+            (product: any) => `
+        <div style="background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 5px; padding: 15px; margin-bottom: 10px; display: flex; gap: 15px;">
+          ${product.picture_url
+                ? `<img src="${product.picture_url}" alt="${product.title}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;" />`
+                : ""
+              }
+          <div style="flex: 1;">
+            <div style="font-size: 15px; font-weight: bold; margin-bottom: 8px; color: #0092ff;">${product.title
+              }</div>
+            <div style="margin-bottom: 5px;"><span style="color: #666;">SKU: ${product.id
+              }</span></div>
+            <div style="margin-bottom: 5px;"><span style="color: #666;">Cantidad:</span> <span style="font-weight: bold;">${product.quantity
+              }</span></div>
+            <div style="margin-bottom: 5px;"><span style="color: #666;">Precio unitario:</span> <span style="font-weight: bold;">$${product.unit_price
+              }</span></div>
+            <div style="border-top: 1px solid #ddd; margin-top: 8px; padding-top: 8px;">
+              <span style="color: #666;">Subtotal:</span> <span style="font-weight: bold; color: #0092ff; font-size: 16px;">$${product.unit_price * product.quantity
+              }</span>
+            </div>
+          </div>
+        </div>
+      `
+          )
+          .join("");
+
+        await strapi.plugins["email"].services.email.sendTemplatedEmail(
+          {
+            to: "leshz@me.com",
+            from: "admin@sagradacura.com",
+          },
+          purchaseDynamic,
+          {
+            invoice: {
+              id: invoice.id,
+              total: invoice.total,
+              payment_status: invoice.payment_status,
+              paid_with: invoice.paid_with || "No especificado",
+              payment_id: invoice.payment_id || "Pendiente",
+            },
+            productsHtml: productsHtml,
+            shopper: _.pick(invoice.shopper || {}, [
+              "name",
+              "last_name",
+              "email",
+              "phone",
+              "dni",
+            ]),
+            shipping: {
+              address: invoice.shipping?.address || "",
+              city: invoice.shipping?.city || "",
+              department: invoice.shipping?.department || "",
+              postal_code: invoice.shipping?.postal_code || "No especificado",
+              message: invoice.shipping?.message || "Sin mensaje",
+            },
+          }
+        );
+      }
     } else {
       await strapi
         .query("plugin::strapi-ecommerce-mercadopago.invoice")
