@@ -1,53 +1,7 @@
 export const purchaseDynamic = {
-  subject: 'Nuevo pedido #<%= invoice.id %> recibido :)',
-  text: `
-¡Tienes un nuevo pedido! 🥳
-Pedido #<%= invoice.id %>
-
-═══════════════════════════════════════════
-📦 PRODUCTOS
-═══════════════════════════════════════════
-
-<%= productsText %>
-
-═══════════════════════════════════════════
-👤 INFORMACIÓN DEL CLIENTE
-═══════════════════════════════════════════
-
-Nombre completo: <%= shopper.name %> <%= shopper.last_name %>
-Email: <%= shopper.email %>
-Teléfono: <%= shopper.phone %>
-DNI: <%= shopper.dni %>
-
-═══════════════════════════════════════════
-🚚 INFORMACIÓN DE ENVÍO
-═══════════════════════════════════════════
-
-Dirección: <%= shipping.address %>
-Ciudad: <%= shipping.city %>
-Departamento: <%= shipping.department %>
-Código Postal: <%= shipping.postal_code || 'No especificado' %>
-Mensaje: <%= shipping.message || 'Sin mensaje' %>
-
-═══════════════════════════════════════════
-💳 INFORMACIÓN DE PAGO
-═══════════════════════════════════════════
-
-TOTAL: $<%= invoice.total %>
-
-Método de pago: <%= invoice.paid_with || 'No especificado' %>
-ID de pago: <%= invoice.payment_id || 'Pendiente' %>
-Estado: ✓ <%= invoice.payment_status %>
-
-═══════════════════════════════════════════
-
-Ver detalles completos del pedido:
-https://cms.sagradacura.com/admin/content-manager/collection-types/plugin::strapi-ecommerce-mercadopago.invoice/<%= invoice.id %>
-
----
-Este es un correo automático generado por el sistema de Sagrada Cura
-`,
-  html: `
+    subject: 'Nuevo pedido #<%= invoice.id %> recibido !',
+    text: 'Información del pedido',
+    html: `
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -177,10 +131,10 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                                             <span class="label">Departamento:</span> <%= shipping.department %>
                                                         </div>
                                                         <div class="info-row">
-                                                            <span class="label">Código Postal:</span> <%= shipping.postal_code || 'No especificado' %>
+                                                            <span class="label">Código Postal:</span> <%= shipping.postal_code %>
                                                         </div>
                                                         <div class="info-row">
-                                                            <span class="label">Mensaje:</span> <%= shipping.message || 'Sin mensaje' %>
+                                                            <span class="label">Mensaje:</span> <%= shipping.message %>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,13 +151,7 @@ Este es un correo automático generado por el sistema de Sagrada Cura
                                                             <span class="label">Total:</span> <span style="color: #4caf50; font-size: 22px;">$<%= invoice.total %></span>
                                                         </div>
                                                         <div class="info-row">
-                                                            <span class="label">Método de pago:</span> <%= invoice.paid_with || 'No especificado' %>
-                                                        </div>
-                                                        <div class="info-row">
-                                                            <span class="label">ID de pago:</span> <%= invoice.payment_id || 'Pendiente' %>
-                                                        </div>
-                                                        <div class="info-row">
-                                                            <span class="label">Estado:</span> <span style="color: #4caf50; font-weight: bold;">✓ <%= invoice.payment_status %></span>
+                                                            <span class="label">Método de pago:</span> <%= invoice.paid_with %>
                                                         </div>
                                                     </div>
                                                 </div>
